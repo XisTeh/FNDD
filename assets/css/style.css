@@ -86,11 +86,11 @@ body {
    2.2. BACKGROUND GLOBAL DO SITE (ATMOSFERA PREMIUM - POEIRA & MOVIMENTO)
    ========================================================================== */
 .site-bg {
-  position: absolute;
+  position: fixed; /* Fixo na viewport por trás de todo o site */
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   pointer-events: none;
   z-index: 0; /* Fica atrás de todas as seções e da Hero */
@@ -112,51 +112,68 @@ body {
   z-index: 2;
 }
 
-/* Haze cinematográfico - neblina/luz suave volumétrica em tons quentes dourados extremamente sutis */
+/* Haze cinematográfico - neblina/luz suave volumétrica em tons quentes dourados e grafite altamente visíveis */
 .site-haze {
   position: absolute;
   border-radius: 50%;
-  filter: blur(220px); /* Aumentado o blur para difusão volumétrica perfeita */
+  filter: blur(180px); /* Difusão volumétrica perfeita */
   pointer-events: none;
   z-index: 3;
   mix-blend-mode: screen;
 }
 
 .site-haze-one {
-  top: 145vh; /* Deslocado perfeitamente para harmonizar com a seção Sobre */
+  top: 15vh; /* Ajustado no viewport fixo */
   right: -150px;
   width: 650px;
   height: 650px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.07) 0%, rgba(25, 23, 20, 0.02) 50%, transparent 80%);
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.1) 0%, rgba(25, 23, 20, 0.02) 50%, transparent 80%);
   animation: hazeFloatOne 32s infinite ease-in-out alternate;
+  /* Reage de forma suave e volumétrica ao mouse com amplitude premium */
+  transform: translate3d(calc(var(--mouse-nx, 0) * 12px), calc(var(--mouse-ny, 0) * 8px), 0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-haze-two {
-  top: 185vh;
+  top: 50vh; /* Ajustado no viewport fixo */
   left: -200px;
   width: 750px;
   height: 750px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.05) 0%, rgba(17, 16, 12, 0.01) 60%, transparent 80%);
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.08) 0%, rgba(17, 16, 12, 0.01) 60%, transparent 80%);
   animation: hazeFloatTwo 40s infinite ease-in-out alternate;
+  /* Reação de paralaxe oposta */
+  transform: translate3d(calc(var(--mouse-nx, 0) * -10px), calc(var(--mouse-ny, 0) * -6px), 0);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes hazeFloatOne {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.6; }
-  100% { transform: translate(-50px, 40px) scale(1.12) rotate(8deg); opacity: 0.95; }
+  0% { opacity: 0.65; transform: scale(0.98); }
+  100% { opacity: 0.98; transform: scale(1.08); }
 }
 
 @keyframes hazeFloatTwo {
-  0% { transform: translate(0, 0) scale(1.08) rotate(0deg); opacity: 0.5; }
-  100% { transform: translate(60px, -50px) scale(0.92) rotate(-12deg); opacity: 0.85; }
+  0% { opacity: 0.55; transform: scale(1.05); }
+  100% { opacity: 0.88; transform: scale(0.95); }
 }
 
-/* Partículas orgânicas - poeira de palco iluminada em suspensão volumétrica */
+/* Partículas orgânicas - poeira de palco iluminada em suspensão volumétrica de alta visibilidade */
 .site-particles {
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 4;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-particles-one {
+  /* Paralaxe suave acompanhando o mouse em alta amplitude */
+  transform: translate3d(calc(var(--mouse-nx, 0) * 35px), calc(var(--mouse-ny, 0) * 24px), 0);
+}
+
+.site-particles-two {
+  /* Paralaxe na direção contrária gerando tridimensionalidade profunda */
+  transform: translate3d(calc(var(--mouse-nx, 0) * -28px), calc(var(--mouse-ny, 0) * -18px), 0);
 }
 
 .site-particles-one::before,
@@ -169,121 +186,146 @@ body {
   background: transparent;
 }
 
-/* Camada 1: Poeira de palco ultrafina dourada e branca quente (0.8px a 1.5px) com opacidades orgânicas */
+/* Camada 1: Poeira de palco fina dourada, branca e âmbar (1px a 1.8px) com alto contraste */
 .site-particles-one::before {
   box-shadow: 
-    15vw 12vh 0.2px rgba(197, 168, 90, 0.38), 
-    35vw 22vh 0.6px rgba(253, 253, 253, 0.28), 
-    55vw 14vh 0px rgba(197, 168, 90, 0.35), 
-    80vw 26vh 0.8px rgba(253, 253, 253, 0.32),
-    22vw 38vh 0.2px rgba(197, 168, 90, 0.28), 
-    62vw 32vh 0.5px rgba(253, 253, 253, 0.35),
-    88vw 46vh 0.2px rgba(197, 168, 90, 0.42),
-    12vw 58vh 0.8px rgba(253, 253, 253, 0.28),
-    48vw 54vh 0.2px rgba(197, 168, 90, 0.38),
-    72vw 68vh 0.5px rgba(253, 253, 253, 0.32),
-    28vw 78vh 0.2px rgba(197, 168, 90, 0.35),
-    64vw 82vh 0.5px rgba(253, 253, 253, 0.38),
-    92vw 68vh 0.2px rgba(197, 168, 90, 0.28),
-    32vw 88vh 0.8px rgba(253, 253, 253, 0.3),
-    78vw 88vh 0.2px rgba(197, 168, 90, 0.45);
-  width: 1.2px;
-  height: 1.2px;
-  animation: particleDriftOne 28s infinite ease-in-out;
-}
-
-/* Camada 2: Partículas levemente maiores com glow reflexivo de palco */
-.site-particles-one::after {
-  box-shadow: 
-    18vw 28vh 1.2px rgba(197, 168, 90, 0.24), 
-    46vw 16vh 1.8px rgba(253, 253, 253, 0.22), 
-    76vw 32vh 0.8px rgba(197, 168, 90, 0.28),
-    26vw 54vh 2.2px rgba(253, 253, 253, 0.24),
-    54vw 42vh 1.2px rgba(197, 168, 90, 0.3),
-    86vw 58vh 1.8px rgba(253, 253, 253, 0.22),
-    34vw 72vh 0.8px rgba(197, 168, 90, 0.32),
-    66vw 78vh 1.8px rgba(253, 253, 253, 0.28),
-    84vw 82vh 1.2px rgba(197, 168, 90, 0.24),
-    46vw 82vh 2.2px rgba(253, 253, 253, 0.22);
-  width: 2.5px;
-  height: 2.5px;
-  filter: blur(0.3px);
-  animation: particleDriftTwo 36s infinite ease-in-out alternate;
-}
-
-/* Camadas de poeira 2 para a região da seção Sobre */
-.site-particles-two::before {
-  box-shadow: 
-    12vw 104vh 0.2px rgba(197, 168, 90, 0.35), 
-    32vw 112vh 0.6px rgba(253, 253, 253, 0.28), 
-    72vw 106vh 0.2px rgba(197, 168, 90, 0.32),
-    24vw 128vh 0.8px rgba(253, 253, 253, 0.32),
-    46vw 136vh 0.2px rgba(197, 168, 90, 0.32),
-    82vw 122vh 0.6px rgba(253, 253, 253, 0.28),
-    14vw 152vh 0.2px rgba(197, 168, 90, 0.38),
-    44vw 148vh 0.8px rgba(253, 253, 253, 0.32),
-    66vw 160vh 0.2px rgba(197, 168, 90, 0.35),
-    88vw 148vh 0.6px rgba(253, 253, 253, 0.28),
-    22vw 178vh 0.2px rgba(197, 168, 90, 0.42),
-    56vw 176vh 0.8px rgba(253, 253, 253, 0.35),
-    84vw 170vh 0.2px rgba(197, 168, 90, 0.32),
-    32vw 188vh 0.6px rgba(253, 253, 253, 0.28);
+    15vw 12vh 0.2px rgba(197, 168, 90, 0.65), 
+    35vw 22vh 0.6px rgba(253, 253, 253, 0.58), 
+    55vw 14vh 0px rgba(234, 201, 125, 0.62), 
+    80vw 26vh 0.8px rgba(253, 253, 253, 0.55),
+    22vw 38vh 0.2px rgba(197, 168, 90, 0.58), 
+    62vw 32vh 0.5px rgba(253, 253, 253, 0.62),
+    88vw 46vh 0.2px rgba(234, 201, 125, 0.72),
+    12vw 58vh 0.8px rgba(253, 253, 253, 0.55),
+    48vw 54vh 0.2px rgba(197, 168, 90, 0.65),
+    72vw 68vh 0.5px rgba(253, 253, 253, 0.58),
+    28vw 78vh 0.2px rgba(234, 201, 125, 0.62),
+    64vw 82vh 0.5px rgba(253, 253, 253, 0.65),
+    92vw 68vh 0.2px rgba(197, 168, 90, 0.58),
+    32vw 88vh 0.8px rgba(253, 253, 253, 0.55),
+    78vw 88vh 0.2px rgba(197, 168, 90, 0.75),
+    45vw 18vh 0.2px rgba(234, 201, 125, 0.58),
+    85vw 12vh 0.5px rgba(253, 253, 253, 0.52),
+    10vw 30vh 0.2px rgba(197, 168, 90, 0.62),
+    50vw 80vh 0.5px rgba(253, 253, 253, 0.58),
+    68vw 15vh 0.2px rgba(197, 168, 90, 0.55),
+    90vw 35vh 0.5px rgba(253, 253, 253, 0.48),
+    25vw 55vh 0.2px rgba(234, 201, 125, 0.52),
+    75vw 50vh 0.5px rgba(253, 253, 253, 0.45);
   width: 1.5px;
   height: 1.5px;
-  animation: particleDriftOne 32s infinite ease-in-out reverse;
+  animation: particleDriftOne 32s infinite ease-in-out, particlesShimmer 6s infinite ease-in-out;
+}
+
+/* Camada 2: Partículas reflexivas médias de purpurina real com glow cintilante */
+.site-particles-one::after {
+  box-shadow: 
+    18vw 28vh 1.2px rgba(197, 168, 90, 0.45), 
+    46vw 16vh 1.8px rgba(253, 253, 253, 0.42), 
+    76vw 32vh 0.8px rgba(234, 201, 125, 0.48),
+    26vw 54vh 2.2px rgba(253, 253, 253, 0.45),
+    54vw 42vh 1.2px rgba(197, 168, 90, 0.52),
+    86vw 58vh 1.8px rgba(253, 253, 253, 0.42),
+    34vw 72vh 0.8px rgba(234, 201, 125, 0.58),
+    66vw 78vh 1.8px rgba(253, 253, 253, 0.48),
+    84vw 82vh 1.2px rgba(197, 168, 90, 0.45),
+    46vw 82vh 2.2px rgba(253, 253, 253, 0.42),
+    60vw 25vh 1px rgba(234, 201, 125, 0.48),
+    15vw 70vh 2px rgba(253, 253, 253, 0.38),
+    88vw 18vh 1.5px rgba(197, 168, 90, 0.42),
+    42vw 70vh 2px rgba(253, 253, 253, 0.35);
+  width: 3px;
+  height: 3px;
+  filter: blur(0.2px);
+  animation: particleDriftTwo 42s infinite ease-in-out alternate, particlesShimmer 8s infinite ease-in-out;
+}
+
+/* Camadas de poeira 2 para a região da seção Sobre e além */
+.site-particles-two::before {
+  box-shadow: 
+    12vw 24vh 0.2px rgba(197, 168, 90, 0.55), 
+    32vw 32vh 0.6px rgba(253, 253, 253, 0.48), 
+    72vw 15vh 0.2px rgba(234, 201, 125, 0.52),
+    24vw 48vh 0.8px rgba(253, 253, 253, 0.48),
+    46vw 52vh 0.2px rgba(197, 168, 90, 0.55),
+    82vw 28vh 0.6px rgba(253, 253, 253, 0.48),
+    14vw 68vh 0.2px rgba(197, 168, 90, 0.62),
+    44vw 55vh 0.8px rgba(253, 253, 253, 0.48),
+    66vw 75vh 0.2px rgba(234, 201, 125, 0.55),
+    88vw 42vh 0.6px rgba(253, 253, 253, 0.48),
+    22vw 88vh 0.2px rgba(197, 168, 90, 0.65),
+    56vw 72vh 0.8px rgba(253, 253, 253, 0.58),
+    84vw 62vh 0.2px rgba(234, 201, 125, 0.55),
+    32vw 85vh 0.6px rgba(253, 253, 253, 0.48),
+    5vw 35vh 0.2px rgba(197, 168, 90, 0.55),
+    50vw 60vh 0.8px rgba(253, 253, 253, 0.48),
+    90vw 18vh 0.2px rgba(234, 201, 125, 0.55),
+    18vw 40vh 0.2px rgba(197, 168, 90, 0.52),
+    60vw 30vh 0.6px rgba(253, 253, 253, 0.42),
+    78vw 78vh 0.2px rgba(234, 201, 125, 0.58);
+  width: 1.8px;
+  height: 1.8px;
+  animation: particleDriftOne 36s infinite ease-in-out reverse, particlesShimmer 7s infinite ease-in-out;
 }
 
 .site-particles-two::after {
   box-shadow: 
-    16vw 108vh 1.8px rgba(197, 168, 90, 0.24), 
-    44vw 122vh 1.2px rgba(253, 253, 253, 0.22), 
-    76vw 138vh 2.2px rgba(197, 168, 90, 0.28),
-    14vw 146vh 1.8px rgba(253, 253, 253, 0.32),
-    52vw 158vh 1.2px rgba(197, 168, 90, 0.35),
-    84vw 178vh 1.8px rgba(253, 253, 253, 0.22),
-    26vw 168vh 2.2px rgba(197, 168, 90, 0.28),
-    62vw 182vh 1.2px rgba(253, 253, 253, 0.32);
-  width: 3px;
-  height: 3px;
-  filter: blur(0.5px);
-  animation: particleDriftTwo 40s infinite ease-in-out alternate reverse;
+    16vw 22vh 1.8px rgba(197, 168, 90, 0.42), 
+    44vw 38vh 1.2px rgba(253, 253, 253, 0.38), 
+    76vw 45vh 2.2px rgba(234, 201, 125, 0.48),
+    14vw 50vh 1.8px rgba(253, 253, 253, 0.48),
+    52vw 64vh 1.2px rgba(197, 168, 90, 0.52),
+    84vw 82vh 1.8px rgba(253, 253, 253, 0.38),
+    26vw 70vh 2.2px rgba(197, 168, 90, 0.48),
+    62vw 85vh 1.2px rgba(253, 253, 253, 0.48),
+    38vw 58vh 1.5px rgba(234, 201, 125, 0.42),
+    70vw 25vh 2px rgba(197, 168, 90, 0.38),
+    28vw 20vh 1.5px rgba(197, 168, 90, 0.42),
+    58vw 54vh 2px rgba(253, 253, 253, 0.38);
+  width: 3.5px;
+  height: 3.5px;
+  filter: blur(0.3px);
+  animation: particleDriftTwo 44s infinite ease-in-out alternate reverse, particlesShimmer 9s infinite ease-in-out;
+}
+
+@keyframes particlesShimmer {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.98; }
 }
 
 @keyframes particleDriftOne {
-  0% { transform: translateY(0) translateX(0) translateZ(0); opacity: 0.25; }
-  25% { opacity: 0.6; }
-  50% { transform: translateY(-30px) translateX(15px) translateZ(0); opacity: 0.4; }
-  75% { opacity: 0.7; }
-  100% { transform: translateY(0) translateX(0) translateZ(0); opacity: 0.25; }
+  0% { transform: translateY(0) translateX(0) translateZ(0); }
+  50% { transform: translateY(-40px) translateX(20px) translateZ(0); }
+  100% { transform: translateY(0) translateX(0) translateZ(0); }
 }
 
 @keyframes particleDriftTwo {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
-  33% { opacity: 0.55; }
-  50% { transform: translateY(-40px) translateX(-20px) scale(0.95); opacity: 0.3; }
-  66% { opacity: 0.65; }
-  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-50px) translateX(-25px) scale(0.95); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
 }
 
-/* Motion Trace - Rastros de Movimento Dourados (Abstratos, Finos e Cinemáticos) */
+/* Motion Trace - Rastros de Movimento Dourados (Finos, Iluminados e Coreográficos) */
 .site-motion-trace {
   position: absolute;
   border: 1px solid transparent;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(3px); /* Reduzido o blur de 4px para maior nitidez e fineza */
-  opacity: 0.18; /* Excelente visibilidade sofisticada */
+  filter: blur(1.5px) drop-shadow(0 0 12px rgba(197, 168, 90, 0.35)); /* Adicionado drop-shadow magnífico */
+  opacity: 0.32; /* Perfeitamente visível e luxuoso */
   z-index: 5;
 }
 
 .trace-one {
-  top: 80vh;
+  top: 5vh; /* Ajustado no viewport fixo */
   left: -200px;
   width: 950px;
   height: 950px;
-  border-right: 1.4px solid rgba(197, 168, 90, 0.42); /* Fino e dourado nítido */
-  border-top: 1px solid rgba(197, 168, 90, 0.18);
-  transform: rotate(-22deg);
+  border-right: 1.5px solid rgba(197, 168, 90, 0.65); /* Fino e dourado de alta presença */
+  border-top: 1px solid rgba(197, 168, 90, 0.28);
+  /* Reação à inclinação e posição tridimensional do mouse */
+  transform: rotate(calc(-22deg + var(--mouse-nx, 0) * 5deg)) translate3d(calc(var(--mouse-nx, 0) * -30px), calc(var(--mouse-ny, 0) * -20px), 0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   mask-image: linear-gradient(135deg, black 40%, transparent 85%);
   -webkit-mask-image: linear-gradient(135deg, black 40%, transparent 85%);
   animation: traceBreatheOne 30s infinite ease-in-out alternate;
@@ -294,20 +336,22 @@ body {
   content: '';
   position: absolute;
   inset: 14px;
-  border-right: 1px dashed rgba(197, 168, 90, 0.25); /* Tracejado rítmico */
-  border-top: 0.8px solid rgba(197, 168, 90, 0.1);
+  border-right: 1.2px dashed rgba(197, 168, 90, 0.45); /* Tracejado rítmico */
+  border-top: 0.8px solid rgba(197, 168, 90, 0.22);
   border-radius: 50%;
   pointer-events: none;
 }
 
 .trace-two {
-  top: 138vh;
+  top: 45vh; /* Ajustado no viewport fixo */
   right: -300px;
   width: 1050px;
   height: 1050px;
-  border-left: 1.4px solid rgba(197, 168, 90, 0.38);
-  border-bottom: 1px solid rgba(197, 168, 90, 0.15);
-  transform: rotate(32deg);
+  border-left: 1.5px solid rgba(197, 168, 90, 0.58);
+  border-bottom: 1px solid rgba(197, 168, 90, 0.24);
+  /* Reação oposta de coreografia e mouse */
+  transform: rotate(calc(32deg - var(--mouse-nx, 0) * 5deg)) translate3d(calc(var(--mouse-nx, 0) * 25px), calc(var(--mouse-ny, 0) * 15px), 0);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   mask-image: linear-gradient(-45deg, black 40%, transparent 85%);
   -webkit-mask-image: linear-gradient(-45deg, black 40%, transparent 85%);
   animation: traceBreatheTwo 36s infinite ease-in-out alternate;
@@ -317,41 +361,44 @@ body {
   content: '';
   position: absolute;
   inset: 16px;
-  border-left: 1px dashed rgba(197, 168, 90, 0.22);
-  border-bottom: 0.8px solid rgba(197, 168, 90, 0.08);
+  border-left: 1.2px dashed rgba(197, 168, 90, 0.38);
+  border-bottom: 0.8px solid rgba(197, 168, 90, 0.18);
   border-radius: 50%;
   pointer-events: none;
 }
 
-/* Dot Matrix Editorial Estratégico (Sofisticado, com fade radial) */
+/* Dot Matrix Editorial Estratégico (Sofisticado, com fade radial e Shimmer) */
 .site-editorial-dots {
   position: absolute;
-  width: 280px;
-  height: 280px;
-  background-image: radial-gradient(rgba(197, 168, 90, 0.32) 1.5px, transparent 1.5px);
+  width: 320px;
+  height: 320px;
+  background-image: radial-gradient(rgba(197, 168, 90, 0.45) 1.5px, transparent 1.5px); /* Dots nítidos */
   background-size: 16px 16px;
   pointer-events: none;
   z-index: 3;
   mask-image: radial-gradient(circle at center, black 15%, transparent 75%);
   -webkit-mask-image: radial-gradient(circle at center, black 15%, transparent 75%);
   animation: dotsPulse 18s infinite ease-in-out alternate;
+  /* Reage de forma editorial sutil e controlada */
+  transform: translate3d(calc(var(--mouse-nx, 0) * 15px), calc(var(--mouse-ny, 0) * 12px), 0);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dots-right {
-  top: 115vh;
-  right: 5%;
+  top: 20vh; /* Ajustado no viewport fixo */
+  right: 6%;
 }
 
 .dots-left {
-  top: 188vh;
-  left: 4%;
-  background-image: radial-gradient(rgba(253, 253, 253, 0.24) 1.5px, transparent 1.5px);
+  top: 60vh; /* Ajustado no viewport fixo */
+  left: 5%;
+  background-image: radial-gradient(rgba(253, 253, 253, 0.35) 1.5px, transparent 1.5px);
 }
 
 @keyframes dotsPulse {
-  0% { opacity: 0.4; transform: scale(0.97); }
-  50% { opacity: 0.85; transform: scale(1.02); }
-  100% { opacity: 0.5; transform: scale(0.99); }
+  0% { opacity: 0.55; transform: scale(0.97); }
+  50% { opacity: 0.95; transform: scale(1.02); }
+  100% { opacity: 0.65; transform: scale(0.99); }
 }
 
 /* Vigas de Holofote Coreográfico Interativo (efeito dinâmico seguidor de palco) */
@@ -382,13 +429,14 @@ body {
 }
 
 @keyframes traceBreatheOne {
-  0% { transform: rotate(-22deg) scale(0.97) translateY(0); opacity: 0.04; }
-  100% { transform: rotate(-19deg) scale(1.03) translateY(-8px); opacity: 0.12; }
+  0% { transform: rotate(-22deg) scale(0.97) translateY(0); opacity: 0.05; }
+  100% { transform: rotate(-19deg) scale(1.03) translateY(-8px); opacity: 0.16; }
 }
 
 @keyframes traceBreatheTwo {
-  0% { transform: rotate(32deg) scale(1.02) translateY(0); opacity: 0.03; }
-  100% { transform: rotate(29deg) scale(0.97) translateY(10px); opacity: 0.1; }
+  0% { transform: rotate(32deg) scale(1.02) translateY(0); opacity: 0.04; }
+  100% { transform: rotate(29deg) scale(0.97) translateY(10px); opacity: 0.14; }
+}anslateY(10px); opacity: 0.1; }
 }
 
 /* Reduções Mobile dos Elementos Fluidos */
@@ -1576,22 +1624,22 @@ body {
 }
 
 /* ==========================================================================
-   10. SEÇÃO QUEM É A FNDD (MANIFESTO PREMIUM - MOVIMENTO DOURADO)
+   10. SEÇÃO MANIFESTO INSTITUCIONAL - LINHA COREOGRÁFICA FNDD (DA EXPRESSÃO AO MOVIMENTO)
    ========================================================================== */
-.about-section {
+.about-choreography {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent; /* Permite ver o background global */
-  padding: 160px 6%;
+  background-color: transparent;
+  padding: 160px 8% 120px 8%;
   overflow: hidden;
   z-index: 2;
 }
 
-/* Bloqueio de emenda ultra-suave: fade reverso para ocultar qualquer vazamento sob a transição da Hero */
-.about-section::before {
+/* Emenda ultra-suave na divisa 100vh: Fade reverso para a Hero acima */
+.about-choreography::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1600,90 +1648,61 @@ body {
   height: 220px;
   background: linear-gradient(to bottom, #050506 0%, rgba(5, 5, 6, 0.8) 35%, rgba(5, 5, 6, 0) 100%);
   pointer-events: none;
-  z-index: 2; /* Acima dos glows locais (z-index: 1), mas abaixo do container de conteúdo (z-index: 3) */
+  z-index: 2;
 }
 
-/* Camadas Locais de Partículas e Movimento do Sobre */
+/* Background local da seção com detalhes editoriais discretos */
+.about-choreo-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Marca d'água FNDD gigante em fonte refinada e opacidade controlada */
+.about-watermark {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: clamp(8rem, 16vw, 20rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.01);
+  top: 8%;
+  left: -2%;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  z-index: 1;
+}
+
+/* Linhas Editoriais Finas Douradas FNDD */
+.about-decor-line-one {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.08) 0%, rgba(197, 168, 90, 0.01) 70%, transparent 100%);
+}
+
+.about-decor-line-two {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  width: 1px;
+  height: 80%;
+  background: linear-gradient(to top, rgba(197, 168, 90, 0.06) 0%, rgba(197, 168, 90, 0.01) 60%, transparent 100%);
+}
+
+/* Camadas locais de iluminação cinemática */
 .about-haze-local {
   position: absolute;
   inset: 0;
-  background: 
-    radial-gradient(circle at 85% 65%, rgba(197, 168, 90, 0.05) 0%, transparent 70%), /* Deslocado para baixo */
-    radial-gradient(circle at 20% 75%, rgba(197, 168, 90, 0.03) 0%, transparent 60%); /* Deslocado para baixo */
-  pointer-events: none;
+  background: radial-gradient(circle at 80% 60%, rgba(197, 168, 90, 0.03) 0%, transparent 70%);
   z-index: 1;
 }
 
-.about-particles-local {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.15;
-}
-
-.about-particles-local::before,
-.about-particles-local::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: transparent;
-}
-
-.about-particles-local::before {
-  width: 1.5px;
-  height: 1.5px;
-  box-shadow: 
-    10vw 20vh 0px rgba(197, 168, 90, 0.2),
-    25vw 45vh 0.5px rgba(253, 253, 253, 0.15),
-    60vw 15vh 0px rgba(197, 168, 90, 0.18),
-    78vw 38vh 0.8px rgba(253, 253, 253, 0.2),
-    45vw 70vh 0px rgba(197, 168, 90, 0.15),
-    85vw 62vh 0.5px rgba(253, 253, 253, 0.18),
-    30vw 88vh 0px rgba(197, 168, 90, 0.2),
-    68vw 82vh 0.8px rgba(253, 253, 253, 0.15);
-  animation: particleDriftOne 30s infinite ease-in-out;
-}
-
-.about-particles-local::after {
-  width: 3px;
-  height: 3px;
-  box-shadow: 
-    15vw 30vh 1.5px rgba(197, 168, 90, 0.12),
-    50vw 25vh 2px rgba(253, 253, 253, 0.1),
-    70vw 60vh 1px rgba(197, 168, 90, 0.15),
-    35vw 75vh 2.5px rgba(253, 253, 253, 0.12);
-  filter: blur(0.5px);
-  animation: particleDriftTwo 36s infinite ease-in-out alternate;
-}
-
-.about-motion-trace {
-  position: absolute;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(4px);
-  opacity: 0.04;
-  z-index: 1;
-}
-
-.trace-local {
-  top: 15%;
-  right: -100px;
-  width: 580px;
-  height: 580px;
-  border-top: 1.5px solid rgba(197, 168, 90, 0.2);
-  border-right: 1.5px solid rgba(197, 168, 90, 0.05);
-  transform: rotate(45deg);
-  animation: localRibbonOne 26s infinite ease-in-out alternate;
-}
-
-@keyframes localRibbonOne {
-  0% { transform: rotate(45deg) scale(0.96) translateY(0); opacity: 0.03; }
-  100% { transform: rotate(49deg) scale(1.04) translateY(-8px); opacity: 0.06; }
-}
-
-.about-container {
+/* Contêiner de Layout Principal */
+.about-choreo-container {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
@@ -1691,31 +1710,22 @@ body {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 90px;
+  gap: 60px;
 }
 
-/* Layout Principal Superior */
-.about-main-row {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 80px;
-  align-items: center;
-}
-
-/* ==========================================
-   COLUNA ESQUERDA: MANIFESTO TEXTUAL
-   ========================================== */
-.about-content-col {
+/* Cabeçalho Editorial Superior */
+.about-choreo-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .about-eyebrow-container {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .about-eyebrow {
@@ -1734,388 +1744,398 @@ body {
   background: linear-gradient(90deg, var(--gold-primary), transparent);
 }
 
-.about-title {
-  font-family: var(--font-title);
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 24px;
+/* Grid de Cabeçalho Editorial */
+.about-header-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.gold-gradient-text {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  display: inline-block;
+.about-header-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
 }
 
 .about-title-separator {
   width: 60px;
   height: 2px;
   background: linear-gradient(90deg, var(--gold-primary), var(--gold-dark));
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .about-description {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 20px;
   text-align: justify;
+}
+
+.about-header-manifesto {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bloco Nobre de Frase Manifesto (Citação) */
+.about-quote-manifesto {
+  position: relative;
+  padding: 20px 24px;
+  border-left: 3px solid var(--gold-primary);
+  background: linear-gradient(90deg, rgba(197, 168, 90, 0.04) 0%, rgba(10, 10, 12, 0.4) 50%, transparent 100%);
+  border-radius: 0 16px 16px 0;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.quote-decor-icon {
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.about-quote-manifesto p {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--gold-light);
+  margin: 0;
+  text-align: left;
 }
 
 .about-support-text {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 35px;
   text-align: justify;
 }
 
-.about-signature-badge {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 22px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(197, 168, 90, 0.03) 0%, rgba(10, 10, 12, 0.5) 100%);
-  border: 1px solid rgba(197, 168, 90, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(197, 168, 90, 0.02);
-  transition: var(--transition-smooth);
-}
-
-.about-signature-badge:hover {
-  border-color: rgba(197, 168, 90, 0.28);
-  background: linear-gradient(135deg, rgba(197, 168, 90, 0.05) 0%, rgba(10, 10, 12, 0.6) 100%);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(197, 168, 90, 0.05);
-}
-
-.signature-icon {
-  font-size: 1.8rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signature-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.sig-title {
-  font-family: var(--font-title);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.sig-subtitle {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-}
-
-/* ==========================================
-   COLUNA DIREITA: IMAGEM EDITORIAL PREMIUM
-   ========================================== */
-.about-visual-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.about-visual-panel {
+/* ==========================================================================
+   O PALCO DA LINHA COREOGRÁFICA (TELA CINETICA DESKTOP)
+   ========================================================================== */
+.about-choreo-stage {
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Glow Dourado de Palco atrás da imagem */
-.about-image-glow-behind {
-  position: absolute;
-  inset: -30px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.05) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
-  z-index: 1;
-  animation: imageGlowPulse 8s infinite ease-in-out alternate;
-  mask-image: linear-gradient(to bottom, transparent 15%, black 45%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 15%, black 45%); /* Evita que o brilho suba na junção */
-}
-
-@keyframes imageGlowPulse {
-  0% { opacity: 0.6; transform: scale(0.97); }
-  100% { opacity: 1; transform: scale(1.03); }
-}
-
-.about-image-frame {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-  height: 520px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.04); /* Borda mais sutil por padrão */
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
-  overflow: hidden;
-  background-color: #050506;
-  transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 620px;
+  margin-top: 40px;
   z-index: 2;
 }
 
-.about-image-frame:hover {
-  border-color: rgba(197, 168, 90, 0.25); /* Acende dourado sutil em hover */
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.95);
-  transform: translateY(-5px);
+/* Container do SVG da Linha Coreográfica */
+.about-svg-line-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.about-image-inner {
+.choreo-svg-path {
+  width: 100%;
+  height: 100%;
+}
+
+.choreo-path-line {
+  stroke-dasharray: 2500;
+  stroke-dashoffset: 2500;
+  transition: stroke-dashoffset 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Desenha a linha quando a seção for revelada no scroll */
+.revealed .choreo-path-line {
+  stroke-dashoffset: 0;
+}
+
+.choreo-path-dash {
+  opacity: 0.5;
+}
+
+/* Recorte Editorial de Imagem Parcialmente Sobreposta */
+.about-choreo-image {
+  position: absolute;
+  top: 18%;
+  left: 45%;
+  width: 250px;
+  height: 380px;
+  z-index: 3;
+  border-radius: 24px;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-image-window {
   position: relative;
   width: 100%;
   height: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95);
   overflow: hidden;
+  background-color: #050506;
+  transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.about-image {
+.about-choreo-image:hover .about-image-window {
+  border-color: rgba(197, 168, 90, 0.45);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.98), 0 0 30px rgba(197, 168, 90, 0.05);
+}
+
+.choreo-img {
   width: 100%;
-  height: 120%; /* Altura extra para parallax suave */
+  height: 100%;
   object-fit: cover;
-  filter: brightness(0.6) contrast(1.15) saturate(0.85);
+  filter: brightness(0.55) contrast(1.1) saturate(0.8);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
-  position: absolute;
-  top: -10%;
-  left: 0;
 }
 
-.about-image-frame:hover .about-image {
-  transform: scale(1.05);
-  filter: brightness(0.68) contrast(1.18) saturate(0.9);
+.about-choreo-image:hover .choreo-img {
+  transform: scale(1.08);
+  filter: brightness(0.68) contrast(1.15) saturate(0.9);
 }
 
-.about-image-overlay {
+.about-image-overlay-window {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.01) 0%, rgba(5, 5, 6, 0.2) 50%, rgba(5, 5, 6, 0.85) 100%);
+  background: linear-gradient(to bottom, rgba(5, 5, 6, 0) 50%, rgba(5, 5, 6, 0.85) 100%), linear-gradient(to right, rgba(5, 5, 6, 0.1) 0%, transparent 40%);
   pointer-events: none;
-  z-index: 3;
+  z-index: 2;
 }
 
-.about-frame-corner {
+/* Selo Oficial do Palco Integrado ao Recorte */
+.choreo-badge {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border: 1.2px solid transparent; /* Cantoneira mais sutil/fina */
-  z-index: 4;
-  pointer-events: none;
-}
-
-.about-image-frame .corner-tl {
-  top: 16px;
-  left: 16px;
-  border-top-color: var(--gold-primary);
-  border-left-color: var(--gold-primary);
-  opacity: 0.25; /* Muito mais discreto */
-}
-
-.about-image-frame .corner-tr {
-  top: 16px;
-  right: 16px;
-  border-top-color: var(--gold-primary);
-  border-right-color: var(--gold-primary);
-  opacity: 0.25;
-}
-
-.about-image-frame .corner-bl {
-  bottom: 16px;
-  left: 16px;
-  border-bottom-color: var(--gold-primary);
-  border-left-color: var(--gold-primary);
-  opacity: 0.25;
-}
-
-.about-image-frame .corner-br {
-  bottom: 16px;
-  right: 16px;
-  border-bottom-color: var(--gold-primary);
-  border-right-color: var(--gold-primary);
-  opacity: 0.25;
-}
-
-.about-visual-badge {
-  position: absolute;
-  bottom: 35px;
-  left: -25px;
-  padding: 12px 20px;
+  bottom: 25px;
+  right: -25px;
+  padding: 12px 22px;
   border-radius: 12px;
-  background: rgba(10, 10, 12, 0.55);
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.6) 0%, rgba(8, 8, 10, 0.85) 100%);
+  border: 1px solid rgba(197, 168, 90, 0.22);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: var(--shadow-premium);
-  z-index: 5;
-  transition: transform 0.3s, border-color 0.3s;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+  z-index: 4;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.about-visual-badge:hover {
-  border-color: var(--border-gold-glass-hover);
+.choreo-badge:hover {
+  border-color: rgba(197, 168, 90, 0.45);
+  transform: translateY(-2px);
 }
 
-.badge-icon {
+.choreo-badge-icon {
   font-size: 1.5rem;
-  color: var(--text-secondary);
+  color: var(--gold-primary);
 }
 
-.badge-info {
+.choreo-badge-text {
   display: flex;
   flex-direction: column;
+  text-align: left;
 }
 
-.badge-title {
+.c-title {
   font-family: var(--font-title);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
   color: var(--text-primary);
+  letter-spacing: 0.15em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
-.badge-subtitle {
-  font-size: 0.68rem;
-  color: var(--text-muted);
+.c-sub {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-/* ==========================================================================
-   BLOCO INFERIOR: PILARES COMO "SELOS DE ATUAÇÃO"
-   ========================================================================== */
-.about-pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  width: 100%;
-}
-
-.about-pillar-card {
-  position: relative;
-  padding: 34px 28px;
-  border-radius: 20px; /* Cantos arredondados premium */
-  background: linear-gradient(135deg, rgba(10, 10, 12, 0.35) 0%, rgba(5, 5, 6, 0.6) 100%); /* Fundo dark glass ainda mais transparente e refinado */
-  border: 1px solid rgba(255, 255, 255, 0.03); /* Borda fina e discreta */
-  backdrop-filter: blur(28px); /* Forte desfoque de palco */
-  -webkit-backdrop-filter: blur(28px);
-  transition: var(--transition-smooth);
+/* Estações Coreográficas (Posicionamento Assimétrico Tridimensional no Desktop) */
+.about-choreo-step {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), inset 0 0 15px rgba(255, 255, 255, 0.01);
-  overflow: hidden;
-}
-
-.about-pillar-card:hover {
-  background: linear-gradient(135deg, rgba(14, 14, 18, 0.5) 0%, rgba(8, 8, 10, 0.7) 100%);
-  border-color: rgba(197, 168, 90, 0.22); /* Dourado controlado e sofisticado no hover */
-  transform: translateY(-8px);
-  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 168, 90, 0.03);
-}
-
-.pillar-card-number {
-  position: absolute;
-  top: 22px;
-  right: 24px;
-  font-family: var(--font-title);
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: rgba(255, 255, 255, 0.06); /* Cinza discreto */
-  letter-spacing: 0.05em;
-  transition: var(--transition-smooth);
-}
-
-.about-pillar-card:hover .pillar-card-number {
-  color: var(--gold-primary);
-  transform: scale(1.08);
-  opacity: 0.35;
-}
-
-.pillar-card-header {
-  display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 15px;
+  z-index: 2;
+  width: 250px;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
 }
 
-.pillar-card-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+/* Mapeamento exato de posições para acompanhar o traçado do SVG no Desktop */
+.step-01 { left: 4%; top: 6%; }
+.step-02 { left: 22%; top: 54%; }
+.step-03 { left: 76%; top: 6%; }
+.step-04 { left: 76%; top: 54%; }
+
+.about-choreo-step:hover {
+  transform: translateY(-8px);
+  z-index: 4;
+}
+
+/* Pontos Luminosos de Conexão na Linha */
+.step-glow-dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.3rem;
-  transition: var(--transition-bounce);
+  z-index: 3;
 }
 
-.about-pillar-card:hover .pillar-card-icon {
-  background: rgba(197, 168, 90, 0.08);
-  border-color: rgba(197, 168, 90, 0.28);
-  color: var(--gold-primary);
-  transform: scale(1.08) rotate(3deg);
-  box-shadow: 0 4px 15px rgba(197, 168, 90, 0.05);
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
 }
 
-.pillar-card-title {
-  font-family: var(--font-title);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  transition: var(--transition-fast);
+.revealed .pulse-ring,
+.about-choreo-step:hover .pulse-ring {
+  animation: dotPulseAnim 2.5s infinite cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.about-pillar-card:hover .pillar-card-title {
-  color: var(--gold-primary);
+@keyframes dotPulseAnim {
+  0% { opacity: 0.8; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(2.2); }
 }
 
-.pillar-card-text {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
+.core-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--gold-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold-primary);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Spotlight interativo nas bordas */
-.about-pillar-card::before {
+.about-choreo-step:hover .core-dot {
+  background-color: var(--gold-light);
+  box-shadow: 0 0 18px var(--gold-light);
+}
+
+/* Cartões de Vidro Premium das Estações */
+.step-card-glass {
+  position: relative;
+  width: 100%;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.4) 0%, rgba(8, 8, 10, 0.7) 100%);
+  border: 1px solid rgba(197, 168, 90, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.01);
+  transition: border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.about-choreo-step:hover .step-card-glass {
+  border-color: rgba(197, 168, 90, 0.35);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.06) 0%, rgba(10, 10, 12, 0.8) 100%);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(197, 168, 90, 0.04);
+}
+
+/* Efeito de Flashlight seguindo o cursor do mouse no vidro */
+.step-card-glass::before {
   content: '';
   position: absolute;
   inset: -1px;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 1px;
-  background: radial-gradient(130px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(197, 168, 90, 0.22), transparent 60%);
+  background: radial-gradient(circle 100px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(197, 168, 90, 0.3), transparent 70%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
+  z-index: 2;
 }
 
-.about-pillar-card:hover::before {
+.about-choreo-step:hover .step-card-glass::before {
   opacity: 1;
+}
+
+.step-number {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+  opacity: 0.22;
+  line-height: 1;
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.about-choreo-step:hover .step-number {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.step-icon {
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 5px rgba(197, 168, 90, 0.2));
+}
+
+.step-title {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.about-choreo-step:hover .step-title {
+  color: var(--gold-primary);
+}
+
+.step-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  text-align: left;
 }
 
 /* ==========================================================================
@@ -2142,72 +2162,131 @@ body {
    12. RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
    ========================================================================== */
 @media (max-width: 1200px) {
-  .about-section {
-    padding: 100px 5%;
-  }
-  .about-layout {
-    gap: 50px;
+  .about-choreography {
+    padding: 120px 6%;
   }
   .about-title {
     font-size: 2.6rem;
   }
-  .about-pillars-grid {
-    gap: 16px;
+  .about-header-grid {
+    gap: 40px;
   }
+  .step-01 { left: 0%; top: 4%; }
+  .step-02 { left: 20%; top: 54%; }
+  .step-03 { left: 74%; top: 4%; }
+  .step-04 { left: 74%; top: 54%; }
 }
 
 @media (max-width: 1024px) {
-  .about-container {
-    gap: 60px;
-  }
-  .about-main-row {
-    grid-template-columns: 1fr;
+  .about-choreo-container {
     gap: 50px;
-    text-align: center;
   }
-  
-  .about-content-col {
-    align-items: center;
-    margin: 0 auto;
+  .about-header-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
   
   .about-description,
   .about-support-text {
-    text-align: center;
+    text-align: justify;
   }
   
-  .about-visual-col {
-    padding-top: 20px;
+  .about-quote-manifesto {
+    align-self: flex-start;
   }
 
-  .about-visual-badge {
-    left: 20px;
+  /* No Tablet, encolhemos ligeiramente o palco tridimensional antes de virar timeline vertical */
+  .about-choreo-stage {
+    height: 520px;
   }
-
-  .about-pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  .about-choreo-image {
+    display: none; /* Oculta a imagem no tablet intermediário para não embolar */
   }
+  .step-01 { left: 0%; top: 4%; width: 220px; }
+  .step-02 { left: 22%; top: 54%; width: 220px; }
+  .step-03 { left: 72%; top: 4%; width: 220px; }
+  .step-04 { left: 72%; top: 54%; width: 220px; }
 }
 
-@media (max-width: 768px) {
-  .about-section {
-    padding: 80px 24px;
+@media (max-width: 991px) {
+  /* A partir daqui, transformamos a seção Sobre em Timeline Vertical de altíssima legibilidade */
+  .about-choreography {
+    padding: 100px 24px 80px 24px;
   }
   
   .about-title {
     font-size: 2.2rem;
   }
   
-  .about-pillars-grid {
-    grid-template-columns: 1fr; /* 1 Coluna no Mobile */
-    gap: 16px;
+  .about-choreo-stage {
+    height: auto !important;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-left: 32px;
+    margin-top: 40px;
   }
   
-  .about-image-frame {
+  /* Desativa o SVG da linha horizontal */
+  .about-svg-line-container {
+    display: none;
+  }
+  
+  /* Adiciona uma elegante linha dourada vertical lateral de timeline */
+  .about-choreo-stage::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary) 30%, var(--gold-light) 60%, var(--gold-dark));
+    opacity: 0.35;
+    z-index: 1;
+  }
+  
+  /* Imagem reposicionada no topo do stage no Mobile */
+  .about-choreo-image {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
     width: 100%;
-    max-width: 320px;
-    height: 420px;
+    max-width: 480px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    display: block !important;
+  }
+  
+  .choreo-badge {
+    right: 20px;
+    bottom: -15px;
+  }
+  
+  /* Estações convertidas em linhas empilhadas */
+  .about-choreo-step {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+    transform: none !important;
+  }
+  
+  .about-choreo-step:hover {
+    transform: none !important;
+  }
+  
+  .step-glow-dot {
+    margin-top: 15px;
+    flex-shrink: 0;
+  }
+  
+  .step-card-glass {
+    flex-grow: 1;
   }
 }
 
@@ -2215,7 +2294,27 @@ body {
   .about-title {
     font-size: 1.8rem;
   }
+  .about-choreo-stage {
+    padding-left: 24px;
+  }
+  .about-choreo-stage::before {
+    left: 7px;
+  }
+  .step-glow-dot {
+    margin-top: 12px;
+  }
+  .about-choreo-step {
+    gap: 12px;
+  }
+  .step-card-glass {
+    padding: 16px 18px;
+  }
+  .choreo-badge {
+    right: 10px;
+    padding: 8px 14px;
+  }
 }
+
 
 /* ==========================================================================
    CLASSES REUTILIZÁVEIS PARA PRÓXIMAS DOBRAS (ATMOSFERA UNIFICADA)
@@ -2285,5 +2384,27 @@ body {
   filter: blur(100px);
   pointer-events: none;
 }
+
+/* ==========================================================================
+   FERRAMENTA DE TESTE DE VISIBILIDADE DO BACKGROUND (OPACIDADE CONTROLADA)
+   Para testes futuros, descomente a classe abaixo para forçar 100% de visibilidade
+   ========================================================================== */
+/*
+.background-visibility-test .site-haze-one,
+.background-visibility-test .site-haze-two {
+  filter: blur(100px) !important;
+  opacity: 0.95 !important;
+}
+.background-visibility-test .site-particles {
+  opacity: 1 !important;
+}
+.background-visibility-test .site-motion-trace {
+  opacity: 0.85 !important;
+  filter: blur(0.5px) drop-shadow(0 0 15px rgba(197, 168, 90, 0.8)) !important;
+}
+.background-visibility-test .site-editorial-dots {
+  opacity: 1 !important;
+}
+*/
 
 

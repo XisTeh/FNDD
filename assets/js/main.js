@@ -46,7 +46,7 @@ function initHeroVideo() {
  * Atualiza variáveis CSS (--mouse-x, --mouse-y) nos cards flutuantes e de pilares
  */
 function initSpotlightEffect() {
-  const cards = document.querySelectorAll('.float-metric-card, .about-pillar-card');
+  const cards = document.querySelectorAll('.float-metric-card, .step-card-glass');
   
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -256,43 +256,65 @@ function initAboutScrollParallax() {
  */
 function initInteractiveStage() {
   const stage = document.querySelector('.about-section');
-  const imgFrame = document.querySelector('.about-image-frame');
-  const imgBadge = document.querySelector('.about-visual-badge');
+  const imgFrame = document.querySelector('.about-image-window');
+  const imgBadge = document.querySelector('.choreo-badge');
   
   if (!stage) return;
   
+  // Variáveis para interpolação suave (Lerp)
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  const ease = 0.05; // Lag visual sutil e elegante de palco
+  
+  // Ouvinte de movimento do mouse na seção Sobre para focar o efeito local
   stage.addEventListener('mousemove', (e) => {
-    // Reage apenas no desktop para evitar problemas de performance e gestos no mobile
     if (window.innerWidth < 1024) return;
     
     const rect = stage.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+    const halfWidth = rect.width / 2;
+    const halfHeight = rect.height / 2;
     
-    // Rotação controlada proporcional à posição do mouse
-    const rotateXFactor = -(y / rect.height) * 8; // inclina levemente em X
-    const rotateYFactor = (x / rect.width) * 8;   // inclina levemente em Y
-    
-    // Efeito Tilt 3D sutil na Moldura Editorial da imagem
-    if (imgFrame) {
-      imgFrame.style.transform = `perspective(1000px) rotateX(${rotateXFactor * 0.6}deg) rotateY(${rotateYFactor * 0.6}deg) translateY(-8px)`;
-    }
-
-    // Efeito de profundidade na legenda flutuante (deslocamento sutil oposto)
-    if (imgBadge) {
-      imgBadge.style.transform = `translateX(${-25 + rotateYFactor * 1.2}px) translateY(${rotateXFactor * 0.8}px)`;
-    }
+    // Coordenadas normalizadas de -1 a 1 com base no centro da seção Sobre
+    targetX = (e.clientX - rect.left - halfWidth) / halfWidth;
+    targetY = (e.clientY - rect.top - halfHeight) / halfHeight;
+  }, { passive: true });
+  
+  // Quando o mouse sai da seção, redefinimos os alvos de forma a retornar ao estado inicial suavemente
+  stage.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
   });
   
-  // Reseta suavemente os valores de transform ao sair com o cursor
-  stage.addEventListener('mouseleave', () => {
-    if (imgFrame) {
-      imgFrame.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+  // Loop de animação de interpolação física rodando a 60fps via rAF
+  function updateInteractiveElements() {
+    currentX += (targetX - currentX) * ease;
+    currentY += (targetY - currentY) * ease;
+    
+    // Injeta as variáveis customizadas normalizadas no root para o CSS ler
+    document.documentElement.style.setProperty('--mouse-nx', currentX.toFixed(4));
+    document.documentElement.style.setProperty('--mouse-ny', currentY.toFixed(4));
+    
+    if (window.innerWidth >= 1024) {
+      // Efeito Tilt 3D sutil e luxuoso na moldura editorial da imagem
+      if (imgFrame) {
+        const rotateXFactor = -currentY * 4.5;
+        const rotateYFactor = currentX * 4.5;
+        imgFrame.style.transform = `perspective(1000px) rotateX(${rotateXFactor}deg) rotateY(${rotateYFactor}deg) translateY(-8px)`;
+      }
+      
+      // Efeito oposto na legenda flutuante para profundidade paralaxe impecável
+      if (imgBadge) {
+        imgBadge.style.transform = `translateX(${-25 + currentX * 15}px) translateY(${currentY * 10}px)`;
+      }
     }
-    if (imgBadge) {
-      imgBadge.style.transform = 'translateX(-25px) translateY(0px)';
-    }
-  });
+    
+    requestAnimationFrame(updateInteractiveElements);
+  }
+  
+  // Inicia o loop cinético
+  requestAnimationFrame(updateInteractiveElements);
 }
 
 /**
