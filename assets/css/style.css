@@ -1710,22 +1710,24 @@ body {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px; /* Reduzido de 60px para aproximar os cards e palco do texto */
 }
 
 /* Cabeçalho Editorial Superior */
 .about-choreo-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center; /* Centralizado */
+  text-align: center; /* Centralizado */
 }
 
 .about-eyebrow-container {
   display: flex;
   align-items: center;
+  justify-content: center; /* Centralizado */
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  width: 100%;
 }
 
 .about-eyebrow {
@@ -1744,19 +1746,14 @@ body {
   background: linear-gradient(90deg, var(--gold-primary), transparent);
 }
 
-/* Grid de Cabeçalho Editorial */
-.about-header-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.about-header-copy {
+/* Cabeçalho Clean em Coluna Unificada */
+.about-header-clean {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center; /* Centralizado */
+  max-width: 820px; /* Concentra a leitura */
+  width: 100%;
+  margin: 0 auto; /* Centralizado */
 }
 
 .about-title {
@@ -1766,69 +1763,23 @@ body {
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .about-title-separator {
   width: 60px;
   height: 2px;
   background: linear-gradient(90deg, var(--gold-primary), var(--gold-dark));
-  margin-bottom: 24px;
+  margin: 0 auto 18px auto; /* Centralizado */
 }
 
 .about-description {
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--text-secondary);
-  text-align: justify;
-}
-
-.about-header-manifesto {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Bloco Nobre de Frase Manifesto (Citação) */
-.about-quote-manifesto {
-  position: relative;
-  padding: 20px 24px;
-  border-left: 3px solid var(--gold-primary);
-  background: linear-gradient(90deg, rgba(197, 168, 90, 0.04) 0%, rgba(10, 10, 12, 0.4) 50%, transparent 100%);
-  border-radius: 0 16px 16px 0;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.quote-decor-icon {
-  font-size: 1.8rem;
-  color: var(--gold-primary);
-  opacity: 0.55;
-  line-height: 1;
-}
-
-.about-quote-manifesto p {
-  font-family: var(--font-title);
-  font-size: 1.15rem;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--gold-light);
-  margin: 0;
-  text-align: left;
-}
-
-.about-support-text {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--text-muted);
-  text-align: justify;
+  text-align: center; /* Centralizado */
 }
 
 /* ==========================================================================
@@ -1837,8 +1788,8 @@ body {
 .about-choreo-stage {
   position: relative;
   width: 100%;
-  height: 620px;
-  margin-top: 40px;
+  height: 540px; /* Reduzido de 620px para aproximar os cards superiores e inferiores */
+  margin-top: 10px; /* Reduzido de 40px */
   z-index: 2;
 }
 
@@ -1870,6 +1821,62 @@ body {
 
 .choreo-path-dash {
   opacity: 0.5;
+}
+
+/* Tracinho de luz brilhante que corre pela linha */
+.choreo-path-line-spark {
+  stroke-dasharray: 100 1500; /* Tracinho de 100px com espaçamento largo */
+  stroke-dashoffset: 1600;
+  animation: sparkRun 4s linear infinite; /* 4s para correr suavemente */
+  filter: drop-shadow(0 0 6px rgba(248, 226, 167, 0.95)) drop-shadow(0 0 2px rgba(197, 168, 90, 0.6));
+  opacity: 1; /* Exibido sempre por padrão */
+  z-index: 2;
+}
+
+@keyframes sparkRun {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Card de Observação da Frase Manifesto (Discreto, Alongado e Retraído) */
+.about-manifesto-badge {
+  position: absolute;
+  left: 4%;
+  bottom: 12px;
+  width: 440px; /* Alongado e horizontal */
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.015); /* Quase transparente */
+  border: none;
+  border-left: 2px solid rgba(197, 168, 90, 0.15); /* Rastro sutil de borda dourada */
+  padding: 6px 14px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: center;
+  box-shadow: none; /* Sem sombras marcantes */
+  z-index: 4;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.about-manifesto-badge:hover {
+  border-color: rgba(197, 168, 90, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-1px);
+}
+
+.m-text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted); /* Cinza escuro discreto */
+  font-style: italic;
+  line-height: 1.45;
+  margin: 0;
+  text-align: left;
+}
+
+.about-manifesto-badge:hover .m-text {
+  color: var(--text-secondary); /* Leve realce ao hover */
+  transition: color 0.3s ease;
 }
 
 /* Recorte Editorial de Imagem Parcialmente Sobreposta */
@@ -2287,6 +2294,16 @@ body {
   
   .step-card-glass {
     flex-grow: 1;
+  }
+  
+  .about-manifesto-badge {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 480px;
+    margin: 20px auto 0 auto;
+    background: linear-gradient(135deg, rgba(14, 14, 18, 0.45) 0%, rgba(8, 8, 10, 0.6) 100%);
   }
 }
 

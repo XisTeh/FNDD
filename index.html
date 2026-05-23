@@ -22,7 +22,7 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   
   <!-- Estilos Customizados da Hero Real -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.6">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.8">
 </head>
 <body>
 
@@ -288,7 +288,7 @@
   </header>
 
   <!-- Seção Quem é a FNDD (Linha Coreográfica FNDD) -->
-  <section class="about-section about-choreography" id="sobre">
+  <section class="about-section about-choreography reveal-on-scroll" id="sobre">
     
     <!-- Emenda ultra-suave e background local da linha coreográfica -->
     <div class="about-choreo-bg">
@@ -307,23 +307,14 @@
           <div class="eyebrow-decor-line"></div>
         </div>
         
-        <div class="about-header-grid">
-          <div class="about-header-copy">
-            <h2 class="about-title font-title">
-              Da expressão individual ao <span class="gold-gradient-text">movimento nacional</span>.
-            </h2>
-            <div class="about-title-separator"></div>
-            <p class="about-description">
-              A FNDD nasce para representar, organizar e valorizar a dança desportiva no Brasil, conectando profissionais, atletas, escolas, eventos e instituições em torno de um propósito comum: transformar a dança em reconhecimento, formação e oportunidade.
-            </p>
-          </div>
-          
-          <div class="about-header-manifesto">
-            <blockquote class="about-quote-manifesto">
-              <iconify-icon icon="solar:double-quotes-l-bold" class="quote-decor-icon"></iconify-icon>
-              <p>A dança não é apenas performance. É técnica, formação, profissão, esporte e transformação social.</p>
-            </blockquote>
-          </div>
+        <div class="about-header-clean">
+          <h2 class="about-title font-title">
+            Da expressão individual ao <span class="gold-gradient-text">movimento nacional</span>.
+          </h2>
+          <div class="about-title-separator"></div>
+          <p class="about-description">
+            A FNDD nasce para representar, organizar e valorizar a dança desportiva no Brasil, conectando profissionais, atletas, escolas, eventos e instituições em torno de um propósito comum: transformar a dança em reconhecimento, formação e oportunidade.
+          </p>
         </div>
       </div>
 
@@ -336,22 +327,10 @@
             <path class="choreo-path-line" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="url(#gold-gradient-svg)" stroke-width="2.5" />
             <path class="choreo-path-dash" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="rgba(248, 226, 167, 0.25)" stroke-width="1.2" stroke-dasharray="8 8" />
             
-            <!-- Luzinha cinético-luminosa que corre pela linha -->
-            <circle r="4" fill="#F8E2A7" filter="url(#choreo-glow-filter)">
-              <animateMotion dur="8s" repeatCount="indefinite" path="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" />
-            </circle>
+            <!-- Tracinho de luz brilhante que corre pela linha -->
+            <path class="choreo-path-line-spark" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="#F8E2A7" stroke-width="3" stroke-linecap="round" fill="none" />
             
             <defs>
-              <filter id="choreo-glow-filter" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feComponentTransfer in="blur" result="glow">
-                  <feFuncA type="linear" slope="2" />
-                </feComponentTransfer>
-                <feMerge>
-                  <feMergeNode in="glow" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
               <linearGradient id="gold-gradient-svg" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0%" stop-color="#785A1D" />
                 <stop offset="30%" stop-color="#C5A85A" />
@@ -360,6 +339,12 @@
               </linearGradient>
             </defs>
           </svg>
+        </div>
+
+        <!-- Card de Observação da Frase Manifesto (Discreto e Retraído de Canto) -->
+        <!-- Card de Observação da Frase Manifesto (Discreto e Retraído de Canto) -->
+        <div class="about-manifesto-badge reveal-on-scroll delay-1">
+          <p class="m-text">"A dança não é apenas performance. É técnica, formação, profissão, esporte e transformação social."</p>
         </div>
 
         <!-- Janela/Recorte Editorial de Imagem parcialmente sobreposta -->
@@ -450,6 +435,6 @@
   </section>
 
   <!-- Lógica de Parallax e Efeitos Dinâmicos -->
-  <script src="assets/js/main.js?v=1.0.6"></script>
+  <script src="assets/js/main.js?v=1.0.8"></script>
 </body>
 </html>
