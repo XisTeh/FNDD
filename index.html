@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Tags Institucionais -->
+  <title>FNDD — Federação Nacional de Danças Desportivas</title>
+  <meta name="description" content="A Federação Nacional de Danças Desportivas (FNDD) promove, representa e fortalece a dança desportiva no Brasil por meio de formação, competições e valorização profissional.">
+  <meta name="keywords" content="FNDD, dança desportiva, federação de dança, esporte desportivo, dança brasil, break desportivo, dança profissional">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logotipo FNDD png.png">
+  
+  <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Iconify CDN (Linhas finas e elegantes para ícones) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  
+  <!-- Estilos Customizados da Hero Real -->
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
+</head>
+<body>
+
+  <!-- Background Global do Site (Atmosfera Unificada - Movimento Dourado) -->
+  <div class="site-bg">
+    <div class="site-bg-base"></div>
+    <div class="site-bg-noise"></div>
+    <div class="site-haze site-haze-one"></div>
+    <div class="site-haze site-haze-two"></div>
+    <div class="site-particles site-particles-one"></div>
+    <div class="site-particles site-particles-two"></div>
+    <div class="site-motion-trace trace-one"></div>
+    <div class="site-motion-trace trace-two"></div>
+    <div class="site-editorial-dots dots-right"></div>
+    <div class="site-editorial-dots dots-left"></div>
+  </div>
+
+  <!-- Textura de Ruído Orgânico Global (Grão de Cinema Analógico) -->
+  <div class="noise-overlay" id="noiseOverlay"></div>
+
+  <!-- Estrutura Principal da Hero -->
+  <header>
+    <!-- Header / Barra de Navegação Superior (Design System Premium) -->
+    <nav class="fndd-navbar" id="fnddNavbar">
+      <div class="nav-container">
+        
+        <!-- Logo Institucional da Federação -->
+        <a href="#" class="nav-brand" id="navBrand">
+          <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="nav-logo">
+          <div class="nav-brand-text">
+            <span class="brand-title">FNDD</span>
+            <span class="brand-subtitle">Federação Nacional</span>
+          </div>
+        </a>
+
+        <!-- Links de Navegação (Desktop) -->
+        <div class="nav-menu" id="navMenu">
+          <a href="#" class="nav-link active">Início</a>
+          <a href="#sobre" class="nav-link">A FNDD</a>
+          <a href="#diretoria" class="nav-link">Diretoria</a>
+          <a href="#eventos" class="nav-link">Eventos</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contato" class="nav-link">Contato</a>
+        </div>
+
+        <!-- Ações do Header -->
+        <div class="nav-actions">
+          <a href="#filie-se" class="btn-nav-cta" id="navCta">
+            Filie-se
+            <iconify-icon icon="solar:user-plus-bold-duotone"></iconify-icon>
+          </a>
+          
+          <!-- Botão Hamburguer Mobile -->
+          <button class="nav-toggle" id="navToggle" aria-label="Abrir Menu">
+            <span class="toggle-bar"></span>
+            <span class="toggle-bar"></span>
+            <span class="toggle-bar"></span>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Overlay do Menu Mobile (Drop-down de vidro) -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <div class="mobile-menu-content">
+        <a href="#" class="mobile-nav-link active">Início</a>
+        <a href="#sobre" class="mobile-nav-link">A FNDD</a>
+        <a href="#diretoria" class="mobile-nav-link">Diretoria</a>
+        <a href="#eventos" class="mobile-nav-link">Eventos</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="#contato" class="mobile-nav-link">Contato</a>
+        <a href="#filie-se" class="btn-mobile-cta">
+          Filie-se Já
+          <iconify-icon icon="solar:user-plus-bold-duotone"></iconify-icon>
+        </a>
+      </div>
+    </div>
+
+    <section class="hero-section" id="heroSection">
+      
+      <!-- Fundo Cinematográfico e Atmosfera de Palco -->
+      <div class="hero-grid-bg"></div>
+      
+      <!-- Vídeo de Fundo Cinematográfico FNDD -->
+      <div class="hero-video-bg-container">
+        <video autoplay loop muted playsinline preload="metadata" class="hero-video-element" id="heroVideo">
+          <source src="assets/videos/hero-fndd-loop.mp4" type="video/mp4">
+        </video>
+        <!-- Overlays de integração estética e leitura -->
+        <div class="hero-video-overlay"></div>
+      </div>
+      
+      <!-- Orbes de Luz Dourada Flutuantes -->
+      <div class="hero-glow-orb orb-gold-1"></div>
+      <div class="hero-glow-orb orb-gold-2"></div>
+      
+      <!-- Luz de Palco / Holofote Sutil de Fundo -->
+      <div class="hero-stage-spotlight"></div>
+      
+      <!-- Sombreado de Profundidade -->
+      <div class="hero-depth-shadow"></div>
+      
+      <!-- Moldura Institucional Premium de Bordas -->
+      <div class="hero-frame-container">
+        <div class="hero-frame-corner corner-tl"></div>
+        <div class="hero-frame-corner corner-tr"></div>
+        <div class="hero-frame-corner corner-bl"></div>
+        <div class="hero-frame-corner corner-br"></div>
+      </div>
+      
+      <!-- Grid de Composição Assimétrica (Desktop 2 Colunas, Mobile 1 Coluna) -->
+      <div class="hero-layout-grid">
+        
+        <!-- Coluna Esquerda: Informações Institucionais e CTAs -->
+        <div class="hero-text-container">
+          
+          <!-- Badge Institucional Superior -->
+          <div class="hero-badge-institutional">
+            <iconify-icon icon="solar:shield-star-bold-duotone"></iconify-icon>
+            Federação Nacional de Danças Desportivas
+          </div>
+          
+          <!-- Headline Principal com efeito de Reveal -->
+          <div class="hero-headline-wrapper">
+            <h1 class="hero-headline">
+              A dança como <span class="gold-gradient-text">esporte, profissão</span> e movimento nacional.
+            </h1>
+          </div>
+          
+          <!-- Subheadline Descritiva -->
+          <p class="hero-subheadline">
+            A FNDD promove, representa e fortalece a dança desportiva no Brasil por meio de formação, competições, eventos e valorização profissional.
+          </p>
+          
+          <!-- CTAs Primário e Secundário -->
+          <div class="hero-ctas-wrapper">
+            <a href="#sobre" class="btn-fndd btn-fndd-primary" id="ctaPrimary">
+              Conheça a FNDD
+            </a>
+            <a href="https://wa.me/5500000000000" target="_blank" class="btn-fndd btn-fndd-secondary" id="ctaSecondary">
+              Fale com a Federação
+              <iconify-icon icon="solar:arrow-right-bold"></iconify-icon>
+            </a>
+          </div>
+          
+        </div>
+        
+        <!-- Coluna Direita: Elemento Visual Premium e Cards de Métrica -->
+        <div class="hero-visual-container">
+          
+          <!-- Orbe de Luz exclusivo atrás da Logo -->
+          <div class="hero-logo-glow"></div>
+          
+          <!-- Moldura Circular Estilizada da Logo FNDD -->
+          <div class="hero-logo-frame">
+            <img src="assets/images/logotipo FNDD png.png" alt="Logotipo Oficial FNDD" class="hero-logo-image" id="fnddHeroLogo">
+          </div>
+          
+          <!-- Desktop/Tablet: Cards de Métrica Flutuantes -->
+          <!-- Card 1: Representatividade Nacional -->
+          <div class="float-metric-card card-rep" id="metricCard1">
+            <div class="float-card-icon">
+              <iconify-icon icon="solar:map-arrow-square-bold-duotone"></iconify-icon>
+            </div>
+            <div class="float-card-content">
+              <span class="float-card-number">26 Estados</span>
+              <span class="float-card-label">Representatividade Nacional</span>
+            </div>
+          </div>
+          
+          <!-- Card 2: Formação Profissional -->
+          <div class="float-metric-card card-formacao" id="metricCard2">
+            <div class="float-card-icon">
+              <iconify-icon icon="solar:diploma-verified-bold-duotone"></iconify-icon>
+            </div>
+            <div class="float-card-content">
+              <span class="float-card-number">Formação</span>
+              <span class="float-card-label">Pedagógica & Profissional</span>
+            </div>
+          </div>
+          
+          <!-- Card 3: Competições e Eventos -->
+          <div class="float-metric-card card-competicoes" id="metricCard3">
+            <div class="float-card-icon">
+              <iconify-icon icon="solar:cup-bold-duotone"></iconify-icon>
+            </div>
+            <div class="float-card-content">
+              <span class="float-card-number">Competições</span>
+              <span class="float-card-label">Circuitos Oficiais</span>
+            </div>
+          </div>
+          
+          <!-- Card 4: Valorização da Dança -->
+          <div class="float-metric-card card-valorizacao" id="metricCard4">
+            <div class="float-card-icon">
+              <iconify-icon icon="solar:medal-star-bold-duotone"></iconify-icon>
+            </div>
+            <div class="float-card-content">
+              <span class="float-card-number">Valorização</span>
+              <span class="float-card-label">Credibilidade Institucional</span>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+      <!-- Mobile: Container alternativo para métricas em grade (oculto no desktop via CSS) -->
+      <div class="mobile-metrics-grid">
+        <div class="float-metric-card">
+          <div class="float-card-icon">
+            <iconify-icon icon="solar:map-arrow-square-bold-duotone"></iconify-icon>
+          </div>
+          <div class="float-card-content">
+            <span class="float-card-number">26 Estados</span>
+            <span class="float-card-label">Representação</span>
+          </div>
+        </div>
+        <div class="float-metric-card">
+          <div class="float-card-icon">
+            <iconify-icon icon="solar:diploma-verified-bold-duotone"></iconify-icon>
+          </div>
+          <div class="float-card-content">
+            <span class="float-card-number">Formação</span>
+            <span class="float-card-label">Profissional</span>
+          </div>
+        </div>
+        <div class="float-metric-card">
+          <div class="float-card-icon">
+            <iconify-icon icon="solar:cup-bold-duotone"></iconify-icon>
+          </div>
+          <div class="float-card-content">
+            <span class="float-card-number">Competições</span>
+            <span class="float-card-label">Circuitos</span>
+          </div>
+        </div>
+        <div class="float-metric-card">
+          <div class="float-card-icon">
+            <iconify-icon icon="solar:medal-star-bold-duotone"></iconify-icon>
+          </div>
+          <div class="float-card-content">
+            <span class="float-card-number">Valorização</span>
+            <span class="float-card-label">Credibilidade</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Indicador Visual de Scroll -->
+      <a href="#sobre" class="hero-scroll-indicator" id="heroScrollIndicator">
+        <span>Descubra a Dança</span>
+        <div class="scroll-indicator-mouse">
+          <div class="scroll-indicator-wheel"></div>
+        </div>
+      </a>
+
+      <!-- Camada de Transição Suave no Final da Hero (Fade Longo) -->
+      <div class="hero-transition-fade">
+        <div class="transition-particles"></div>
+      </div>
+      
+    </section>
+  </header>
+
+  <!-- Seção Quem é a FNDD (Sobre/Manifesto Institucional - Movimento Dourado) -->
+  <section class="about-section" id="sobre">
+    
+    <!-- Camadas Locais de Partículas e Movimento do Sobre -->
+    <div class="about-haze-local"></div>
+    <div class="about-particles-local"></div>
+    <div class="about-motion-trace trace-local"></div>
+
+    <div class="about-container">
+      
+      <!-- Bloco Superior: Manifesto & Imagem Editorial -->
+      <div class="about-main-row">
+        
+        <!-- Coluna Esquerda: Texto Manifesto -->
+        <div class="about-content-col reveal-on-scroll">
+          
+          <!-- Eyebrow -->
+          <div class="about-eyebrow-container">
+            <span class="about-eyebrow">Sobre a FNDD</span>
+            <div class="eyebrow-decor-line"></div>
+          </div>
+          
+          <!-- Título Principal -->
+          <h2 class="about-title font-title">
+            Uma federação criada para dar forma, voz e reconhecimento à <span class="gold-gradient-text">dança desportiva</span> no Brasil.
+          </h2>
+          
+          <!-- Linha Dourada de Conexão Textual -->
+          <div class="about-title-separator"></div>
+
+          <!-- Textos de Manifesto -->
+          <p class="about-description">
+            A FNDD nasce para representar, organizar e valorizar a dança desportiva no Brasil, conectando profissionais, atletas, escolas, eventos e instituições em torno de um propósito comum: transformar a dança em reconhecimento, formação e oportunidade.
+          </p>
+          
+          <p class="about-support-text">
+            Mais do que promover a dança, a FNDD atua para consolidar seu lugar como expressão esportiva, profissional e cultural, fortalecendo quem ensina, pratica, compete, organiza e vive da dança.
+          </p>
+
+          <!-- Selo de Assinatura Institucional FNDD -->
+          <div class="about-signature-badge">
+            <div class="signature-icon">
+              <iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon>
+            </div>
+            <div class="signature-text">
+              <span class="sig-title">Entidade Oficial</span>
+              <span class="sig-subtitle">Federação Nacional de Danças Desportivas</span>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Coluna Direita: Imagem Editorial Premium -->
+        <div class="about-visual-col reveal-on-scroll delay-1">
+          <div class="about-visual-panel">
+            <!-- Glow dourado fluido atrás da imagem -->
+            <div class="about-image-glow-behind"></div>
+            
+            <div class="about-image-frame">
+              <div class="about-image-inner">
+                <img src="assets/images/FNDD SOBRE.jpeg" alt="Espetáculo de Dança FNDD" class="about-image" id="aboutImg">
+                <div class="about-image-overlay"></div>
+                <!-- Cantoneiras douradas para toque institucional -->
+                <div class="about-frame-corner corner-tl"></div>
+                <div class="about-frame-corner corner-tr"></div>
+                <div class="about-frame-corner corner-bl"></div>
+                <div class="about-frame-corner corner-br"></div>
+              </div>
+            </div>
+            <!-- Painel/Legenda flutuante integrada -->
+            <div class="about-visual-badge glass-panel">
+              <iconify-icon icon="solar:star-ring-bold-duotone" class="badge-icon"></iconify-icon>
+              <div class="badge-info">
+                <span class="badge-title font-title">Movimento Nacional</span>
+                <span class="badge-subtitle">Arte e Esporte Integrados</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bloco Inferior: Grid de 4 Pilares ("Selos de Atuação") -->
+      <div class="about-pillars-grid">
+        
+        <!-- Selo 1: Representar -->
+        <div class="about-pillar-card glass-panel reveal-on-scroll delay-1">
+          <div class="pillar-card-header">
+            <span class="pillar-card-number">01</span>
+            <div class="pillar-card-icon">
+              <iconify-icon icon="solar:users-group-two-rounded-bold-duotone"></iconify-icon>
+            </div>
+            <h3 class="pillar-card-title font-title">Representar</h3>
+          </div>
+          <p class="pillar-card-text">Dar voz e presença institucional aos profissionais e praticantes da dança desportiva.</p>
+        </div>
+
+        <!-- Selo 2: Organizar -->
+        <div class="about-pillar-card glass-panel reveal-on-scroll delay-2">
+          <div class="pillar-card-header">
+            <span class="pillar-card-number">02</span>
+            <div class="pillar-card-icon">
+              <iconify-icon icon="solar:structure-bold-duotone"></iconify-icon>
+            </div>
+            <h3 class="pillar-card-title font-title">Organizar</h3>
+          </div>
+          <p class="pillar-card-text">Criar uma base estruturada para competições, formação e crescimento da modalidade.</p>
+        </div>
+
+        <!-- Selo 3: Valorizar -->
+        <div class="about-pillar-card glass-panel reveal-on-scroll delay-3">
+          <div class="pillar-card-header">
+            <span class="pillar-card-number">03</span>
+            <div class="pillar-card-icon">
+              <iconify-icon icon="solar:cup-first-bold-duotone"></iconify-icon>
+            </div>
+            <h3 class="pillar-card-title font-title">Valorizar</h3>
+          </div>
+          <p class="pillar-card-text">Fortalecer o reconhecimento da dança como profissão, esporte e cultura nacional.</p>
+        </div>
+
+        <!-- Selo 4: Conectar -->
+        <div class="about-pillar-card glass-panel reveal-on-scroll delay-4">
+          <div class="pillar-card-header">
+            <span class="pillar-card-number">04</span>
+            <div class="pillar-card-icon">
+              <iconify-icon icon="solar:link-round-angle-bold-duotone"></iconify-icon>
+            </div>
+            <h3 class="pillar-card-title font-title">Conectar</h3>
+          </div>
+          <p class="pillar-card-text">Aproximar atletas, escolas e instituições em torno de uma causa comum.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lógica de Parallax e Efeitos Dinâmicos -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
