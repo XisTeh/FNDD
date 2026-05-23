@@ -22,26 +22,17 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   
   <!-- Estilos Customizados da Hero Real -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.8">
+  <link rel="stylesheet" href="assets/css/style.css?v=2.0.0">
 </head>
 <body>
 
-  <!-- Background Global do Site (Atmosfera Unificada - Movimento Dourado) -->
-  <div class="site-bg">
-    <div class="site-bg-base"></div>
-    <div class="site-bg-noise"></div>
-    <div class="site-haze site-haze-one"></div>
-    <div class="site-haze site-haze-two"></div>
-    <div class="site-particles site-particles-one"></div>
-    <div class="site-particles site-particles-two"></div>
-    <div class="site-motion-trace trace-one"></div>
-    <div class="site-motion-trace trace-two"></div>
-    <div class="site-editorial-dots dots-right"></div>
-    <div class="site-editorial-dots dots-left"></div>
-  </div>
+
+  <!-- Background Global Animado (Canvas de Partículas Vivas) -->
+  <canvas id="siteBgCanvas"></canvas>
 
   <!-- Textura de Ruído Orgânico Global (Grão de Cinema Analógico) -->
   <div class="noise-overlay" id="noiseOverlay"></div>
+
 
   <!-- Estrutura Principal da Hero -->
   <header>
@@ -434,7 +425,115 @@
     </div>
   </section>
 
+  <!-- Seção Pilares de Atuação (Bento Grid Institucional FNDD) -->
+  <section class="pillars-section reveal-on-scroll" id="pilares">
+    
+    <!-- Atmosfera local cinemática da seção -->
+    <div class="pillars-bg-decor">
+      <div class="pillars-haze-local"></div>
+      <div class="pillars-decor-line"></div>
+    </div>
+
+    <div class="pillars-container">
+      
+      <!-- Cabeçalho Centralizado Simétrico -->
+      <div class="pillars-header reveal-on-scroll">
+        <div class="pillars-eyebrow-container">
+          <span class="pillars-eyebrow">Pilares de Atuação</span>
+          <div class="pillars-eyebrow-line"></div>
+        </div>
+        <h2 class="pillars-title font-title">
+          Onde a dança ganha <span class="gold-gradient-text">estrutura, reconhecimento</span> e direção.
+        </h2>
+        <div class="pillars-title-separator"></div>
+        <p class="pillars-description">
+          A FNDD atua em diferentes frentes para fortalecer a dança desportiva no Brasil, conectando formação, competições, representatividade e valorização profissional em uma mesma visão institucional.
+        </p>
+      </div>
+
+      <!-- Bento Grid Institucional Assimétrico -->
+      <div class="pillars-bento reveal-on-scroll delay-1">
+        
+        <!-- Pilar 1: Dança como Esporte (Destaque Horizontal - Span 2) -->
+        <article class="pillar-panel pillar-featured pillar-sport glass-panel">
+          <div class="pillar-corner-decor"></div>
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:bolt-circle-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">01</span>
+            <h3 class="pillar-name font-title">Dança como Esporte</h3>
+            <p class="pillar-text">Reconhecer a dança como prática esportiva exige técnica, disciplina, performance e critérios oficiais que valorizem sua evolução constante como modalidade de alto rendimento.</p>
+          </div>
+        </article>
+
+        <!-- Pilar 2: Formação Profissional (Normal - Span 1) -->
+        <article class="pillar-panel glass-panel">
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:square-academic-cap-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">02</span>
+            <h3 class="pillar-name font-title">Formação Profissional</h3>
+            <p class="pillar-text">Apoiar a construção de conhecimento, preparo técnico e desenvolvimento contínuo para professores, atletas e profissionais da dança.</p>
+          </div>
+        </article>
+
+        <!-- Pilar 3: Competições e Eventos (Normal - Span 1) -->
+        <article class="pillar-panel glass-panel">
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:cup-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">03</span>
+            <h3 class="pillar-name font-title">Competições e Eventos</h3>
+            <p class="pillar-text">Fortalecer circuitos oficiais, congressos, workshops e encontros nacionais que movimentam e aquecem o mercado da dança no Brasil.</p>
+          </div>
+        </article>
+
+        <!-- Pilar 4: Representatividade Nacional (Normal - Span 1) -->
+        <article class="pillar-panel glass-panel">
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:global-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">04</span>
+            <h3 class="pillar-name font-title">Representatividade</h3>
+            <p class="pillar-text">Construir uma presença institucional sólida capaz de conectar profissionais, escolas e federações em todas as regiões do país.</p>
+          </div>
+        </article>
+
+        <!-- Pilar 5: Transformação Social (Normal - Span 1) -->
+        <article class="pillar-panel glass-panel">
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:hand-heart-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">05</span>
+            <h3 class="pillar-name font-title">Transformação Social</h3>
+            <p class="pillar-text">Usar a dança como ferramenta potente de inclusão, autoestima, cultura, educação e impacto social real na vida de milhares de brasileiros.</p>
+          </div>
+        </article>
+
+        <!-- Pilar 6: Valorização da Profissão (Destaque Horizontal de Encerramento - Span 3) -->
+        <article class="pillar-panel pillar-featured pillar-value glass-panel">
+          <div class="pillar-corner-decor"></div>
+          <div class="pillar-icon-box">
+            <iconify-icon icon="solar:shield-star-bold-duotone" class="pillar-icon"></iconify-icon>
+          </div>
+          <div class="pillar-content">
+            <span class="pillar-number">06</span>
+            <h3 class="pillar-name font-title">Valorização da Profissão</h3>
+            <p class="pillar-text">Promover a dignidade e o reconhecimento formal de quem vive, ensina, treina, compete, organiza e trabalha ativamente com a dança desportiva no Brasil, gerando novas oportunidades de crescimento e fomento profissional.</p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- Lógica de Parallax e Efeitos Dinâmicos -->
-  <script src="assets/js/main.js?v=1.0.8"></script>
+  <script src="assets/js/main.js?v=2.0.0"></script>
 </body>
 </html>

@@ -80,386 +80,37 @@ body {
 }
 
 /* ==========================================================================
-   2.2. BACKGROUND GLOBAL DO SITE (ATMOSFERA PREMIUM - MOVIMENTO DOURADO)
+   2.2. BACKGROUND GLOBAL DO SITE (CANVAS ANIMADO - POEIRA VIVA DE PALCO)
    ========================================================================== */
-/* ==========================================================================
-   2.2. BACKGROUND GLOBAL DO SITE (ATMOSFERA PREMIUM - POEIRA & MOVIMENTO)
-   ========================================================================== */
-.site-bg {
-  position: fixed; /* Fixo na viewport por trás de todo o site */
+
+/* Canvas principal: ocupa a tela inteira como background fixo */
+#siteBgCanvas {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   pointer-events: none;
-  z-index: 0; /* Fica atrás de todas as seções e da Hero */
+  z-index: 0;
 }
 
-.site-bg-base {
-  position: absolute;
-  inset: 0;
-  background-color: #050506; /* Fundo escuro unificado para eliminar cortes na transição */
-  z-index: 1;
+/* Container antigo permanece invisível (apenas para não quebrar se algo buscar) */
+.site-bg {
+  display: none;
 }
 
-.site-bg-noise {
-  position: absolute;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
-  opacity: 0.9;
-  mix-blend-mode: overlay;
-  z-index: 2;
-}
-
-/* Haze cinematográfico - neblina/luz suave volumétrica em tons quentes dourados e grafite altamente visíveis */
-.site-haze {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(180px); /* Difusão volumétrica perfeita */
-  pointer-events: none;
-  z-index: 3;
-  mix-blend-mode: screen;
-}
-
-.site-haze-one {
-  top: 15vh; /* Ajustado no viewport fixo */
-  right: -150px;
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.1) 0%, rgba(25, 23, 20, 0.02) 50%, transparent 80%);
-  animation: hazeFloatOne 32s infinite ease-in-out alternate;
-  /* Reage de forma suave e volumétrica ao mouse com amplitude premium */
-  transform: translate3d(calc(var(--mouse-nx, 0) * 12px), calc(var(--mouse-ny, 0) * 8px), 0);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.site-haze-two {
-  top: 50vh; /* Ajustado no viewport fixo */
-  left: -200px;
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.08) 0%, rgba(17, 16, 12, 0.01) 60%, transparent 80%);
-  animation: hazeFloatTwo 40s infinite ease-in-out alternate;
-  /* Reação de paralaxe oposta */
-  transform: translate3d(calc(var(--mouse-nx, 0) * -10px), calc(var(--mouse-ny, 0) * -6px), 0);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes hazeFloatOne {
-  0% { opacity: 0.65; transform: scale(0.98); }
-  100% { opacity: 0.98; transform: scale(1.08); }
-}
-
-@keyframes hazeFloatTwo {
-  0% { opacity: 0.55; transform: scale(1.05); }
-  100% { opacity: 0.88; transform: scale(0.95); }
-}
-
-/* Partículas orgânicas - poeira de palco iluminada em suspensão volumétrica de alta visibilidade */
-.site-particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 4;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.site-particles-one {
-  /* Paralaxe suave acompanhando o mouse em alta amplitude */
-  transform: translate3d(calc(var(--mouse-nx, 0) * 35px), calc(var(--mouse-ny, 0) * 24px), 0);
-}
-
-.site-particles-two {
-  /* Paralaxe na direção contrária gerando tridimensionalidade profunda */
-  transform: translate3d(calc(var(--mouse-nx, 0) * -28px), calc(var(--mouse-ny, 0) * -18px), 0);
-}
-
-.site-particles-one::before,
-.site-particles-one::after,
-.site-particles-two::before,
-.site-particles-two::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: transparent;
-}
-
-/* Camada 1: Poeira de palco fina dourada, branca e âmbar (1px a 1.8px) com alto contraste */
-.site-particles-one::before {
-  box-shadow: 
-    15vw 12vh 0.2px rgba(197, 168, 90, 0.65), 
-    35vw 22vh 0.6px rgba(253, 253, 253, 0.58), 
-    55vw 14vh 0px rgba(234, 201, 125, 0.62), 
-    80vw 26vh 0.8px rgba(253, 253, 253, 0.55),
-    22vw 38vh 0.2px rgba(197, 168, 90, 0.58), 
-    62vw 32vh 0.5px rgba(253, 253, 253, 0.62),
-    88vw 46vh 0.2px rgba(234, 201, 125, 0.72),
-    12vw 58vh 0.8px rgba(253, 253, 253, 0.55),
-    48vw 54vh 0.2px rgba(197, 168, 90, 0.65),
-    72vw 68vh 0.5px rgba(253, 253, 253, 0.58),
-    28vw 78vh 0.2px rgba(234, 201, 125, 0.62),
-    64vw 82vh 0.5px rgba(253, 253, 253, 0.65),
-    92vw 68vh 0.2px rgba(197, 168, 90, 0.58),
-    32vw 88vh 0.8px rgba(253, 253, 253, 0.55),
-    78vw 88vh 0.2px rgba(197, 168, 90, 0.75),
-    45vw 18vh 0.2px rgba(234, 201, 125, 0.58),
-    85vw 12vh 0.5px rgba(253, 253, 253, 0.52),
-    10vw 30vh 0.2px rgba(197, 168, 90, 0.62),
-    50vw 80vh 0.5px rgba(253, 253, 253, 0.58),
-    68vw 15vh 0.2px rgba(197, 168, 90, 0.55),
-    90vw 35vh 0.5px rgba(253, 253, 253, 0.48),
-    25vw 55vh 0.2px rgba(234, 201, 125, 0.52),
-    75vw 50vh 0.5px rgba(253, 253, 253, 0.45);
-  width: 1.5px;
-  height: 1.5px;
-  animation: particleDriftOne 32s infinite ease-in-out, particlesShimmer 6s infinite ease-in-out;
-}
-
-/* Camada 2: Partículas reflexivas médias de purpurina real com glow cintilante */
-.site-particles-one::after {
-  box-shadow: 
-    18vw 28vh 1.2px rgba(197, 168, 90, 0.45), 
-    46vw 16vh 1.8px rgba(253, 253, 253, 0.42), 
-    76vw 32vh 0.8px rgba(234, 201, 125, 0.48),
-    26vw 54vh 2.2px rgba(253, 253, 253, 0.45),
-    54vw 42vh 1.2px rgba(197, 168, 90, 0.52),
-    86vw 58vh 1.8px rgba(253, 253, 253, 0.42),
-    34vw 72vh 0.8px rgba(234, 201, 125, 0.58),
-    66vw 78vh 1.8px rgba(253, 253, 253, 0.48),
-    84vw 82vh 1.2px rgba(197, 168, 90, 0.45),
-    46vw 82vh 2.2px rgba(253, 253, 253, 0.42),
-    60vw 25vh 1px rgba(234, 201, 125, 0.48),
-    15vw 70vh 2px rgba(253, 253, 253, 0.38),
-    88vw 18vh 1.5px rgba(197, 168, 90, 0.42),
-    42vw 70vh 2px rgba(253, 253, 253, 0.35);
-  width: 3px;
-  height: 3px;
-  filter: blur(0.2px);
-  animation: particleDriftTwo 42s infinite ease-in-out alternate, particlesShimmer 8s infinite ease-in-out;
-}
-
-/* Camadas de poeira 2 para a região da seção Sobre e além */
-.site-particles-two::before {
-  box-shadow: 
-    12vw 24vh 0.2px rgba(197, 168, 90, 0.55), 
-    32vw 32vh 0.6px rgba(253, 253, 253, 0.48), 
-    72vw 15vh 0.2px rgba(234, 201, 125, 0.52),
-    24vw 48vh 0.8px rgba(253, 253, 253, 0.48),
-    46vw 52vh 0.2px rgba(197, 168, 90, 0.55),
-    82vw 28vh 0.6px rgba(253, 253, 253, 0.48),
-    14vw 68vh 0.2px rgba(197, 168, 90, 0.62),
-    44vw 55vh 0.8px rgba(253, 253, 253, 0.48),
-    66vw 75vh 0.2px rgba(234, 201, 125, 0.55),
-    88vw 42vh 0.6px rgba(253, 253, 253, 0.48),
-    22vw 88vh 0.2px rgba(197, 168, 90, 0.65),
-    56vw 72vh 0.8px rgba(253, 253, 253, 0.58),
-    84vw 62vh 0.2px rgba(234, 201, 125, 0.55),
-    32vw 85vh 0.6px rgba(253, 253, 253, 0.48),
-    5vw 35vh 0.2px rgba(197, 168, 90, 0.55),
-    50vw 60vh 0.8px rgba(253, 253, 253, 0.48),
-    90vw 18vh 0.2px rgba(234, 201, 125, 0.55),
-    18vw 40vh 0.2px rgba(197, 168, 90, 0.52),
-    60vw 30vh 0.6px rgba(253, 253, 253, 0.42),
-    78vw 78vh 0.2px rgba(234, 201, 125, 0.58);
-  width: 1.8px;
-  height: 1.8px;
-  animation: particleDriftOne 36s infinite ease-in-out reverse, particlesShimmer 7s infinite ease-in-out;
-}
-
-.site-particles-two::after {
-  box-shadow: 
-    16vw 22vh 1.8px rgba(197, 168, 90, 0.42), 
-    44vw 38vh 1.2px rgba(253, 253, 253, 0.38), 
-    76vw 45vh 2.2px rgba(234, 201, 125, 0.48),
-    14vw 50vh 1.8px rgba(253, 253, 253, 0.48),
-    52vw 64vh 1.2px rgba(197, 168, 90, 0.52),
-    84vw 82vh 1.8px rgba(253, 253, 253, 0.38),
-    26vw 70vh 2.2px rgba(197, 168, 90, 0.48),
-    62vw 85vh 1.2px rgba(253, 253, 253, 0.48),
-    38vw 58vh 1.5px rgba(234, 201, 125, 0.42),
-    70vw 25vh 2px rgba(197, 168, 90, 0.38),
-    28vw 20vh 1.5px rgba(197, 168, 90, 0.42),
-    58vw 54vh 2px rgba(253, 253, 253, 0.38);
-  width: 3.5px;
-  height: 3.5px;
-  filter: blur(0.3px);
-  animation: particleDriftTwo 44s infinite ease-in-out alternate reverse, particlesShimmer 9s infinite ease-in-out;
-}
-
-@keyframes particlesShimmer {
-  0%, 100% { opacity: 0.45; }
-  50% { opacity: 0.98; }
-}
-
-@keyframes particleDriftOne {
-  0% { transform: translateY(0) translateX(0) translateZ(0); }
-  50% { transform: translateY(-40px) translateX(20px) translateZ(0); }
-  100% { transform: translateY(0) translateX(0) translateZ(0); }
-}
-
-@keyframes particleDriftTwo {
-  0% { transform: translateY(0) translateX(0) scale(1); }
-  50% { transform: translateY(-50px) translateX(-25px) scale(0.95); }
-  100% { transform: translateY(0) translateX(0) scale(1); }
-}
-
-/* Motion Trace - Rastros de Movimento Dourados (Finos, Iluminados e Coreográficos) */
-.site-motion-trace {
-  position: absolute;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(1.5px) drop-shadow(0 0 12px rgba(197, 168, 90, 0.35)); /* Adicionado drop-shadow magnífico */
-  opacity: 0.32; /* Perfeitamente visível e luxuoso */
-  z-index: 5;
-}
-
-.trace-one {
-  top: 5vh; /* Ajustado no viewport fixo */
-  left: -200px;
-  width: 950px;
-  height: 950px;
-  border-right: 1.5px solid rgba(197, 168, 90, 0.65); /* Fino e dourado de alta presença */
-  border-top: 1px solid rgba(197, 168, 90, 0.28);
-  /* Reação à inclinação e posição tridimensional do mouse */
-  transform: rotate(calc(-22deg + var(--mouse-nx, 0) * 5deg)) translate3d(calc(var(--mouse-nx, 0) * -30px), calc(var(--mouse-ny, 0) * -20px), 0);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  mask-image: linear-gradient(135deg, black 40%, transparent 85%);
-  -webkit-mask-image: linear-gradient(135deg, black 40%, transparent 85%);
-  animation: traceBreatheOne 30s infinite ease-in-out alternate;
-}
-
-/* Detalhes de rastros duplos coreográficos (linha tracejada paralela visível) */
-.trace-one::after {
-  content: '';
-  position: absolute;
-  inset: 14px;
-  border-right: 1.2px dashed rgba(197, 168, 90, 0.45); /* Tracejado rítmico */
-  border-top: 0.8px solid rgba(197, 168, 90, 0.22);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.trace-two {
-  top: 45vh; /* Ajustado no viewport fixo */
-  right: -300px;
-  width: 1050px;
-  height: 1050px;
-  border-left: 1.5px solid rgba(197, 168, 90, 0.58);
-  border-bottom: 1px solid rgba(197, 168, 90, 0.24);
-  /* Reação oposta de coreografia e mouse */
-  transform: rotate(calc(32deg - var(--mouse-nx, 0) * 5deg)) translate3d(calc(var(--mouse-nx, 0) * 25px), calc(var(--mouse-ny, 0) * 15px), 0);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  mask-image: linear-gradient(-45deg, black 40%, transparent 85%);
-  -webkit-mask-image: linear-gradient(-45deg, black 40%, transparent 85%);
-  animation: traceBreatheTwo 36s infinite ease-in-out alternate;
-}
-
-.trace-two::after {
-  content: '';
-  position: absolute;
-  inset: 16px;
-  border-left: 1.2px dashed rgba(197, 168, 90, 0.38);
-  border-bottom: 0.8px solid rgba(197, 168, 90, 0.18);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* Dot Matrix Editorial Estratégico (Sofisticado, com fade radial e Shimmer) */
-.site-editorial-dots {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background-image: radial-gradient(rgba(197, 168, 90, 0.45) 1.5px, transparent 1.5px); /* Dots nítidos */
-  background-size: 16px 16px;
-  pointer-events: none;
-  z-index: 3;
-  mask-image: radial-gradient(circle at center, black 15%, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at center, black 15%, transparent 75%);
-  animation: dotsPulse 18s infinite ease-in-out alternate;
-  /* Reage de forma editorial sutil e controlada */
-  transform: translate3d(calc(var(--mouse-nx, 0) * 15px), calc(var(--mouse-ny, 0) * 12px), 0);
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dots-right {
-  top: 20vh; /* Ajustado no viewport fixo */
-  right: 6%;
-}
-
-.dots-left {
-  top: 60vh; /* Ajustado no viewport fixo */
-  left: 5%;
-  background-image: radial-gradient(rgba(253, 253, 253, 0.35) 1.5px, transparent 1.5px);
-}
-
-@keyframes dotsPulse {
-  0% { opacity: 0.55; transform: scale(0.97); }
-  50% { opacity: 0.95; transform: scale(1.02); }
-  100% { opacity: 0.65; transform: scale(0.99); }
-}
-
-/* Vigas de Holofote Coreográfico Interativo (efeito dinâmico seguidor de palco) */
-.site-stage-beam {
-  position: absolute;
+/* Noise overlay CSS permanece como textura sutil por cima */
+.noise-overlay {
+  position: fixed;
   top: 0;
-  width: 25vw;
-  height: 250vh;
-  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.05) 0%, rgba(197, 168, 90, 0.008) 40%, transparent 100%);
-  clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
-  filter: blur(80px);
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  z-index: 2;
-  transform-origin: top center;
-  mix-blend-mode: screen;
-  transition: transform 0.2s ease-out;
-}
-
-.beam-one {
-  left: 5%;
-  transform: rotate(-15deg);
-}
-
-.beam-two {
-  right: -5%;
-  transform: rotate(20deg);
-  background: linear-gradient(to bottom, rgba(253, 253, 253, 0.04) 0%, rgba(197, 168, 90, 0.006) 40%, transparent 100%);
-}
-
-@keyframes traceBreatheOne {
-  0% { transform: rotate(-22deg) scale(0.97) translateY(0); opacity: 0.05; }
-  100% { transform: rotate(-19deg) scale(1.03) translateY(-8px); opacity: 0.16; }
-}
-
-@keyframes traceBreatheTwo {
-  0% { transform: rotate(32deg) scale(1.02) translateY(0); opacity: 0.04; }
-  100% { transform: rotate(29deg) scale(0.97) translateY(10px); opacity: 0.14; }
-}anslateY(10px); opacity: 0.1; }
-}
-
-/* Reduções Mobile dos Elementos Fluidos */
-@media (max-width: 768px) {
-  .site-haze {
-    opacity: 0.08;
-    filter: blur(95px);
-    animation: none;
-  }
-  .site-motion-trace,
-  .site-editorial-dots,
-  .site-stage-beam {
-    display: none; /* Curvas, dots e vigas de holofote removidas no mobile */
-  }
-  .site-particles-one::after,
-  .site-particles-two::after {
-    display: none; /* Remove partículas com blur pesado no mobile para performance */
-  }
-  .site-particles-one::before,
-  .site-particles-two::before {
-    animation-duration: 60s;
-    opacity: 0.35;
-  }
+  z-index: 1;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 @keyframes glowBreathe {
@@ -2329,6 +1980,362 @@ body {
   .choreo-badge {
     right: 10px;
     padding: 8px 14px;
+  }
+}
+
+/* ==========================================================================
+   11. SEÇÃO PILARES DE ATUAÇÃO (BENTO GRID INSTITUCIONAL FNDD)
+   ========================================================================== */
+.pillars-section {
+  position: relative;
+  padding: 120px 8%;
+  background-color: transparent;
+  z-index: 2;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Divisor linear chique de topo */
+.pillars-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 90, 0.08) 50%, transparent);
+  z-index: 2;
+}
+
+/* Atmosfera local cinemática */
+.pillars-bg-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pillars-haze-local {
+  position: absolute;
+  top: 25%;
+  right: -200px;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.03) 0%, transparent 70%);
+  filter: blur(120px);
+  z-index: 1;
+}
+
+.pillars-decor-line {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.04) 0%, rgba(197, 168, 90, 0.01) 60%, transparent 100%);
+  z-index: 1;
+}
+
+/* Contêiner Geral */
+.pillars-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Cabeçalho Centralizado e Chique */
+.pillars-header {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pillars-eyebrow-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.pillars-eyebrow {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  line-height: 1;
+}
+
+.pillars-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
+}
+
+.pillars-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.pillars-title-separator {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-primary), var(--gold-dark));
+  margin: 0 auto 18px auto;
+}
+
+.pillars-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Bento Grid */
+.pillars-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Painéis Bento de Vidro */
+.pillar-panel {
+  position: relative;
+  padding: 36px 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.4) 0%, rgba(8, 8, 10, 0.7) 100%);
+  border: 1px solid rgba(197, 168, 90, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 280px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.01);
+  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.pillar-panel:hover {
+  border-color: rgba(197, 168, 90, 0.35);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.05) 0%, rgba(10, 10, 12, 0.8) 100%);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(197, 168, 90, 0.04);
+}
+
+/* Efeito de Flashlight/Spotlight seguindo o cursor */
+.pillar-panel::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  padding: 1px;
+  background: radial-gradient(circle 120px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(197, 168, 90, 0.35), transparent 70%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.pillar-panel:hover::before {
+  opacity: 1;
+}
+
+/* Composição de Painéis Destaque (Featured) */
+.pillar-featured.pillar-sport {
+  grid-column: span 2;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.pillar-featured.pillar-value {
+  grid-column: span 3;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.pillar-featured .pillar-icon-box {
+  flex-shrink: 0;
+}
+
+.pillar-featured .pillar-content {
+  text-align: left;
+}
+
+/* Detalhe Dourado Decorativo de Canto para Destaques */
+.pillar-corner-decor {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid transparent;
+  border-top-color: var(--gold-primary);
+  border-right-color: var(--gold-primary);
+  opacity: 0.3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.pillar-panel:hover .pillar-corner-decor {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+/* Ícone */
+.pillar-icon-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background: rgba(197, 168, 90, 0.05);
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+}
+
+.pillar-panel:hover .pillar-icon-box {
+  background: rgba(197, 168, 90, 0.15);
+  border-color: rgba(197, 168, 90, 0.45);
+  transform: scale(1.08) rotate(5deg);
+}
+
+.pillar-icon {
+  font-size: 2rem;
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 8px rgba(197, 168, 90, 0.25));
+  transition: color 0.5s ease;
+}
+
+.pillar-panel:hover .pillar-icon {
+  color: var(--gold-light);
+}
+
+/* Conteúdo */
+.pillar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.pillar-number {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+  opacity: 0.15;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.pillar-panel:hover .pillar-number {
+  opacity: 0.7;
+  transform: translateY(-2px);
+}
+
+.pillar-name {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.pillar-panel:hover .pillar-name {
+  color: var(--gold-primary);
+}
+
+.pillar-text {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  text-align: left;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .pillars-section {
+    padding: 100px 6%;
+  }
+}
+
+@media (max-width: 991px) {
+  .pillars-section {
+    padding: 80px 24px;
+  }
+  
+  .pillars-container {
+    gap: 40px;
+  }
+  
+  .pillars-title {
+    font-size: 2.2rem;
+  }
+  
+  /* Bento desfeito para Timeline Vertical */
+  .pillars-bento {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+  
+  /* Todos os painéis viram blocos simples empilhados */
+  .pillar-panel {
+    grid-column: span 1 !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 20px !important;
+    min-height: auto !important;
+    padding: 28px 24px !important;
+  }
+  
+  .pillar-featured .pillar-content {
+    text-align: left !important;
+  }
+  
+  .pillar-number {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pillars-title {
+    font-size: 1.8rem;
   }
 }
 
