@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System FNDD - Premium Institutional Preview</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Iconify CDN -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  
+  <style>
+    /* ==========================================================================
+       1. TOKENS & VARIÁVEIS DO DESIGN SYSTEM (Refinadas & Premium)
+       ========================================================================== */
+    :root {
+      /* Cores de Fundo (Profundidade Máxima) */
+      --bg-deep: #050506;
+      --bg-surface: #0a0a0c;
+      --bg-surface-alt: #101013;
+      
+      /* Tons Dourados Premium (FNDD Gold) */
+      --gold-primary: #C5A85A;
+      --gold-light: #F8E2A7;
+      --gold-dark: #785A1D;
+      --gold-glow: rgba(197, 168, 90, 0.1);
+      --gold-glow-strong: rgba(197, 168, 90, 0.35);
+      
+      /* Tons de Texto */
+      --text-primary: #FDFDFD;
+      --text-secondary: #9FA4B4;
+      --text-muted: #595E6D;
+      --text-gold: #EAC97D;
+      
+      /* Efeitos Visuais e Bordas */
+      --border-glass: rgba(255, 255, 255, 0.03);
+      --border-glass-hover: rgba(255, 255, 255, 0.08);
+      --border-gold-glass: rgba(197, 168, 90, 0.12);
+      --border-gold-glass-hover: rgba(197, 168, 90, 0.35);
+      --shadow-premium: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+      --shadow-gold-sutil: 0 0 30px rgba(197, 168, 90, 0.05);
+      
+      /* Transições e Curvas Rítmicas de Dança */
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      
+      /* Fontes */
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Inter', monospace;
+    }
+
+    /* Reset Geral */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar Premium */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-deep);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #18181b;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-primary);
+    }
+
+    /* Textura de Ruído Orgânico Global (Cinematográfico) */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Grid com linhas em perspectiva e gradientes */
+    .global-grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Orbes de luz flutuantes no fundo */
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .orb-1 {
+      top: 10%;
+      left: 15%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(197, 168, 90, 0.06) 0%, transparent 70%);
+      animation: floatOrb 25s infinite ease-in-out;
+    }
+
+    .orb-2 {
+      bottom: 20%;
+      right: 10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(197, 168, 90, 0.04) 0%, transparent 70%);
+      animation: floatOrb 30s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(50px, -60px) scale(1.1); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* ==========================================================================
+       3. ESTRUTURA DO LAYOUT
+       ========================================================================== */
+    .ds-wrapper {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Menu Lateral de Navegação (Modernizado e com Blur Elevado) */
+    .ds-sidebar {
+      width: 300px;
+      background: rgba(5, 5, 6, 0.85);
+      border-right: 1px solid var(--border-glass);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 40px 28px;
+      overflow-y: auto;
+      z-index: 100;
+      backdrop-filter: blur(30px);
+    }
+
+    .ds-brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .ds-brand-logo {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 800;
+      color: #121214;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(197, 168, 90, 0.2);
+    }
+
+    .ds-brand div h1 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+    }
+
+    .ds-brand div p {
+      font-size: 0.65rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .ds-menu-list {
+      list-style: none;
+    }
+
+    .ds-menu-item {
+      margin-bottom: 8px;
+    }
+
+    .ds-menu-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-radius: 10px;
+      transition: var(--transition-smooth);
+      border: 1px solid transparent;
+    }
+
+    .ds-menu-link:hover {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-primary);
+      transform: translateX(4px);
+    }
+
+    .ds-menu-link.active {
+      background: rgba(197, 168, 90, 0.06);
+      color: var(--gold-light);
+      border: 1px solid var(--border-gold-glass);
+      box-shadow: var(--shadow-gold-sutil);
+    }
+
+    .ds-menu-link iconify-icon {
+      font-size: 1.2rem;
+    }
+
+    /* Conteúdo Principal */
+    .ds-content {
+      margin-left: 300px;
+      flex: 1;
+      padding: 60px 80px;
+      max-width: 1400px;
+    }
+
+    .ds-section {
+      margin-bottom: 120px;
+      padding-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .ds-section:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .ds-section-title {
+      font-family: var(--font-title);
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-primary);
+    }
+
+    .ds-section-title span {
+      color: var(--gold-primary);
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      border: 1px solid var(--border-gold-glass);
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(197, 168, 90, 0.03);
+    }
+
+    .ds-section-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 900px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    /* Grid utilitária para amostras */
+    .sample-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .sample-card-info {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ==========================================================================
+       4. COMPONENTES VISUAIS & EFEITOS (O CORE DO DESIGN SYSTEM)
+       ========================================================================== */
+
+    /* --- HERO DE DEMONSTRAÇÃO (REFINADA) --- */
+    .hero-demo {
+      position: relative;
+      background: linear-gradient(180deg, #0a0a0c 0%, #050506 100%);
+      border-radius: 28px;
+      padding: 100px 60px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold-glass);
+      margin-bottom: 100px;
+      box-shadow: var(--shadow-premium);
+    }
+
+    /* Moldura Fina Premium */
+    .hero-border-frame {
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(197, 168, 90, 0.06);
+      pointer-events: none;
+      z-index: 5;
+      border-radius: 18px;
+    }
+
+    .hero-border-frame::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; width: 20px; height: 20px;
+      border-top: 2px solid var(--gold-primary);
+      border-left: 2px solid var(--gold-primary);
+    }
+    .hero-border-frame::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; right: -2px; width: 20px; height: 20px;
+      border-bottom: 2px solid var(--gold-primary);
+      border-right: 2px solid var(--gold-primary);
+    }
+
+    /* Glow de palco no fundo da Hero */
+    .hero-stage-light {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 450px;
+      background: radial-gradient(ellipse, rgba(197, 168, 90, 0.09) 0%, transparent 75%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      background: rgba(197, 168, 90, 0.04);
+      border: 1px solid rgba(197, 168, 90, 0.18);
+      border-radius: 100px;
+      color: var(--text-gold);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 4.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      margin-bottom: 26px;
+    }
+
+    /* Gradiente dourado animado metálico nos destaques */
+    .hero-title span.accent {
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 30%, var(--gold-primary) 50%, var(--gold-light) 70%, var(--gold-dark) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shineGoldText 6s linear infinite;
+      position: relative;
+      display: inline-block;
+    }
+
+    @keyframes shineGoldText {
+      to { background-position: 200% center; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 48px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    /* Cards/Métricas flutuantes na Hero */
+    .hero-float-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .metric-float-card {
+      background: rgba(10, 10, 12, 0.55);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-float-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold-primary);
+      opacity: 0.3;
+      transition: var(--transition-smooth);
+    }
+
+    .metric-float-card:hover {
+      transform: translateY(-6px);
+      background: rgba(10, 10, 12, 0.8);
+      border-color: var(--border-gold-glass-hover);
+      box-shadow: var(--shadow-premium), var(--shadow-gold-sutil);
+    }
+
+    .metric-float-card:hover::before {
+      opacity: 1;
+      background: var(--gold-light);
+    }
+
+    .metric-float-num {
+      font-family: var(--font-title);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metric-float-num span {
+      color: var(--gold-primary);
+    }
+
+    .metric-float-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* --- BOTÕES --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 32px;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    /* Primário: Gold Shimmer */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+      color: #030304;
+      box-shadow: 0 4px 25px rgba(197, 168, 90, 0.25);
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 250%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transform: skewX(-25deg);
+      transition: 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(197, 168, 90, 0.45);
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+    }
+
+    .btn-primary:hover::after {
+      left: 130%;
+    }
+
+    /* Secundário: Outline Premium */
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-gold-glass);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(197, 168, 90, 0.08);
+      border-color: var(--gold-primary);
+      transform: translateY(-4px);
+      color: var(--gold-light);
+      box-shadow: var(--shadow-gold-sutil);
+    }
+
+    .btn-secondary iconify-icon {
+      transition: var(--transition-smooth);
+    }
+
+    .btn-secondary:hover iconify-icon {
+      transform: translateX(6px);
+    }
+
+    /* WhatsApp Button */
+    .btn-whatsapp {
+      background: rgba(37, 211, 102, 0.03);
+      border: 1px solid rgba(37, 211, 102, 0.25);
+      color: #25d366;
+    }
+
+    .btn-whatsapp:hover {
+      background: #25d366;
+      color: #030304;
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .btn-whatsapp .pulse-icon {
+      display: inline-flex;
+      position: relative;
+    }
+
+    .btn-whatsapp:hover .pulse-icon::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(37, 211, 102, 0.5);
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      animation: pulseGreen 1.6s infinite;
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Shimmer Effect Continuous */
+    .btn-shimmer {
+      background: #0a0a0c;
+      border: 1px solid var(--border-gold-glass);
+      color: var(--gold-light);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-shimmer::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 10px;
+      padding: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: shimmerBorder 4s linear infinite;
+    }
+
+    @keyframes shimmerBorder {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .btn-shimmer:hover {
+      background: rgba(197, 168, 90, 0.08);
+      border-color: var(--gold-primary);
+      box-shadow: var(--shadow-gold-sutil);
+      transform: translateY(-4px);
+    }
+
+    /* Disabled Button */
+    .btn-disabled {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* --- SUPERFÍCIES E CARDS --- */
+    .grid-surfaces {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    /* Glass Panel */
+    .card-glass {
+      background: rgba(10, 10, 12, 0.55);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .card-glass:hover {
+      border-color: var(--border-glass-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-premium);
+    }
+
+    /* Card Sólido Premium */
+    .card-solid {
+      background: var(--bg-surface-alt);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      padding: 36px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .card-solid:hover {
+      background: #141418;
+      transform: translateY(-6px);
+    }
+
+    /* Card com Spotlight/Flashlight */
+    .spotlight-card {
+      background: rgba(10, 10, 12, 0.4);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        400px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+        rgba(197, 168, 90, 0.08),
+        transparent 55%
+      );
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.4s;
+    }
+
+    .spotlight-card:hover {
+      border-color: rgba(197, 168, 90, 0.22);
+      transform: translateY(-6px);
+    }
+
+    /* Card de Pilar (Conceito FNDD) */
+    .card-pilar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      z-index: 1;
+    }
+
+    .card-pilar-glow {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(197, 168, 90, 0.18) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+      transition: var(--transition-smooth);
+    }
+
+    .card-pilar-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: rgba(197, 168, 90, 0.04);
+      border: 1px solid var(--border-gold-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      margin-bottom: 28px;
+      font-size: 1.6rem;
+      transition: var(--transition-bounce);
+    }
+
+    .card-pilar h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+
+    .card-pilar p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .card-pilar:hover {
+      border-color: var(--border-gold-glass-hover);
+      box-shadow: var(--shadow-premium), var(--shadow-gold-sutil);
+      transform: translateY(-8px);
+    }
+
+    .card-pilar:hover .card-pilar-icon {
+      transform: scale(1.15) rotate(7deg);
+      background: var(--gold-primary);
+      color: #030304;
+      box-shadow: 0 6px 20px rgba(197, 168, 90, 0.4);
+    }
+
+    .card-pilar:hover .card-pilar-glow {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(197, 168, 90, 0.28) 0%, transparent 70%);
+    }
+
+    /* Card de Diretoria (Fotos Reais com Filtro) */
+    .card-diretoria {
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .card-diretoria-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+      filter: grayscale(80%) contrast(110%);
+    }
+
+    .card-diretoria-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #0a0a0c 0%, rgba(10, 10, 12, 0.85) 45%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      transition: var(--transition-smooth);
+    }
+
+    .card-diretoria-title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .card-diretoria-role {
+      font-size: 0.78rem;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .card-diretoria-bio {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .card-diretoria:hover {
+      border-color: var(--border-gold-glass-hover);
+      box-shadow: var(--shadow-premium), var(--shadow-gold-sutil);
+    }
+
+    .card-diretoria:hover .card-diretoria-img {
+      transform: scale(1.08);
+      filter: grayscale(0%) contrast(100%);
+    }
+
+    .card-diretoria:hover .card-diretoria-overlay {
+      background: linear-gradient(to top, #0a0a0c 0%, rgba(10, 10, 12, 0.96) 75%, rgba(10, 10, 12, 0.5) 100%);
+    }
+
+    .card-diretoria:hover .card-diretoria-bio {
+      max-height: 120px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    /* Card de Evento / Cursos */
+    .card-evento {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+    }
+
+    .card-evento-img-wrapper {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-evento-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-smooth);
+    }
+
+    .card-evento-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      padding: 6px 12px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-gold-glass);
+      border-radius: 8px;
+      color: var(--gold-light);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .card-evento-content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-evento-date {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card-evento-title {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+
+    .card-evento-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .card-evento-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding-top: 20px;
+    }
+
+    .card-evento-btn {
+      color: var(--gold-light);
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .card-evento-btn iconify-icon {
+      transition: var(--transition-smooth);
+    }
+
+    .card-evento-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .card-evento-btn:hover iconify-icon {
+      transform: translateX(5px);
+    }
+
+    .card-evento:hover {
+      border-color: var(--border-gold-glass-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-premium);
+    }
+
+    .card-evento:hover .card-evento-img {
+      transform: scale(1.08);
+    }
+
+    /* --- FORMULÁRIOS PREMIUM --- */
+    .form-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .form-input-wrapper {
+      position: relative;
+    }
+
+    .form-input-wrapper iconify-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      transition: var(--transition-fast);
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
+      padding: 16px 18px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-input-with-icon {
+      padding-left: 52px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      background: rgba(197, 168, 90, 0.02);
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 20px rgba(197, 168, 90, 0.12);
+    }
+
+    .form-input:focus ~ iconify-icon {
+      color: var(--gold-primary);
+    }
+
+    /* Input com Erro */
+    .form-input.error {
+      border-color: #EA4335;
+      background: rgba(234, 67, 53, 0.02);
+    }
+
+    .form-error-msg {
+      color: #EA4335;
+      font-size: 0.78rem;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Input Disabled */
+    .form-input:disabled {
+      background: rgba(255, 255, 255, 0.008);
+      border-color: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+
+    /* Select premium */
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23C5A85A'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      background-size: 18px;
+      padding-right: 44px;
+    }
+
+    /* --- BADGES E PILLS --- */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .badge-primary {
+      background: rgba(197, 168, 90, 0.06);
+      border: 1px solid var(--border-gold-glass);
+      color: var(--gold-light);
+    }
+
+    .badge-status-active {
+      background: rgba(52, 168, 83, 0.06);
+      border: 1px solid rgba(52, 168, 83, 0.2);
+      color: #34A853;
+    }
+
+    .badge-status-upcoming {
+      background: rgba(251, 188, 5, 0.06);
+      border: 1px solid rgba(251, 188, 5, 0.2);
+      color: #FBBC05;
+    }
+
+    .rating-stars {
+      display: flex;
+      gap: 6px;
+      color: var(--gold-primary);
+      font-size: 0.95rem;
+    }
+
+    /* --- NAVBAR E FOOTER --- */
+    .demo-navbar {
+      background: rgba(10, 10, 12, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .navbar-link {
+      font-family: var(--font-title);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .navbar-link:hover, .navbar-link.active {
+      color: var(--gold-light);
+    }
+
+    .demo-footer {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 50px;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-title);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold-light);
+      padding-left: 6px;
+    }
+
+    /* --- AMBIENTES DE TIPOGRAFIA --- */
+    .typography-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .typography-table th, .typography-table td {
+      text-align: left;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .typography-table th {
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+    }
+
+    /* --- PALETA DE CORES DISPLAY --- */
+    .color-swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .color-swatch {
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .color-swatch-box {
+      height: 110px;
+      width: 100%;
+    }
+
+    .color-swatch-info {
+      padding: 18px;
+    }
+
+    .color-name {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .color-swatch:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glass-hover);
+    }
+
+    /* --- ÍCONES DISPLAY --- */
+    .icons-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 20px;
+    }
+
+    .icon-demo-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: var(--transition-smooth);
+    }
+
+    .icon-demo-card iconify-icon {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+
+    .icon-demo-card span {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      text-align: center;
+    }
+
+    .icon-demo-card:hover {
+      border-color: var(--border-gold-glass);
+      background: rgba(197, 168, 90, 0.04);
+      transform: translateY(-4px);
+    }
+
+    /* --- BENTO GRID LAYOUT --- */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 240px;
+      gap: 24px;
+    }
+
+    .bento-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .bento-item:hover {
+      border-color: var(--border-gold-glass-hover);
+      box-shadow: var(--shadow-premium);
+      transform: translateY(-6px);
+    }
+
+    .bento-col-2 {
+      grid-column: span 2;
+    }
+
+    .bento-row-2 {
+      grid-row: span 2;
+    }
+
+    .bento-bg-gradient {
+      background: linear-gradient(135deg, rgba(16, 16, 19, 0.85) 0%, rgba(197, 168, 90, 0.04) 100%);
+    }
+
+    /* FAQ Item */
+    .faq-accordion {
+      margin-bottom: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .faq-header {
+      padding: 24px 28px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: var(--transition-fast);
+    }
+
+    .faq-header:hover {
+      background: rgba(255, 255, 255, 0.015);
+      color: var(--gold-light);
+    }
+
+    .faq-body {
+      padding: 0 28px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      transition: var(--transition-smooth);
+    }
+
+    .faq-accordion.active .faq-body {
+      padding-bottom: 24px;
+      max-height: 250px;
+      opacity: 1;
+    }
+
+    .faq-accordion.active .faq-icon {
+      transform: rotate(180deg);
+      color: var(--gold-primary);
+    }
+
+    .faq-icon {
+      transition: var(--transition-smooth);
+    }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 1024px) {
+      .ds-sidebar {
+        width: 90px;
+        padding: 30px 14px;
+      }
+      .ds-brand-logo {
+        margin: 0 auto;
+      }
+      .ds-brand div, .ds-menu-link span {
+        display: none;
+      }
+      .ds-content {
+        margin-left: 90px;
+        padding: 40px;
+      }
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      .hero-float-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ds-sidebar {
+        display: none;
+      }
+      .ds-content {
+        margin-left: 0;
+        padding: 24px;
+      }
+      .hero-demo {
+        padding: 80px 32px;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-float-metrics {
+        grid-template-columns: 1fr;
+      }
+      .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+      .bento-col-2 {
+        grid-column: span 1;
+      }
+      .bento-row-2 {
+        grid-row: span 1;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Elementos de Textura e Fundo -->
+  <div class="noise-overlay"></div>
+  <div class="global-grid-bg"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  
+  <div class="ds-wrapper">
+    <!-- Menu Lateral Fixo -->
+    <aside class="ds-sidebar">
+      <div class="ds-brand">
+        <div class="ds-brand-logo">FD</div>
+        <div>
+          <h1>FNDD</h1>
+          <p>Design System</p>
+        </div>
+      </div>
+      
+      <ul class="ds-menu-list">
+        <li class="ds-menu-item"><a href="#hero" class="ds-menu-link active"><iconify-icon icon="solar:stars-minimalistic-bold-duotone"></iconify-icon><span>1. Hero FNDD</span></a></li>
+        <li class="ds-menu-item"><a href="#conceito" class="ds-menu-link"><iconify-icon icon="solar:lightbulb-bold-duotone"></iconify-icon><span>2. Direção Criativa</span></a></li>
+        <li class="ds-menu-item"><a href="#tipografia" class="ds-menu-link"><iconify-icon icon="solar:text-bold-duotone"></iconify-icon><span>3. Tipografia</span></a></li>
+        <li class="ds-menu-item"><a href="#cores" class="ds-menu-link"><iconify-icon icon="solar:palette-bold-duotone"></iconify-icon><span>4. Cores e Tokens</span></a></li>
+        <li class="ds-menu-item"><a href="#superficies" class="ds-menu-link"><iconify-icon icon="solar:layers-bold-duotone"></iconify-icon><span>5. Superfícies</span></a></li>
+        <li class="ds-menu-item"><a href="#botoes" class="ds-menu-link"><iconify-icon icon="solar:button-bold-duotone"></iconify-icon><span>6. Botões e CTAs</span></a></li>
+        <li class="ds-menu-item"><a href="#cards" class="ds-menu-link"><iconify-icon icon="solar:gallery-bold-duotone"></iconify-icon><span>7. Cards Premium</span></a></li>
+        <li class="ds-menu-item"><a href="#formularios" class="ds-menu-link"><iconify-icon icon="solar:pen-input-bold-duotone"></iconify-icon><span>8. Formulários</span></a></li>
+        <li class="ds-menu-item"><a href="#badges" class="ds-menu-link"><iconify-icon icon="solar:tag-bold-duotone"></iconify-icon><span>9. Badges & Estrelas</span></a></li>
+        <li class="ds-menu-item"><a href="#navbar" class="ds-menu-link"><iconify-icon icon="solar:sidebar-minimalistic-bold-duotone"></iconify-icon><span>10. Nav & Footer</span></a></li>
+        <li class="ds-menu-item"><a href="#icones" class="ds-menu-link"><iconify-icon icon="solar:smile-circle-bold-duotone"></iconify-icon><span>11. Estilo de Ícones</span></a></li>
+        <li class="ds-menu-item"><a href="#motion" class="ds-menu-link"><iconify-icon icon="solar:videocamera-record-bold-duotone"></iconify-icon><span>12. Motion / Animações</span></a></li>
+        <li class="ds-menu-item"><a href="#layout" class="ds-menu-link"><iconify-icon icon="solar:widget-bold-duotone"></iconify-icon><span>13. Layout & Grid</span></a></li>
+        <li class="ds-menu-item"><a href="#dobras" class="ds-menu-link"><iconify-icon icon="solar:window-frame-bold-duotone"></iconify-icon><span>14. Dobras Futuras</span></a></li>
+        <li class="ds-menu-item"><a href="#conversao" class="ds-menu-link"><iconify-icon icon="solar:chat-round-money-bold-duotone"></iconify-icon><span>15. Conversão</span></a></li>
+        <li class="ds-menu-item"><a href="#regras" class="ds-menu-link"><iconify-icon icon="solar:checklist-minimalistic-bold-duotone"></iconify-icon><span>16. Regras de Uso</span></a></li>
+      </ul>
+    </aside>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="ds-content">
+      
+      <!-- ==========================================
+           1. HERO DE DEMONSTRAÇÃO
+           ========================================== -->
+      <section id="hero" class="ds-section" style="border-top: none;">
+        <div class="ds-section-title">
+          <span>01</span> Hero de Demonstração
+        </div>
+        <p class="ds-section-desc">
+          Esta é a primeira dobra (Hero) demonstrando o Design System. Ela expressa a união de federação, dança, esporte e profissão em um layout estruturado e de alto impacto visual.
+        </p>
+        
+        <div class="hero-demo">
+          <div class="hero-stage-light"></div>
+          <div class="hero-border-frame"></div>
+          
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon>
+              Federação Nacional de Danças Desportivas
+            </div>
+            
+            <h1 class="hero-title">
+              A dança como <span class="accent">esporte</span>, <span class="accent">profissão</span> e movimento nacional.
+            </h1>
+            
+            <p class="hero-subtitle">
+              A FNDD promove, representa e fortalece a dança desportiva no Brasil por meio de formação, competições, eventos e valorização profissional.
+            </p>
+            
+            <div class="hero-ctas">
+              <a href="#contato" class="btn btn-primary">
+                Conheça a FNDD
+                <iconify-icon icon="solar:arrow-right-bold"></iconify-icon>
+              </a>
+              <a href="#fale" class="btn btn-secondary">
+                Fale com a Federação
+                <iconify-icon icon="solar:phone-calling-bold-duotone"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Grid Flutuante de Métricas -->
+          <div class="hero-float-metrics">
+            <div class="metric-float-card">
+              <div class="metric-float-num">11<span>+</span></div>
+              <div class="metric-float-label">Diretores Especialistas</div>
+            </div>
+            <div class="metric-float-card">
+              <div class="metric-float-num">26<span>+</span></div>
+              <div class="metric-float-label">Pilares de Ação</div>
+            </div>
+            <div class="metric-float-card">
+              <div class="metric-float-num">100%</div>
+              <div class="metric-float-label">Formação Profissional</div>
+            </div>
+            <div class="metric-float-card">
+              <div class="metric-float-num">BR</div>
+              <div class="metric-float-label">Representatividade</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           2. DIREÇÃO CRIATIVA
+           ========================================== -->
+      <section id="conceito" class="ds-section">
+        <div class="ds-section-title">
+          <span>02</span> Direção Criativa
+        </div>
+        <p class="ds-section-desc">
+          O conceito central equilibra cinco forças: Federação, Dança, Esporte, Profissão e o posicionamento Premium Institucional.
+        </p>
+        
+        <div class="bento-grid">
+          <div class="bento-item bento-col-2 bento-bg-gradient">
+            <h3 style="font-family: var(--font-title); font-size: 1.35rem; margin-bottom: 12px; color: var(--gold-light);">O Conceito</h3>
+            <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+              O design afasta-se de layouts infantis ou de "escola de bairro" e abraça a robustez de uma Federação Nacional. A iluminação radial dourada simula o palco (Arte e Dança), enquanto a rigidez matemática das bordas e do grid traz a precisão (Esporte e Regulamento).
+            </p>
+          </div>
+          <div class="bento-item">
+            <h3 style="font-family: var(--font-title); font-size: 1.35rem; margin-bottom: 12px; color: var(--text-primary);">A Evitar</h3>
+            <ul style="font-size: 0.9rem; color: var(--text-secondary); list-style: inside circle; line-height: 1.6;">
+              <li>Cores fluorescentes</li>
+              <li>Gradientes dourados amadores</li>
+              <li>Animações pesadas ou sem ritmo</li>
+              <li>Visual escuro sem contraste</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           3. TIPOGRAFIA
+           ========================================== -->
+      <section id="tipografia" class="ds-section">
+        <div class="ds-section-title">
+          <span>03</span> Tipografia Completa
+        </div>
+        <p class="ds-section-desc">
+          Utilizamos a família <strong>Outfit</strong> para cabeçalhos (proporcionando imponência e amplitude) e <strong>Plus Jakarta Sans</strong> para textos corridos (garantindo legibilidade contemporânea).
+        </p>
+        
+        <table class="typography-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">Tag / Nome</th>
+              <th style="width: 15%;">Tamanho / Peso</th>
+              <th>Amostra Visual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><h1>H1. Heading Large</h1></td>
+              <td>Outfit 3.5rem / 800</td>
+              <td><span style="font-family: var(--font-title); font-size: 2.8rem; font-weight: 800; tracking: -0.03em;">Representação e Dança</span></td>
+            </tr>
+            <tr>
+              <td><h2>H2. Section Title</h2></td>
+              <td>Outfit 2.25rem / 600</td>
+              <td><span style="font-family: var(--font-title); font-size: 2rem; font-weight: 600;">Pilares de Atuação da Federação</span></td>
+            </tr>
+            <tr>
+              <td><h3>H3. Card Title</h3></td>
+              <td>Outfit 1.35rem / 600</td>
+              <td><span style="font-family: var(--font-title); font-size: 1.35rem; font-weight: 600;">Dança como Esporte</span></td>
+            </tr>
+            <tr>
+              <td><span class="body-large">Body Large</span></td>
+              <td>Plus Jakarta 1.125rem / 300</td>
+              <td><span style="font-size: 1.125rem; font-weight: 300; color: var(--text-secondary);">A FNDD é o elo oficial que fortalece e protege o profissional.</span></td>
+            </tr>
+            <tr>
+              <td><span>Body Normal</span></td>
+              <td>Plus Jakarta 1rem / 400</td>
+              <td><span style="font-size: 1rem; color: var(--text-secondary); line-height: 1.7;">O papel da dança desportiva nas Olimpíadas tem crescido ano a ano no Brasil.</span></td>
+            </tr>
+            <tr>
+              <td><small>Body Small / Caption</small></td>
+              <td>Plus Jakarta 0.85rem / 400</td>
+              <td><span style="font-size: 0.85rem; color: var(--text-muted);">* Certificados validados por conselho nacional.</span></td>
+            </tr>
+            <tr>
+              <td><span class="hero-eyebrow" style="margin-bottom: 0;">Eyebrow</span></td>
+              <td>Outfit 0.75rem / 600</td>
+              <td><span style="font-family: var(--font-title); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-primary);">NOVIDADES E CALENDÁRIO</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ==========================================
+           4. CORES E TOKENS
+           ========================================== -->
+      <section id="cores" class="ds-section">
+        <div class="ds-section-title">
+          <span>04</span> Cores e Tokens
+        </div>
+        <p class="ds-section-desc">
+          A paleta cromática utiliza a harmonia clássica e sofisticada do ouro, preto profundo e tons sutis de cinza.
+        </p>
+        
+        <div class="color-swatch-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--bg-deep);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">Deep Background</div>
+              <div class="color-hex">#050506</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--bg-surface);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">Surface Main</div>
+              <div class="color-hex">#0A0A0C</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--bg-surface-alt);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">Surface Alt</div>
+              <div class="color-hex">#101013</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--gold-primary);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">FNDD Gold</div>
+              <div class="color-hex">#C5A85A</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--gold-light);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">Gold Light</div>
+              <div class="color-hex">#F8E2A7</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background-color: var(--gold-dark);"></div>
+            <div class="color-swatch-info">
+              <div class="color-name">Gold Dark</div>
+              <div class="color-hex">#785A1D</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           5. SUPERFÍCIES E BACKGROUNDS
+           ========================================== -->
+      <section id="superficies" class="ds-section">
+        <div class="ds-section-title">
+          <span>05</span> Superfícies e Backgrounds
+        </div>
+        <p class="ds-section-desc">
+          Controle de profundidade visual por meio de transparências, bordas sutis e feixes de luz interativos.
+        </p>
+        
+        <div class="grid-surfaces">
+          <div class="card-glass">
+            <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Glass Panel</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Estrutura com desfoque de fundo (backdrop-filter) simulando vidro fosco institucional.</p>
+          </div>
+          
+          <div class="card-solid">
+            <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Card Sólido Premium</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Superfície escura e uniforme para dar ênfase a textos sem distrações.</p>
+          </div>
+          
+          <div class="spotlight-card">
+            <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Interactive Spotlight</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Passe o mouse aqui. Um feixe de luz dourada suave segue as coordenadas do cursor.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           6. BOTÕES E CTAS
+           ========================================== -->
+      <section id="botoes" class="ds-section">
+        <div class="ds-section-title">
+          <span>06</span> Botões e CTAs
+        </div>
+        <p class="ds-section-desc">
+          Microinterações ricas e estados claros de feedback visual em todos os botões e CTAs.
+        </p>
+        
+        <div class="sample-grid">
+          <div>
+            <button class="btn btn-primary" style="width: 100%;">
+              Primary Shimmer
+            </button>
+            <div class="sample-card-info">Dourado com efeito reflexo no hover</div>
+          </div>
+          
+          <div>
+            <button class="btn btn-secondary" style="width: 100%;">
+              Secondary Outline
+              <iconify-icon icon="solar:arrow-right-bold"></iconify-icon>
+            </button>
+            <div class="sample-card-info">Borda dourada fina com translado de ícone</div>
+          </div>
+          
+          <div>
+            <button class="btn btn-whatsapp" style="width: 100%;">
+              <span class="pulse-icon"><iconify-icon icon="solar:chat-round-call-bold-duotone"></iconify-icon></span>
+              WhatsApp FNDD
+            </button>
+            <div class="sample-card-info">Foco em atendimento com pulse no hover</div>
+          </div>
+          
+          <div>
+            <button class="btn btn-shimmer" style="width: 100%;">
+              Borda Shimmer
+            </button>
+            <div class="sample-card-info">Borda com luz rotativa constante</div>
+          </div>
+          
+          <div>
+            <button class="btn btn-disabled" style="width: 100%;">
+              Ação Desativada
+            </button>
+            <div class="sample-card-info">Estado inativo institucional</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           7. CARDS PREMIUM
+           ========================================== -->
+      <section id="cards" class="ds-section">
+        <div class="ds-section-title">
+          <span>07</span> Cards do Sistema
+        </div>
+        <p class="ds-section-desc">
+          Cards para os Pilares de atuação e os diretores oficiais da federação, integrando as fotos reais da diretoria.
+        </p>
+        
+        <h3 style="font-family: var(--font-title); margin-bottom: 24px; color: var(--gold-light);">Exemplo de Pilar</h3>
+        <div class="sample-grid" style="margin-bottom: 60px;">
+          <div class="card-pilar">
+            <div class="card-pilar-glow"></div>
+            <div class="card-pilar-icon">
+              <iconify-icon icon="solar:cup-bold"></iconify-icon>
+            </div>
+            <h3>Dança como Esporte</h3>
+            <p>Representamos o Break e as Danças Desportivas de alto rendimento perante os comitês esportivos nacionais e internacionais.</p>
+          </div>
+          
+          <div class="card-pilar">
+            <div class="card-pilar-glow"></div>
+            <div class="card-pilar-icon">
+              <iconify-icon icon="solar:diploma-verified-bold-duotone"></iconify-icon>
+            </div>
+            <h3>Formação Profissional</h3>
+            <p>Desenvolvemos currículos certificados para capacitação teórica, técnica e prática dos profissionais no Brasil.</p>
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-title); margin-bottom: 24px; color: var(--gold-light);">Exemplo de Diretores (Fotos Reais)</h3>
+        <div class="sample-grid">
+          <!-- Paulo Humberto -->
+          <div class="card-diretoria">
+            <img src="../assets/images/Paulo.jpeg" alt="Paulo Humberto" class="card-diretoria-img">
+            <div class="card-diretoria-overlay">
+              <div class="card-diretoria-title">Paulo Humberto</div>
+              <div class="card-diretoria-role">Presidente</div>
+              <p class="card-diretoria-bio">Professor, campeão e fundador do estúdio PHD Dança. Atua na valorização profissional e transformação social.</p>
+            </div>
+          </div>
+          
+          <!-- Victor Vaz -->
+          <div class="card-diretoria">
+            <img src="../assets/images/Victor.jpeg" alt="Victor Vaz" class="card-diretoria-img">
+            <div class="card-diretoria-overlay">
+              <div class="card-diretoria-title">Victor Vaz</div>
+              <div class="card-diretoria-role">Vice-Presidente</div>
+              <p class="card-diretoria-bio">Coreógrafo e produtor de eventos com foco em formação e fortalecimento da cena.</p>
+            </div>
+          </div>
+          
+          <!-- Letícia Puttini -->
+          <div class="card-diretoria">
+            <img src="../assets/images/Letícia.png" alt="Letícia Puttini" class="card-diretoria-img">
+            <div class="card-diretoria-overlay">
+              <div class="card-diretoria-title">Letícia Puttini</div>
+              <div class="card-diretoria-role">Diretora Administrativa</div>
+              <p class="card-diretoria-bio">Bailarina e coreógrafo, une sensibilidade técnica e gestão eficiente.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           8. FORMULÁRIOS
+           ========================================== -->
+      <section id="formularios" class="ds-section">
+        <div class="ds-section-title">
+          <span>08</span> Formulários
+        </div>
+        <p class="ds-section-desc">
+          Inputs e campos de seleção customizados para harmonizar com a linguagem premium do site, fugindo do visual padrão de navegadores.
+        </p>
+        
+        <div class="card-glass" style="max-width: 600px; margin: 0 auto;">
+          <h3 style="font-family: var(--font-title); margin-bottom: 24px;">Filie-se à FNDD</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Nome Completo</label>
+            <div class="form-input-wrapper">
+              <input type="text" class="form-input form-input-with-icon" placeholder="Insira seu nome completo">
+              <iconify-icon icon="solar:user-bold-duotone"></iconify-icon>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Modalidade de Dança</label>
+            <select class="form-input form-select">
+              <option value="">Selecione sua modalidade principal</option>
+              <option value="desportiva">Dança Desportiva / Break</option>
+              <option value="salao">Dança de Salão</option>
+              <option value="forro">Forró</option>
+              <option value="outra">Outras</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">E-mail de Contato</label>
+            <div class="form-input-wrapper">
+              <input type="email" class="form-input form-input-with-icon error" placeholder="seu@email.com" value="email-invalido">
+              <iconify-icon icon="solar:letter-bold-duotone"></iconify-icon>
+            </div>
+            <div class="form-error-msg">
+              <iconify-icon icon="solar:info-circle-bold-duotone"></iconify-icon>
+              Por favor, insira um e-mail válido para contato.
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" style="width: 100%; margin-top: 10px;">Enviar Solicitação</button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           9. BADGES E ESTRELAS
+           ========================================== -->
+      <section id="badges" class="ds-section">
+        <div class="ds-section-title">
+          <span>09</span> Badges e Avaliações
+        </div>
+        <p class="ds-section-desc">
+          Indicadores de categoria, tags de status e prova social premium.
+        </p>
+        
+        <div class="sample-grid">
+          <div class="card-solid" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+            <div class="badge badge-primary">
+              <iconify-icon icon="solar:stars-line-duotone"></iconify-icon>
+              Instituição Oficial
+            </div>
+            <div class="badge badge-status-active">
+              Filiado Ativo
+            </div>
+            <div class="badge badge-status-upcoming">
+              Inscrições Abertas
+            </div>
+          </div>
+          
+          <div class="card-solid" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px;">
+            <div class="rating-stars">
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+            </div>
+            <div style="font-size: 0.88rem; color: var(--text-secondary); text-align: center;">
+              Avaliação de Escolas Filiadas
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           10. NAVBAR E FOOTER
+           ========================================== -->
+      <section id="navbar" class="ds-section">
+        <div class="ds-section-title">
+          <span>10</span> Navbar e Footer
+        </div>
+        <p class="ds-section-desc">
+          Conceito estrutural da navegação principal e rodapé oficial da federação.
+        </p>
+        
+        <nav class="demo-navbar">
+          <div style="font-family: var(--font-title); font-weight: 700; color: var(--gold-light);">
+            FNDD
+          </div>
+          <ul class="navbar-links">
+            <li><a href="#" class="navbar-link active">Início</a></li>
+            <li><a href="#" class="navbar-link">Sobre</a></li>
+            <li><a href="#" class="navbar-link">Diretoria</a></li>
+            <li><a href="#" class="navbar-link">Compromissos</a></li>
+          </ul>
+          <a href="#" class="btn btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">Filie-se</a>
+        </nav>
+
+        <footer class="demo-footer">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <h4 style="color: var(--gold-light);">FNDD</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">A Federação Nacional de Danças Desportivas é a entidade máxima de representação da dança como esporte no Brasil.</p>
+            </div>
+            <div class="footer-col">
+              <h4>Navegação</h4>
+              <ul>
+                <li><a href="#">Quem Somos</a></li>
+                <li><a href="#">Calendário de Eventos</a></li>
+                <li><a href="#">Cursos e Workshops</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Legislação</h4>
+              <ul>
+                <li><a href="#">Estatuto Oficial</a></li>
+                <li><a href="#">Regulamento Técnico</a></li>
+                <li><a href="#">Transparência</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Contato</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">fndd@federacao.org.br</p>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Brasília - DF</p>
+            </div>
+          </div>
+          <div style="border-top: 1px solid rgba(255,255,255,0.04); padding-top: 20px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+            © 2026 Federação Nacional de Danças Desportivas. Todos os direitos reservados.
+          </div>
+        </footer>
+      </section>
+
+      <!-- ==========================================
+           11. ESTILO DE ÍCONES
+           ========================================== -->
+      <section id="icones" class="ds-section">
+        <div class="ds-section-title">
+          <span>11</span> Estilo de Ícones
+        </div>
+        <p class="ds-section-desc">
+          Para garantir elegância e consistência, a FNDD adota exclusivamente ícones de linhas finas (duotone ou line-style), com espessura uniforme e tonalidades douradas ou off-white.
+        </p>
+        
+        <div class="icons-demo-grid">
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:stars-minimalistic-bold-duotone"></iconify-icon>
+            <span>Palco</span>
+          </div>
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:cup-bold-duotone"></iconify-icon>
+            <span>Troféu</span>
+          </div>
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:diploma-verified-bold-duotone"></iconify-icon>
+            <span>Formação</span>
+          </div>
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:calendar-date-bold-duotone"></iconify-icon>
+            <span>Calendário</span>
+          </div>
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:users-group-rounded-bold-duotone"></iconify-icon>
+            <span>Diretoria</span>
+          </div>
+          <div class="icon-demo-card">
+            <iconify-icon icon="solar:medal-star-bold-duotone"></iconify-icon>
+            <span>Medalha</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           12. MOTION / ANIMAÇÕES
+           ========================================== -->
+      <section id="motion" class="ds-section">
+        <div class="ds-section-title">
+          <span>12</span> Motion / Animações
+        </div>
+        <p class="ds-section-desc">
+          A fluidez visual traduz o movimento da dança. Todas as animações do site real devem seguir o ritmo dos exemplos abaixo.
+        </p>
+        
+        <div class="grid-surfaces">
+          <div class="card-solid" style="text-align: center;">
+            <div style="background: rgba(197, 168, 90, 0.05); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: var(--gold-primary); animation: glowPulse 2s infinite ease-in-out;">
+              <iconify-icon icon="solar:pulse-bold" style="font-size: 2rem;"></iconify-icon>
+            </div>
+            <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Glow Pulse</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Animação sutil de pulsação luminosa para elementos interativos em espera.</p>
+          </div>
+          
+          <div class="card-solid" style="text-align: center;">
+            <button class="btn btn-primary" style="animation: bounceEffect 3s infinite ease-in-out; margin-bottom: 20px;">
+              Hover Lift
+            </button>
+            <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Rítmica de Entrada</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Bouncing leve para CTAs primários de alta importância para conversão rápida.</p>
+          </div>
+        </div>
+
+        <style>
+          @keyframes glowPulse {
+            0% { box-shadow: 0 0 0 0 rgba(197, 168, 90, 0.15); }
+            50% { box-shadow: 0 0 25px 10px rgba(197, 168, 90, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 168, 90, 0.15); }
+          }
+          @keyframes bounceEffect {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+          }
+        </style>
+      </section>
+
+      <!-- ==========================================
+           13. LAYOUT E GRID
+           ========================================== -->
+      <section id="layout" class="ds-section">
+        <div class="ds-section-title">
+          <span>13</span> Layout e Grid (Bento Grid)
+        </div>
+        <p class="ds-section-desc">
+          O arranjo estrutural adota o modelo Bento Grid para organizar conteúdos diferentes em blocos visualmente harmoniosos e hierarquizados.
+        </p>
+        
+        <div class="bento-grid">
+          <div class="bento-item bento-col-2">
+            <h3 style="font-family: var(--font-title); color: var(--gold-light); margin-bottom: 8px;">Grande Bloco de Destaque</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Ideal para introduções institucionais da FNDD, apresentando nossa história com contraste premium.</p>
+          </div>
+          
+          <div class="bento-item bento-row-2" style="background: linear-gradient(to bottom, rgba(10,10,12,0.4) 0%, rgba(197, 168, 90, 0.05) 100%);">
+            <h3 style="font-family: var(--font-title); margin-bottom: 8px;">Destaque Vertical</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 24px;">Utilizado para calendário oficial de competições de Break e Dança Desportiva de 2026.</p>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 8px; padding: 14px; font-size: 0.85rem; margin-bottom: 12px;">
+              <div style="color: var(--gold-light); font-weight: 600;">Etapa Brasília 2026</div>
+              <div style="color: var(--text-muted);">Julho 15-18</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 8px; padding: 14px; font-size: 0.85rem;">
+              <div style="color: var(--gold-light); font-weight: 600;">Nacional Break Battle</div>
+              <div style="color: var(--text-muted);">Setembro 02-05</div>
+            </div>
+          </div>
+          
+          <div class="bento-item">
+            <h3 style="font-family: var(--font-title); margin-bottom: 8px;">Card Curto</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Perfeito para métricas rápidas ou chamadas a portais externos.</p>
+          </div>
+          
+          <div class="bento-item">
+            <h3 style="font-family: var(--font-title); margin-bottom: 8px;">Afiliação Rápida</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Link direto para o portal de afiliação de dançarinos e árbitros.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           14. EXEMPLOS DE DOBRAS FUTURAS (PREVIEWS)
+           ========================================== -->
+      <section id="dobras" class="ds-section">
+        <div class="ds-section-title">
+          <span>14</span> Exemplos de Dobras Futuras
+        </div>
+        <p class="ds-section-desc">
+          Representações visuais conceituais de como as seções reais da Landing Page serão construídas utilizando os componentes do Design System.
+        </p>
+        
+        <!-- Bloco Conceito: Sobre a FNDD -->
+        <div class="card-glass" style="margin-bottom: 40px;">
+          <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; display: block; margin-bottom: 12px;">Sobre a Federação</span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div>
+              <h2 style="font-family: var(--font-title); font-size: 2.2rem; font-weight: 700; margin-bottom: 18px; line-height: 1.2;">Unindo a Dança do Brasil sob a mesma marca de prestígio.</h2>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px;">A FNDD é o órgão de governança nacional comprometido em elevar a dança a patamares de excelência institucional e olímpica. Conectamos dançarinos, professores e atletas para um crescimento conjunto.</p>
+              <a href="#" class="btn btn-secondary">A História Completa</a>
+            </div>
+            <div style="background: linear-gradient(135deg, #101013, #0a0a0c); border: 1px solid var(--border-glass); border-radius: 14px; padding: 40px; text-align: center; box-shadow: var(--shadow-gold-sutil);">
+              <div style="font-size: 4.5rem; color: var(--gold-primary); margin-bottom: 20px; animation: bounceEffect 4s infinite ease-in-out;">
+                <iconify-icon icon="solar:shield-star-bold-duotone"></iconify-icon>
+              </div>
+              <h4 style="font-family: var(--font-title); margin-bottom: 8px;">Credibilidade Oficial</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Estatuto registrado sob conformidade nacional desportiva.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloco Conceito: Eventos & Calendário -->
+        <div class="card-glass">
+          <span style="font-family: var(--font-title); font-size: 0.75rem; color: var(--gold-primary); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; display: block; margin-bottom: 12px;">Próximos Eventos</span>
+          <h2 style="font-family: var(--font-title); font-size: 2.2rem; font-weight: 700; margin-bottom: 30px; line-height: 1.2;">Calendário Oficial FNDD 2026</h2>
+          
+          <div class="sample-grid">
+            <div class="card-evento">
+              <div class="card-evento-img-wrapper">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #181822 0%, #2e1d0f 100%);"></div>
+                <div class="card-evento-tag">Competição</div>
+              </div>
+              <div class="card-evento-content">
+                <div class="card-evento-date">
+                  <iconify-icon icon="solar:calendar-date-bold"></iconify-icon>
+                  15 de Julho, 2026
+                </div>
+                <div class="card-evento-title">Campeonato Brasileiro de Break Desportivo</div>
+                <p class="card-evento-desc">A disputa mais aguardada do ano, reunindo atletas de elite nacional para a classificação de torneios mundiais.</p>
+                <div class="card-evento-footer">
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Local: Brasília - DF</span>
+                  <a href="#" class="card-evento-btn">Mais Info <iconify-icon icon="solar:arrow-right-bold"></iconify-icon></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-evento">
+              <div class="card-evento-img-wrapper">
+                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #101013 0%, #0d1e2b 100%);"></div>
+                <div class="card-evento-tag">Formação</div>
+              </div>
+              <div class="card-evento-content">
+                <div class="card-evento-date">
+                  <iconify-icon icon="solar:calendar-date-bold"></iconify-icon>
+                  02 de Setembro, 2026
+                </div>
+                <div class="card-evento-title">Congresso Nacional de Dança de Salão</div>
+                <p class="card-evento-desc">Módulos teóricos e práticos com diretores renomados para capacitação pedagógica e de gestão.</p>
+                <div class="card-evento-footer">
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Online & Presencial</span>
+                  <a href="#" class="card-evento-btn">Mais Info <iconify-icon icon="solar:arrow-right-bold"></iconify-icon></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           15. COMPONENTES DE CONVERSÃO
+           ========================================== -->
+      <section id="conversao" class="ds-section">
+        <div class="ds-section-title">
+          <span>15</span> Componentes de Conversão
+        </div>
+        <p class="ds-section-desc">
+          Blocos concebidos especificamente para conduzir o usuário à conversão final, mantendo o apelo estético institucional da FNDD.
+        </p>
+        
+        <div class="card-glass" style="background: linear-gradient(135deg, rgba(10, 10, 12, 0.95) 0%, rgba(197, 168, 90, 0.05) 100%); border-color: var(--border-gold-glass); padding: 60px; text-align: center; overflow: hidden;">
+          <h2 style="font-family: var(--font-title); font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; color: var(--text-primary);">Faça parte da história da dança no Brasil.</h2>
+          <p style="font-size: 1rem; color: var(--text-secondary); max-width: 650px; margin: 0 auto 36px; line-height: 1.7;">Cadastre sua escola ou filie-se como profissional para obter acesso a certificações exclusivas, calendários nacionais e representação legal perante comitês oficiais.</p>
+          <div class="hero-ctas" style="margin-bottom: 0;">
+            <a href="#" class="btn btn-primary">Inscreva-se como Escola</a>
+            <a href="#" class="btn btn-secondary">Consulte Benefícios</a>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+          <div class="faq-accordion">
+            <div class="faq-header" onclick="toggleFaq(this)">
+              <span>Quem pode se filiar à FNDD?</span>
+              <iconify-icon icon="solar:alt-arrow-down-bold" class="faq-icon"></iconify-icon>
+            </div>
+            <div class="faq-body">
+              Podem se filiar dançarinos, atletas, professores de dança, coreógrafos e escolas/academias de dança distribuídas por todo o território nacional que queiram representatividade oficial.
+            </div>
+          </div>
+          <div class="faq-accordion">
+            <div class="faq-header" onclick="toggleFaq(this)">
+              <span>Quais as vantagens de se filiar como escola?</span>
+              <iconify-icon icon="solar:alt-arrow-down-bold" class="faq-icon"></iconify-icon>
+            </div>
+            <div class="faq-body">
+              As escolas filiadas recebem o selo oficial de confiança da FNDD, preferência na inclusão do calendário nacional de competições e direito a bolsas de cursos técnicos da federação.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           16. REGRAS DE USO
+           ========================================== -->
+      <section id="regras" class="ds-section">
+        <div class="ds-section-title">
+          <span>16</span> Diretrizes e Regras de Implementação
+        </div>
+        <p class="ds-section-desc">
+          Consistência e rigor técnico são fundamentais para preservar a integridade visual da FNDD em todo o site.
+        </p>
+        
+        <div class="card-solid" style="border-left: 4px solid var(--gold-primary);">
+          <h4 style="font-family: var(--font-title); margin-bottom: 14px; color: var(--gold-light);">Desenvolvimento Modular em Fases</h4>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+            Este design system serve como alicerce técnico. A próxima etapa será a construção exclusiva da <strong>Hero do site oficial</strong>, progredindo dobra por dobra para garantir refinamento pixel-perfect em cada seção.
+          </p>
+          <ul style="font-size: 0.9rem; color: var(--text-muted); list-style: inside square; line-height: 1.7;">
+            <li>Sempre use as variáveis de cor contidas no :root CSS, nunca declare cores hexadecimais soltas nos blocos.</li>
+            <li>Use transições fluidas de 0.4s a 0.5s para hover, evitando interrupções abruptas.</li>
+            <li>O filtro de desaturação (grayscale) nas fotos da diretoria garante consistência visual mesmo com retratos tirados em ambientes diferentes.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Ativação visual dos links da barra lateral ao rolar e clique
+    document.querySelectorAll('.ds-menu-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.ds-menu-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Controle interativo do FAQ
+    function toggleFaq(header) {
+      const accordion = header.parentElement;
+      const isActive = accordion.classList.contains('active');
+      
+      // Fecha todos os FAQs
+      document.querySelectorAll('.faq-accordion').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Abre o clicado se não estava ativo
+      if (!isActive) {
+        accordion.classList.add('active');
+      }
+    }
+
+    // Efeito de Spotlight Interativo em JavaScript
+    // Captura o movimento do mouse para atualizar as variáveis CSS nos cartões
+    document.querySelectorAll('.spotlight-card, .card-glow').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+</body>
+</html>
