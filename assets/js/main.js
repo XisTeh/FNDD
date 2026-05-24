@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPillarsSystem();
   initManifestoMotion();
   initDirectorsGallery();
+  initFeaturedPanelSpotlight();
 });
 
 /**
@@ -1025,3 +1026,28 @@ function initDirectorsGallery() {
     }
   }
 }
+
+/**
+ * Adiciona um Spotlight (efeito holofote de palco) sutil que segue o cursor do mouse
+ * nas superfícies e bordas do painel destacado de membros da diretoria, sem rotações tridimensionais.
+ */
+function initFeaturedPanelSpotlight() {
+  const panel = document.getElementById('featuredPanel');
+  if (!panel) return;
+
+  panel.addEventListener('mousemove', (e) => {
+    const rect = panel.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Injeta as variáveis customizadas do mouse no estilo do painel
+    panel.style.setProperty('--panel-mouse-x', `${x}px`);
+    panel.style.setProperty('--panel-mouse-y', `${y}px`);
+  }, { passive: true });
+
+  panel.addEventListener('mouseleave', () => {
+    panel.style.setProperty('--panel-mouse-x', `-999px`);
+    panel.style.setProperty('--panel-mouse-y', `-999px`);
+  });
+}
+

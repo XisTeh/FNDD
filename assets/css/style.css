@@ -3329,18 +3329,21 @@ body {
   grid-template-columns: 1.05fr 0.95fr;
   gap: 22px;
   align-items: stretch;
-  background: linear-gradient(160deg, rgba(16, 16, 20, 0.6) 0%, rgba(8, 8, 10, 0.75) 100%);
+  /* Spotlight suave que segue o mouse nas bordas e fundo */
+  background: radial-gradient(circle 240px at var(--panel-mouse-x, -999px) var(--panel-mouse-y, -999px), rgba(197, 168, 90, 0.045) 0%, transparent 100%),
+              linear-gradient(160deg, rgba(16, 16, 20, 0.6) 0%, rgba(8, 8, 10, 0.75) 100%);
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 20px;
   padding: 18px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-  /* Perspectiva 3D para o efeito tilt */
-  perspective: 1000px;
-  transition: opacity 0.28s ease-out, transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform-style: preserve-3d;
-  will-change: opacity, transform;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+.director-featured-panel:hover {
+  border-color: rgba(197, 168, 90, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(197, 168, 90, 0.01);
 }
 
 /* Borda dourada sutil no topo */
@@ -3355,33 +3358,60 @@ body {
   z-index: 5;
 }
 
+/* Glow de luz de fundo sutil atrás da foto - Detalhe de luxo não intrusivo */
+.director-featured-panel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.07) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
+  animation: glowPulseSutil 6s infinite ease-in-out alternate;
+}
+
+@keyframes glowPulseSutil {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+  100% { opacity: 1.0; transform: translate(-50%, -50%) scale(1.05); }
+}
+
 /* Estado de transição suave do painel principal */
 .director-featured-panel.updating {
   opacity: 0;
-  transform: translateY(8px) scale(0.99) rotateX(1deg) translateZ(0);
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 /* =============================================
-   FOTO RETRATO PRINCIPAL — Efeito Foto Viva 3D
+   FOTO RETRATO PRINCIPAL — Efeito Foto Viva com clipe forçado
    ============================================= */
 .featured-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 7 / 10; /* Proporção um pouco mais vertical para dar mais presença */
-  border-radius: 14px;
+  aspect-ratio: 7 / 10;
+  border-radius: 24px; /* Bordas bem arredondadas, mantendo o formato retrato */
   overflow: hidden;
-  border: 1px solid rgba(197, 168, 90, 0.08);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(197, 168, 90, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   background: #080808;
-  align-self: center; /* Centraliza verticalmente, criando margem cima/baixo */
-  transform: translateZ(20px); /* Leve profundidade 3D */
+  align-self: center;
+  z-index: 2;
+  /* Hacks robustos para forçar o arredondamento de bordas aceleradas por hardware no Chrome/Safari */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
-  will-change: transform;
 }
 
 .featured-image-wrapper:hover {
-  border-color: rgba(197, 168, 90, 0.35);
-  box-shadow: 0 12px 28px rgba(197, 168, 90, 0.06), 0 8px 20px rgba(0, 0, 0, 0.5);
+  border-color: rgba(197, 168, 90, 0.3);
+  box-shadow: 0 12px 28px rgba(197, 168, 90, 0.05), 0 8px 20px rgba(0, 0, 0, 0.55);
 }
 
 /* Efeito de brilho de luz varrendo diagonalmente (Golden Sweep) */
@@ -3395,7 +3425,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 215, 0, 0.06) 50%,
+    rgba(255, 215, 0, 0.05) 50%,
     transparent 100%
   );
   transform: skewX(-30deg);
@@ -3415,6 +3445,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: 24px;
   background: radial-gradient(circle at center, transparent 40%, rgba(6, 6, 8, 0.35) 100%),
               linear-gradient(to top, rgba(6, 6, 8, 0.7) 0%, transparent 35%);
   z-index: 2;
@@ -3431,19 +3462,23 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 0%; /* Desce a imagem ancorando no topo para não cortar a cabeça */
-  transform: scale(1.025) translate(var(--move-x, 0px), var(--move-y, 0px)) translateZ(0);
-  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-position: center 0%;
+  border-radius: 24px; /* Garante arredondamento na própria imagem */
+  filter: grayscale(15%) contrast(1.02) brightness(0.95);
+  transform: scale(1.015);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
   will-change: transform;
 }
 
 .featured-image-wrapper:hover .featured-image {
-  transform: scale(1.055) translate(var(--move-x, 0px), var(--move-y, 0px)) translateZ(0);
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.05) brightness(1.01);
 }
 
 .featured-image-overlay {
   position: absolute;
   inset: 0;
+  border-radius: 24px; /* Garante arredondamento */
   background: transparent;
   z-index: 2;
   pointer-events: none;
@@ -3865,6 +3900,10 @@ body.is-switching-director #siteBgCanvas {
   .featured-image-wrapper {
     aspect-ratio: 4 / 5;
     max-height: 380px;
+    border-radius: 20px;
+  }
+  .featured-image-wrapper::after {
+    border-radius: 20px;
   }
   .featured-info {
     padding: 0;
