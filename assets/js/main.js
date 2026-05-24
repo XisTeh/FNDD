@@ -65,9 +65,9 @@ function initCanvasBackground() {
 
   // ========================================
   // PARTÍCULAS DE POEIRA DE PALCO (VIVAS)
-  // Otimizado: Reduzido de 40 para 26 por eficiência
+  // Otimizado: Reduzido drasticamente para 15 por extrema eficiência
   // ========================================
-  const PARTICLE_COUNT = 26;
+  const PARTICLE_COUNT = 15;
   const particles = [];
 
   const particleColors = [
@@ -108,22 +108,8 @@ function initCanvasBackground() {
     particles.push(createParticle(false));
   }
 
-  // ========================================
-  // HAZES VOLUMÉTRICAS (NEBLINA VIVA)
-  // ========================================
-  const hazes = [
-    { x: W * 0.8, y: H * 0.25, baseX: W * 0.8, baseY: H * 0.25, radius: 280, color: { r: 197, g: 168, b: 90 }, alpha: 0.05, driftSpeed: 0.0006, driftAmpX: 60, driftAmpY: 30, breatheSpeed: 0.0025, breatheAmp: 0.025, phase: 0 },
-    { x: W * 0.15, y: H * 0.65, baseX: W * 0.15, baseY: H * 0.65, radius: 320, color: { r: 197, g: 168, b: 90 }, alpha: 0.04, driftSpeed: 0.0005, driftAmpX: 50, driftAmpY: 40, breatheSpeed: 0.0018, breatheAmp: 0.02, phase: Math.PI },
-    { x: W * 0.5, y: H * 0.5, baseX: W * 0.5, baseY: H * 0.5, radius: 360, color: { r: 160, g: 140, b: 80 }, alpha: 0.02, driftSpeed: 0.0003, driftAmpX: 80, driftAmpY: 50, breatheSpeed: 0.0012, breatheAmp: 0.015, phase: Math.PI * 0.5 },
-  ];
+  // Hazes e Rastros Curvos foram removidos para garantir carga de CPU ultraleve em máquinas fracas.
 
-  window.addEventListener('resize', () => {
-    hazes[0].baseX = W * 0.8; hazes[0].baseY = H * 0.25;
-    hazes[1].baseX = W * 0.15; hazes[1].baseY = H * 0.65;
-    hazes[2].baseX = W * 0.5; hazes[2].baseY = H * 0.5;
-  });
-
-  let tracePhase = 0;
   let time = 0;
 
   function animate() {
@@ -144,86 +130,7 @@ function initCanvasBackground() {
 
     const isSwitching = document.body.classList.contains('is-switching-director');
 
-    // --- Hazes volumétricas ---
-    hazes.forEach(h => {
-      h.phase += h.driftSpeed;
-      h.x = h.baseX + Math.sin(h.phase) * h.driftAmpX + mnx * 30;
-      h.y = h.baseY + Math.cos(h.phase * 0.7) * h.driftAmpY + mny * 20;
-      const breathe = 1 + Math.sin(time * h.breatheSpeed) * h.breatheAmp;
-      const r = h.radius * breathe;
-      const grad = ctx.createRadialGradient(h.x, h.y, 0, h.x, h.y, r);
-      grad.addColorStop(0, `rgba(${h.color.r}, ${h.color.g}, ${h.color.b}, ${h.alpha})`);
-      grad.addColorStop(0.4, `rgba(${h.color.r}, ${h.color.g}, ${h.color.b}, ${h.alpha * 0.4})`);
-      grad.addColorStop(1, `rgba(${h.color.r}, ${h.color.g}, ${h.color.b}, 0)`);
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(h.x, h.y, r, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    // --- Rastros curvos dourados ---
-    tracePhase += 0.002;
-    ctx.save();
-
-    const cx1 = W * 0.15 + Math.sin(tracePhase * 0.3) * 50 + mnx * 25;
-    const cy1 = H * 0.2 + Math.cos(tracePhase * 0.2) * 30 + mny * 18;
-    const arcStart1 = tracePhase * 0.4;
-    const arcEnd1 = arcStart1 + 2.2;
-    const r1 = 320 + Math.sin(tracePhase * 0.8) * 30;
-
-    ctx.globalAlpha = 0.15;
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.8)';
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
-    ctx.stroke();
-
-    if (!isSwitching) {
-      ctx.setLineDash([8, 10]);
-      ctx.globalAlpha = 0.07;
-      ctx.lineWidth = 0.8;
-      ctx.beginPath();
-      ctx.arc(cx1, cy1, r1 + 18, arcStart1 + 0.1, arcEnd1 + 0.1);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 0.03;
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = 'rgba(197, 168, 90, 0.4)';
-      ctx.beginPath();
-      ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
-      ctx.stroke();
-    }
-
-    const cx2 = W * 0.82 + Math.sin(tracePhase * 0.25 + 2) * 40 - mnx * 20;
-    const cy2 = H * 0.72 + Math.cos(tracePhase * 0.18 + 1) * 35 - mny * 15;
-    const arcStart2 = -tracePhase * 0.35;
-    const arcEnd2 = arcStart2 + 2.5;
-    const r2 = 380 + Math.sin(tracePhase * 0.6) * 25;
-
-    ctx.globalAlpha = 0.12;
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.7)';
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
-    ctx.stroke();
-
-    if (!isSwitching) {
-      ctx.setLineDash([6, 9]);
-      ctx.globalAlpha = 0.05;
-      ctx.lineWidth = 0.8;
-      ctx.beginPath();
-      ctx.arc(cx2, cy2, r2 + 20, arcStart2 - 0.1, arcEnd2 - 0.1);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.globalAlpha = 0.025;
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = 'rgba(197, 168, 90, 0.35)';
-      ctx.beginPath();
-      ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
-      ctx.stroke();
-    }
-
-    ctx.restore();
+    // Hazes volumétricas e Rastros curvos dourados foram removidos do render loop para eficiência gráfica.
 
     // --- Partículas de poeira ---
     particles.forEach((p) => {
@@ -412,12 +319,9 @@ function initScrollParallax() {
   function updateParallax() {
     const scrollY = window.scrollY;
 
+    // Parallax desabilitado em orbs removidos
     if (scrollY < window.innerHeight) {
       const fadeFactor = Math.max(0, 1 - (scrollY / (window.innerHeight * 0.8)));
-
-      orbs.forEach(orb => {
-        orb.style.opacity = (0.45 * fadeFactor).toString();
-      });
 
       if (spotlight) spotlight.style.opacity = (0.8 * fadeFactor).toString();
       if (logoFrame) logoFrame.style.transform = `translateY(${scrollY * 0.1}px) scale(${1 - scrollY * 0.0005})`;
