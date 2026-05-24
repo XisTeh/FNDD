@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initManifestoMotion();
   initDirectorsGallery();
   initFeaturedPanelSpotlight();
+  initEventsInteractiveCards();
 });
 
 /**
@@ -1074,6 +1075,53 @@ function initFeaturedPanelSpotlight() {
   panel.addEventListener('mouseleave', () => {
     panel.style.setProperty('--panel-mouse-x', `-999px`);
     panel.style.setProperty('--panel-mouse-y', `-999px`);
+  });
+}
+
+/**
+ * Inicialização dos efeitos 3D Premium e de Spotlight Dinâmico nos Cards de Eventos.
+ * Fornece inclinação 3D sutil que acompanha o cursor (3D Tilt Effect) e atualiza 
+ * coordenadas para os glows e bordas brilhantes.
+ */
+function initEventsInteractiveCards() {
+  const cards = document.querySelectorAll('.station-card, .station-card-highlight, .events-cta');
+  
+  if (cards.length === 0) return;
+  
+  // Desativa em dispositivos móveis por questões de performance e acessibilidade táctil
+  if (window.innerWidth < 992) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; // Coordenada X relativa ao card
+      const y = e.clientY - rect.top;  // Coordenada Y relativa ao card
+      
+      // Injeta as coordenadas como CSS Variables para glows em CSS
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+      
+      // Calcula a porcentagem do cursor de -0.5 a 0.5
+      const xc = ((x / rect.width) - 0.5);
+      const yc = ((y / rect.height) - 0.5);
+      
+      // Define a inclinação máxima (ex: 3 graus para o CTA grande, 5 para os cartões menores)
+      const maxTilt = card.classList.contains('events-cta') ? 3 : 5;
+      
+      // Ângulo de rotação invertido para acompanhar de forma intuitiva
+      const rotateX = yc * -maxTilt;
+      const rotateY = xc * maxTilt;
+      
+      // Aplica a transformação 3D com transição suave
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+    }, { passive: true });
+
+    // Reset ao retirar o mouse
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--mouse-x', `-999px`);
+      card.style.setProperty('--mouse-y', `-999px`);
+      card.style.transform = '';
+    });
   });
 }
 
