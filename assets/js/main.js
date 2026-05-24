@@ -31,6 +31,12 @@ function initCanvasBackground() {
   const canvas = document.getElementById('siteBgCanvas');
   if (!canvas) return;
 
+  // Desativa completamente o canvas no mobile para maximizar performance (reduz TBT/CPU a zero)
+  if (window.innerWidth < 768) {
+    canvas.style.display = 'none';
+    return;
+  }
+
   const ctx = canvas.getContext('2d');
   let W, H;
   let mouseX = 0, mouseY = 0;
@@ -387,23 +393,51 @@ function initHeroVideo() {
   const video = document.getElementById('heroVideo');
   if (!video) return;
 
-  const handleVideoLoaded = () => video.classList.add('loaded');
+  const dataSrc = video.getAttribute('data-src');
+  if (!dataSrc) return;
 
-  if (video.readyState >= 2) {
-    handleVideoLoaded();
+  const isMobile = window.innerWidth < 768;
+
+  const startVideo = () => {
+    video.src = dataSrc;
+    video.load();
+
+    const handleVideoLoaded = () => video.classList.add('loaded');
+
+    if (video.readyState >= 2) {
+      handleVideoLoaded();
+    } else {
+      video.addEventListener('canplay', handleVideoLoaded);
+    }
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.warn('Autoplay da Hero suspenso pelo navegador.', error);
+      });
+    }
+  };
+
+  if (isMobile) {
+    // No mobile, carregar o vídeo apenas após a página estar totalmente carregada
+    // para não competir com recursos críticos (CSS, fontes, LCP)
+    if (document.readyState === 'complete') {
+      setTimeout(startVideo, 1200);
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(startVideo, 1200);
+      });
+    }
   } else {
-    video.addEventListener('canplay', handleVideoLoaded);
-  }
-
-  const playPromise = video.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(error => {
-      console.warn('Autoplay da Hero suspenso pelo navegador.', error);
-    });
+    // No desktop, inicia imediatamente
+    startVideo();
   }
 }
 
 function initScrollParallax() {
+  // Desativa parallax no mobile por performance (evita repaints/TBT)
+  if (window.innerWidth < 768) return;
+
   const orbs = document.querySelectorAll('.hero-glow-orb');
   const spotlight = document.querySelector('.hero-stage-spotlight');
   const logoFrame = document.querySelector('.hero-logo-frame');
@@ -1040,40 +1074,78 @@ function initFaqAccordion() {
 
 
 /* ==========================================================================
-   INICIALIZAÇÃO GLOBAL (DOMContentLoaded)
+   INICIALIZAÇÃO GLOBAL (DOMContentLoaded) & LAZY LOADING DE SCRIPTS
    ========================================================================== */
+/**
+ * lazyInitSection — FNDD
+ * Inicializa scripts de forma preguiçosa apenas quando a respectiva seção entra na viewport.
+ * Melhora drasticamente o TBT (Total Blocking Time) e a performance de renderização móvel.
+ */
+function lazyInitSection(sectionSelector, initFunction) {
+  const section = document.querySelector(sectionSelector);
+  if (!section) {
+    initFunction();
+    return;
+  }
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        initFunction();
+        observer.disconnect();
+      }
+    }, { rootMargin: '300px 0px' }); // Carrega quando o scroll estiver a 300px de distância
+    observer.observe(section);
+  } else {
+    // Fallback se o navegador não suportar IntersectionObserver
+    initFunction();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Background global animado (canvas de partículas vivas)
+  // 1. Background global animado (canvas de partículas vivas) - desativado no mobile internamente
   initCanvasBackground();
 
-  // 2. Comportamento da Navbar e mobile menu
+  // 2. Comportamento da Navbar e mobile menu (crítico para primeiro render)
   initNavbarBehavior();
 
-  // 3. Inicializações da Hero
+  // 3. Inicializações da Hero (crítico)
   initHeroVideo();
   initScrollParallax();
   initSpotlightEffect();
 
-  // 4. Scroll Reveal global
+  // 4. Scroll Reveal global (IntersectionObserver interno leve)
   initScrollReveal();
 
-  // 5. Arena Cinematográfica (Linha Coreográfica)
-  initAboutScrollParallax();
-  initInteractiveStage();
+  // 5. Arena Cinematográfica (Linha Coreográfica) — Lazy Init
+  lazyInitSection('.about-section', () => {
+    initAboutScrollParallax();
+    initInteractiveStage();
+  });
 
-  // 6. Sistema interativo de Pilares de Atuação
-  initPillarsSystem();
+  // 6. Sistema interativo de Pilares de Atuação — Lazy Init
+  lazyInitSection('.pillars-section', () => {
+    initPillarsSystem();
+  });
 
-  // 7. Seção Manifesto em Movimento
-  initManifestoMotion();
+  // 7. Seção Manifesto em Movimento — Lazy Init
+  lazyInitSection('.manifesto-pin-container', () => {
+    initManifestoMotion();
+  });
 
-  // 8. Galeria da Diretoria
-  initDirectorsGallery();
-  initFeaturedPanelSpotlight();
+  // 8. Galeria da Diretoria — Lazy Init
+  lazyInitSection('.directors-section', () => {
+    initDirectorsGallery();
+    initFeaturedPanelSpotlight();
+  });
 
-  // 9. Cards de Eventos interativos
-  initEventsInteractiveCards();
+  // 9. Cards de Eventos interativos — Lazy Init
+  lazyInitSection('.events-section', () => {
+    initEventsInteractiveCards();
+  });
 
-  // 10. Acordeão de FAQ
-  initFaqAccordion();
+  // 10. Acordeão de FAQ — Lazy Init
+  lazyInitSection('.faq-section', () => {
+    initFaqAccordion();
+  });
 });

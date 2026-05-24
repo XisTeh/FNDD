@@ -975,6 +975,36 @@ html, body {
   }
 
   /* --- RECONSTRUÇÃO DA HERO MOBILE --- */
+  /* Desativação completa do canvas no mobile para performance */
+  #siteBgCanvas {
+    display: none !important;
+  }
+
+  /* Forçar renderização imediata do LCP e evitar NO_LCP no mobile */
+  .hero-headline {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hero-subheadline {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hero-badge-institutional {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hero-ctas-wrapper {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
   .hero-section {
     padding-top: 110px !important;
     padding-bottom: 50px !important;
