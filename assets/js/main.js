@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractiveStage();
   initPillarsSystem();
   initManifestoMotion();
+  initDirectorsGallery();
 });
 
 /**
@@ -289,26 +290,31 @@ function initInteractiveStage() {
     targetY = 0;
   });
   
-  // Loop de animação de interpolação física rodando a 60fps via rAF
+  // Loop de animação de interpolação física rodando a 60fps via rAF (otimizado)
   function updateInteractiveElements() {
-    currentX += (targetX - currentX) * ease;
-    currentY += (targetY - currentY) * ease;
+    const nextX = currentX + (targetX - currentX) * ease;
+    const nextY = currentY + (targetY - currentY) * ease;
     
-    // Injeta as variáveis customizadas normalizadas no root para o CSS ler
-    document.documentElement.style.setProperty('--mouse-nx', currentX.toFixed(4));
-    document.documentElement.style.setProperty('--mouse-ny', currentY.toFixed(4));
-    
-    if (window.innerWidth >= 1024) {
-      // Efeito Tilt 3D sutil e luxuoso na moldura editorial da imagem
-      if (imgFrame) {
-        const rotateXFactor = -currentY * 4.5;
-        const rotateYFactor = currentX * 4.5;
-        imgFrame.style.transform = `perspective(1000px) rotateX(${rotateXFactor}deg) rotateY(${rotateYFactor}deg) translateY(-8px)`;
-      }
+    if (nextX.toFixed(4) !== currentX.toFixed(4) || nextY.toFixed(4) !== currentY.toFixed(4)) {
+      currentX = nextX;
+      currentY = nextY;
       
-      // Efeito oposto na legenda flutuante para profundidade paralaxe impecável
-      if (imgBadge) {
-        imgBadge.style.transform = `translateX(${-25 + currentX * 15}px) translateY(${currentY * 10}px)`;
+      // Injeta as variáveis customizadas normalizadas no root para o CSS ler
+      document.documentElement.style.setProperty('--mouse-nx', currentX.toFixed(4));
+      document.documentElement.style.setProperty('--mouse-ny', currentY.toFixed(4));
+      
+      if (window.innerWidth >= 1024) {
+        // Efeito Tilt 3D sutil e luxuoso na moldura editorial da imagem
+        if (imgFrame) {
+          const rotateXFactor = -currentY * 4.5;
+          const rotateYFactor = currentX * 4.5;
+          imgFrame.style.transform = `perspective(1000px) rotateX(${rotateXFactor}deg) rotateY(${rotateYFactor}deg) translateY(-8px)`;
+        }
+        
+        // Efeito oposto na legenda flutuante para profundidade paralaxe impecável
+        if (imgBadge) {
+          imgBadge.style.transform = `translateX(${-25 + currentX * 15}px) translateY(${currentY * 10}px)`;
+        }
       }
     }
     
@@ -477,6 +483,8 @@ function initCanvasBackground() {
     const mnx = (smoothMouseX / W) * 2 - 1;
     const mny = (smoothMouseY / H) * 2 - 1;
     
+    const isSwitching = document.body.classList.contains('is-switching-director');
+    
     // --- Desenhar HAZES volumétricas ---
     hazes.forEach(h => {
       h.phase += h.driftSpeed;
@@ -519,22 +527,24 @@ function initCanvasBackground() {
     ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
     ctx.stroke();
     
-    // Linha paralela tracejada (acompanha)
-    ctx.setLineDash([8, 10]);
-    ctx.globalAlpha = 0.09;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.arc(cx1, cy1, r1 + 18, arcStart1 + 0.1, arcEnd1 + 0.1);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    
-    // Glow sutil no arco
-    ctx.globalAlpha = 0.04;
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.4)';
-    ctx.beginPath();
-    ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
-    ctx.stroke();
+    if (!isSwitching) {
+      // Linha paralela tracejada (acompanha)
+      ctx.setLineDash([8, 10]);
+      ctx.globalAlpha = 0.09;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(cx1, cy1, r1 + 18, arcStart1 + 0.1, arcEnd1 + 0.1);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Glow sutil no arco
+      ctx.globalAlpha = 0.04;
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(197, 168, 90, 0.4)';
+      ctx.beginPath();
+      ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
+      ctx.stroke();
+    }
     
     // === ARCO 2 — canto inferior direito, gira no sentido oposto ===
     const cx2 = W * 0.82 + Math.sin(tracePhase * 0.25 + 2) * 40 - mnx * 20;
@@ -551,22 +561,24 @@ function initCanvasBackground() {
     ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
     ctx.stroke();
     
-    // Linha paralela tracejada
-    ctx.setLineDash([6, 9]);
-    ctx.globalAlpha = 0.07;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.arc(cx2, cy2, r2 + 20, arcStart2 - 0.1, arcEnd2 - 0.1);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    
-    // Glow sutil no arco 2
-    ctx.globalAlpha = 0.035;
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.35)';
-    ctx.beginPath();
-    ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
-    ctx.stroke();
+    if (!isSwitching) {
+      // Linha paralela tracejada
+      ctx.setLineDash([6, 9]);
+      ctx.globalAlpha = 0.07;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(cx2, cy2, r2 + 20, arcStart2 - 0.1, arcEnd2 - 0.1);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Glow sutil no arco 2
+      ctx.globalAlpha = 0.035;
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = 'rgba(197, 168, 90, 0.35)';
+      ctx.beginPath();
+      ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
+      ctx.stroke();
+    }
     
     ctx.restore();
     
@@ -608,7 +620,7 @@ function initCanvasBackground() {
       }
       
       // Desenhar glow (apenas partículas maiores)
-      if (p.hasGlow) {
+      if (p.hasGlow && !isSwitching) {
         const glowGrad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 6);
         glowGrad.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${finalAlpha * 0.3})`);
         glowGrad.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
@@ -625,51 +637,53 @@ function initCanvasBackground() {
       ctx.fill();
     });
     
-    // --- Dot grids sutis nos cantos ---
-    ctx.save();
-    ctx.globalAlpha = 0.035 + Math.sin(time * 0.005) * 0.015;
-    const dotSpacing = 18;
-    const dotSize = 1;
-    
-    // Grid canto superior direito
-    const gridX1 = W - 280 + mnx * 10;
-    const gridY1 = 80 + mny * 8;
-    ctx.fillStyle = `rgba(197, 168, 90, 0.5)`;
-    for (let row = 0; row < 14; row++) {
-      for (let col = 0; col < 14; col++) {
-        const gx = gridX1 + col * dotSpacing;
-        const gy = gridY1 + row * dotSpacing;
-        // Fade radial
-        const gdist = Math.sqrt(Math.pow(col - 7, 2) + Math.pow(row - 7, 2));
-        if (gdist < 7) {
-          const ga = 1 - gdist / 7;
-          ctx.globalAlpha = ga * (0.035 + Math.sin(time * 0.005) * 0.015);
-          ctx.beginPath();
-          ctx.arc(gx, gy, dotSize, 0, Math.PI * 2);
-          ctx.fill();
+    if (!isSwitching) {
+      // --- Dot grids sutis nos cantos ---
+      ctx.save();
+      ctx.globalAlpha = 0.035 + Math.sin(time * 0.005) * 0.015;
+      const dotSpacing = 18;
+      const dotSize = 1;
+      
+      // Grid canto superior direito
+      const gridX1 = W - 280 + mnx * 10;
+      const gridY1 = 80 + mny * 8;
+      ctx.fillStyle = `rgba(197, 168, 90, 0.5)`;
+      for (let row = 0; row < 14; row++) {
+        for (let col = 0; col < 14; col++) {
+          const gx = gridX1 + col * dotSpacing;
+          const gy = gridY1 + row * dotSpacing;
+          // Fade radial
+          const gdist = Math.sqrt(Math.pow(col - 7, 2) + Math.pow(row - 7, 2));
+          if (gdist < 7) {
+            const ga = 1 - gdist / 7;
+            ctx.globalAlpha = ga * (0.035 + Math.sin(time * 0.005) * 0.015);
+            ctx.beginPath();
+            ctx.arc(gx, gy, dotSize, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
       }
-    }
-    
-    // Grid canto inferior esquerdo
-    const gridX2 = 50 - mnx * 8;
-    const gridY2 = H - 320 - mny * 6;
-    ctx.fillStyle = `rgba(253, 253, 253, 0.4)`;
-    for (let row = 0; row < 14; row++) {
-      for (let col = 0; col < 14; col++) {
-        const gx = gridX2 + col * dotSpacing;
-        const gy = gridY2 + row * dotSpacing;
-        const gdist = Math.sqrt(Math.pow(col - 7, 2) + Math.pow(row - 7, 2));
-        if (gdist < 7) {
-          const ga = 1 - gdist / 7;
-          ctx.globalAlpha = ga * (0.025 + Math.sin(time * 0.004 + 1) * 0.01);
-          ctx.beginPath();
-          ctx.arc(gx, gy, dotSize, 0, Math.PI * 2);
-          ctx.fill();
+      
+      // Grid canto inferior esquerdo
+      const gridX2 = 50 - mnx * 8;
+      const gridY2 = H - 320 - mny * 6;
+      ctx.fillStyle = `rgba(253, 253, 253, 0.4)`;
+      for (let row = 0; row < 14; row++) {
+        for (let col = 0; col < 14; col++) {
+          const gx = gridX2 + col * dotSpacing;
+          const gy = gridY2 + row * dotSpacing;
+          const gdist = Math.sqrt(Math.pow(col - 7, 2) + Math.pow(row - 7, 2));
+          if (gdist < 7) {
+            const ga = 1 - gdist / 7;
+            ctx.globalAlpha = ga * (0.025 + Math.sin(time * 0.004 + 1) * 0.01);
+            ctx.beginPath();
+            ctx.arc(gx, gy, dotSize, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
       }
+      ctx.restore();
     }
-    ctx.restore();
     
     requestAnimationFrame(animate);
   }
@@ -898,4 +912,116 @@ function initManifestoMotion() {
 
   // Executa uma vez no carregamento para posicionamento correto
   updateManifestoScroll();
+}
+
+/**
+ * Galeria de Liderança da Diretoria FNDD — Otimizada para Performance
+ * 
+ * Estratégia de performance:
+ * - Event delegation: 1 listener no rail
+ * - Click lock (debounce) de proteção para evitar clique-spam
+ * - Pré-carregamento nativo no background (sem decode síncrono ou promessas que travam)
+ * - Transição suave de fade via CSS classes com setTimeout no tempo correto do frame
+ * - Zero reflow: troca de src e textContent instantânea
+ */
+function initDirectorsGallery() {
+  const rail = document.getElementById('directorsRail');
+  const featuredPanel = document.getElementById('featuredPanel');
+  if (!rail || !featuredPanel) return;
+
+  // Referências DOM cacheadas (buscadas UMA vez)
+  const featuredImg = document.getElementById('featuredImg');
+  const featuredName = document.getElementById('featuredName');
+  const featuredRole = document.getElementById('featuredRole');
+  const featuredBio = document.getElementById('featuredBio');
+  const featuredNum = document.getElementById('featuredNum');
+  const bioWrapper = document.getElementById('bioWrapper');
+
+  // 1. Pré-carregamento assíncrono nativo de todas as fotos na inicialização
+  const railItems = rail.querySelectorAll('.rail-item');
+  railItems.forEach(item => {
+    const imgUrl = item.dataset.img;
+    if (imgUrl) {
+      const imgObj = new Image();
+      imgObj.src = imgUrl; // Força o browser a colocar no cache HTTP
+    }
+  });
+
+  // 2. Lock de proteção contra cliques repetidos
+  let isLocked = false;
+
+  // 3. Event delegation — Um único listener para cliques
+  rail.addEventListener('click', (e) => {
+    const item = e.target.closest('.rail-item');
+    if (!item || item.classList.contains('active') || isLocked) return;
+
+    isLocked = true;
+
+    // Dados do item selecionado
+    const name = item.dataset.name;
+    const role = item.dataset.role;
+    const bio = item.dataset.bio;
+    const img = item.dataset.img;
+    const num = item.dataset.num;
+
+    // Ativa classe para otimizar renderizações do canvas se necessário
+    document.body.classList.add('is-switching-director');
+
+    // Inicia animação de fade-out do painel principal (rápida e fluida)
+    featuredPanel.classList.add('updating');
+
+    // Aguarda o término do fade-out rápido (90ms) para trocar os conteúdos
+    setTimeout(() => {
+      // Atualiza imagem
+      if (featuredImg) {
+        featuredImg.src = img;
+        featuredImg.alt = name;
+      }
+
+      // Atualiza textos
+      if (featuredName) featuredName.textContent = name;
+      if (featuredRole) featuredRole.textContent = role;
+      if (featuredBio) featuredBio.textContent = bio;
+      if (featuredNum) featuredNum.textContent = num;
+
+      // Reseta o scroll da bio para o topo
+      if (bioWrapper) bioWrapper.scrollTop = 0;
+
+      // Atualiza estado ativo no menu lateral (rail)
+      const prevActive = rail.querySelector('.rail-item.active');
+      if (prevActive) prevActive.classList.remove('active');
+      item.classList.add('active');
+
+      // Centraliza o item clicado no trilho
+      scrollRailToItem(item);
+
+      // Inicia animação de fade-in usando requestAnimationFrame duplo (evita jank)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          featuredPanel.classList.remove('updating');
+
+          // Desativa o switch lock após a transição terminar (rápido e fluído)
+          setTimeout(() => {
+            document.body.classList.remove('is-switching-director');
+            isLocked = false;
+          }, 120);
+        });
+      });
+    }, 90);
+  });
+
+  /**
+   * Centraliza o item clicado no trilho (vertical no desktop, horizontal no mobile)
+   */
+  function scrollRailToItem(item) {
+    const isMobile = window.innerWidth < 992;
+
+    if (isMobile) {
+      const targetLeft = item.offsetLeft - (rail.clientWidth / 2) + (item.clientWidth / 2);
+      rail.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    } else {
+      const targetTop = item.offsetTop - (rail.clientHeight / 2) + (item.clientHeight / 2);
+      rail.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
+  }
 }
