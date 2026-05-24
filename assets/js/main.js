@@ -726,11 +726,13 @@ function initManifestoMotion() {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('active');
+            } else {
+              entry.target.classList.remove('active');
             }
           });
         }, {
-          threshold: 0.15,
-          rootMargin: '0px 0px -100px 0px'
+          threshold: 0.1,
+          rootMargin: '-30% 0px -30% 0px'
         });
         words.forEach(word => window.manifestoMobileObserver.observe(word));
       }
