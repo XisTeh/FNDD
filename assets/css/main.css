@@ -40,5 +40,5 @@
 @import 'sections/footer-premium.css';
 
 /* ---- Responsividade & Polimento Final ---- */
-@import 'base/responsive.css';
 @import 'base/polish.css';
+@import 'base/responsive.css';

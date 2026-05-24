@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    2. RESET & ESTILOS GERAIS DE SUPORTE
    ========================================================================== */
 * {
@@ -13,11 +13,11 @@ html {
   color: var(--text-primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  overflow-x: clip;
+  overflow-x: clip !important;
 }
 
 body {
-  overflow-x: clip;
+  overflow-x: clip !important;
   position: relative;
   background-color: var(--bg-deep);
 }

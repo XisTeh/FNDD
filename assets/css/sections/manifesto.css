@@ -526,17 +526,17 @@
 .manifesto-pin-container {
   position: relative;
   width: 100%;
-  height: 200vh; /* Altura do scroll total para fixar as palavras (encurtada para dinamismo) */
+  height: 300vh; /* Altura do scroll total — JS calcula progresso dentro desse espaço */
   background: transparent;
 }
 
 .manifesto-motion-section {
-  position: sticky;
+  position: relative;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
-  transform: none !important; /* Previne quebras do position: sticky causadas por transformações */
-  background: transparent; /* Deixa o canvas/background global visível */
+  background: var(--bg-deep); /* Fundo sólido para quando fixado sobre o conteúdo */
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -868,50 +868,5 @@
   pointer-events: none !important;
 }
 
-/* Responsividade do Manifesto */
-@media (max-width: 768px) {
-  .manifesto-motion-section {
-    padding: 0;
-    height: 100vh;
-  }
-  .manifesto-word-stage {
-    height: 380px; /* Mantém altura suficiente para comportar o card final no mobile */
-    margin-bottom: 20px;
-  }
-  .manifesto-word {
-    font-size: clamp(2rem, 8vw, 3.2rem);
-  }
-  .manifesto-word.prev,
-  .manifesto-word.next,
-  .manifesto-word.far-prev,
-  .manifesto-word.far-next {
-    opacity: 0 !important;
-    display: none !important;
-  }
-  .manifesto-line-svg {
-    opacity: 0.25; /* Simplifica a linha no mobile */
-  }
-  .manifesto-word-final {
-    max-width: 95%;
-  }
-  .final-card-glass {
-    padding: 24px 20px; /* Reduz padding para caber perfeitamente no celular */
-    gap: 14px;
-    border-radius: 16px;
-  }
-  .final-phrase {
-    font-size: 1.25rem;
-  }
-  .final-desc {
-    font-size: 0.8rem;
-    margin-bottom: 0;
-  }
-  .final-cta {
-    padding: 10px 20px;
-    font-size: 0.8rem;
-  }
-  .manifesto-watermark {
-    font-size: 20vw;
-  }
-}
+/* Responsividade do Manifesto unificada e controlada centralizadamente no responsive.css */
 

@@ -48,33 +48,33 @@ function initCanvasBackground() {
 
   // ========================================
   // PARTÍCULAS DE POEIRA DE PALCO (VIVAS)
-  // Restaurado com 45 partículas a pedido do usuário para riqueza visual magnífica
+  // Aumentado para 115 partículas para riqueza visual magnífica e imersiva
   // ========================================
-  const PARTICLE_COUNT = 45;
+  const PARTICLE_COUNT = 115;
   const particles = [];
 
   const particleColors = [
-    { r: 197, g: 168, b: 90 },
-    { r: 248, g: 226, b: 167 },
-    { r: 234, g: 201, b: 125 },
-    { r: 253, g: 253, b: 253 },
+    { r: 197, g: 168, b: 90 }, // Dourado
+    { r: 248, g: 226, b: 167 }, // Dourado claro
+    { r: 234, g: 201, b: 125 }, // Dourado médio
+    { r: 253, g: 253, b: 253 }, // Branco brilhante
     { r: 180, g: 160, b: 100 },
     { r: 220, g: 200, b: 140 },
   ];
 
   function createParticle(forceNew) {
     const color = particleColors[Math.floor(Math.random() * particleColors.length)];
-    const size = Math.random() * 2.2 + 0.5;
-    const isLarge = size > 1.8;
+    const size = Math.random() * 2.8 + 0.6; // Partículas ligeiramente maiores
+    const isLarge = size > 2.0;
     return {
       x: forceNew ? (Math.random() > 0.5 ? -10 : W + 10) : Math.random() * W,
       y: Math.random() * H,
       size,
       color,
-      alpha: Math.random() * 0.35 + 0.15,
+      alpha: Math.random() * 0.45 + 0.18, // Ligeiramente mais visível
       alphaBase: 0,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.3 - 0.1,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.25 - 0.08,
       oscillateSpeed: Math.random() * 0.005 + 0.002,
       oscillateAmp: Math.random() * 20 + 8,
       oscillateOffset: Math.random() * Math.PI * 2,
@@ -705,23 +705,38 @@ function initManifestoMotion() {
   const pinContainer = document.getElementById('manifesto-pin-container');
 
   const updateManifestoScroll = () => {
-    // Se for mobile ou tablet (< 992px), desativar coreografia do JS e deixar o layout estático do CSS
-    if (window.innerWidth < 992) {
-      words.forEach((word) => {
-        word.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
-        word.style.transform = '';
-        word.style.opacity = '';
-      });
-      if (spark) {
-        spark.style.strokeDashoffset = '';
-      }
-      ticking = false;
-      return;
-    }
-
     const parentContainer = pinContainer || section;
     const rect = parentContainer.getBoundingClientRect();
     const viewHeight = window.innerHeight;
+
+    // Pinning via JavaScript
+    if (pinContainer) {
+      if (rect.top <= 0 && rect.bottom >= viewHeight) {
+        // PIN: fixar na tela
+        section.style.position = 'fixed';
+        section.style.top = '0';
+        section.style.bottom = 'auto';
+        section.style.left = '0';
+        section.style.width = '100%';
+        section.style.zIndex = '100';
+      } else if (rect.bottom < viewHeight) {
+        // UNPIN inferior: ancorar no fundo do container
+        section.style.position = 'absolute';
+        section.style.top = 'auto';
+        section.style.bottom = '0';
+        section.style.left = '0';
+        section.style.width = '100%';
+        section.style.zIndex = '3';
+      } else {
+        // UNPIN superior (antes de entrar): comportamento padrão
+        section.style.position = 'relative';
+        section.style.top = '0';
+        section.style.bottom = 'auto';
+        section.style.left = '0';
+        section.style.width = '100%';
+        section.style.zIndex = '3';
+      }
+    }
 
     if (rect.top < viewHeight && rect.bottom > 0) {
       const scrollRange = rect.height - viewHeight;
@@ -742,7 +757,7 @@ function initManifestoMotion() {
         : (progress / transitionEndProgress) * 0.85;
 
       const totalWords = words.length;
-      const isMobile = window.innerWidth < 768;
+      const isTabletOrMobile = window.innerWidth < 1024;
 
       words.forEach((word, index) => {
         word.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
@@ -756,7 +771,7 @@ function initManifestoMotion() {
             const scrollFraction = (wordProgress * totalWords) - index;
             word.style.transform = `translateX(${scrollFraction * 20}px) scale(1.1) translateZ(0)`;
           }
-        } else if (!isMobile) {
+        } else if (!isTabletOrMobile) {
           if (index === activeIndex - 1) {
             word.classList.add('prev');
             const sf = (wordProgress * totalWords) - index;
@@ -778,7 +793,7 @@ function initManifestoMotion() {
         }
       });
 
-      // FaÃ­sca SVG sincronizada
+      // Faísca SVG sincronizada
       if (spark) {
         const maxOffset = 1120, minOffset = 220;
         const sparkProgress = Math.min(1.0, progress / transitionEndProgress);

@@ -515,12 +515,19 @@
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.4s ease;
+  padding: 1.5px; /* Define a espessura da borda */
+  
+  /* Máscara premium para desenhar apenas a borda mantendo o card translúcido */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
 }
 
 /* Garante que os conteúdos dos cards fiquem acima do efeito de borda brilhante */
 .station-card > *:not(.border-glow-beam),
 .station-card-highlight > *:not(.border-glow-beam),
-.events-cta > *:not(.border-glow-beam) {
+.events-cta > *:not(.border-glow-beam),
+.events-cta-simple > *:not(.border-glow-beam) {
   position: relative;
   z-index: 3;
 }
@@ -528,7 +535,8 @@
 /* Ativação no Hover */
 .station-card:hover .border-glow-beam,
 .station-card-highlight:hover .border-glow-beam,
-.events-cta:hover .border-glow-beam {
+.events-cta:hover .border-glow-beam,
+.events-cta-simple:hover .border-glow-beam {
   opacity: 1;
 }
 
@@ -542,21 +550,15 @@
   background: conic-gradient(
     from 0deg,
     transparent 0%,
-    rgba(197, 168, 90, 0.75) 15%,
+    rgba(197, 168, 90, 0.8) 15%,
     transparent 35%,
     transparent 50%,
-    rgba(248, 226, 167, 0.75) 65%,
+    rgba(248, 226, 167, 0.85) 65%,
     transparent 85%,
     transparent 100%
   );
-  animation: rotateBeam 3.5s linear infinite;
+  animation: rotateBeam 3s linear infinite;
   will-change: transform;
-  
-  /* Máscara premium para desenhar apenas a borda de 1px mantendo o card translúcido */
-  padding: 1.2px;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
 }
 
 @keyframes rotateBeam {

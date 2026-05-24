@@ -477,6 +477,7 @@
   overflow-y: auto;
   padding: 16px 2px 16px 0;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 .directors-rail::-webkit-scrollbar {
