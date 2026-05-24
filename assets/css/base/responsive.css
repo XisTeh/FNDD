@@ -400,135 +400,152 @@ html, body {
     opacity: 0.3;
   }
 
-  /* --- Manifesto em Movimento (Timeline Premium com Reveal Suave via Observer) --- */
+  /* --- Manifesto em Movimento (Palco Sticky Cinemático Mobile) --- */
   .manifesto-pin-container {
-    height: auto !important;
+    height: 400vh !important; /* Altura grande para scroll progressivo no mobile */
+    background: transparent !important;
   }
   .manifesto-motion-section {
-    height: auto !important;
-    position: relative !important;
-    padding: 80px 24px !important;
+    position: sticky !important;
+    position: -webkit-sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: var(--bg-deep) !important;
+    /* Vinhetas escuras superior/inferior para emenda perfeita e profundidade cinematográfica */
+    box-shadow: inset 0 80px 70px -50px rgba(6, 6, 8, 0.98), 
+                inset 0 -80px 70px -50px rgba(6, 6, 8, 0.98) !important;
+    z-index: 3 !important;
+    padding: 0 !important;
   }
   .manifesto-header {
-    margin-bottom: 40px !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+    padding: 0 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .manifesto-title {
+    font-size: clamp(1.7rem, 6vw, 2.3rem) !important;
+    line-height: 1.2 !important;
+    max-width: 100% !important;
   }
   .manifesto-word-stage {
-    height: auto !important;
-    margin-top: 30px !important;
+    height: 280px !important;
+    margin-top: 10px !important;
     width: 100% !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   .manifesto-line-svg {
     display: none !important;
   }
   .manifesto-words-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 20px !important;
-    align-items: flex-start !important;
-    padding-left: 32px !important;
     position: relative !important;
     width: 100% !important;
-    max-width: 320px !important;
-    margin: 0 auto !important;
-    perspective: none !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    perspective: 1000px !important;
+    padding-left: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
     box-sizing: border-box !important;
   }
   
-  /* Linha vertical dourada da timeline */
+  /* Remover a linha vertical dourada da timeline e os dots */
   .manifesto-words-wrapper::before {
-    content: '' !important;
-    position: absolute !important;
-    left: 12px !important;
-    top: 10px !important;
-    bottom: 10px !important;
-    width: 2px !important;
-    background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary) 30%, var(--gold-light) 60%, transparent) !important;
-    opacity: 0.25 !important;
-    z-index: 1 !important;
-    display: block !important;
+    display: none !important;
+  }
+  .manifesto-word:not(.manifesto-word-final)::before {
+    display: none !important;
   }
 
-  /* Cada palavra no mobile entra com reveal e um dot na timeline */
+  /* Cada palavra no mobile como palco absoluto */
   .manifesto-word:not(.manifesto-word-final) {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    transform: translateY(15px) scale(0.92) !important;
-    opacity: 0.12 !important;
-    filter: blur(2.5px) !important;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    font-size: clamp(1.4rem, 4.5vw, 1.85rem) !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.85) !important;
+    opacity: 0 !important;
+    filter: blur(8px) !important;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    font-size: clamp(1.8rem, 6.5vw, 3rem) !important;
     line-height: 1.2 !important;
-    text-align: left !important;
-    pointer-events: auto !important;
-    user-select: auto !important;
-    margin: 12px 0 !important;
-    display: inline-block !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 90% !important;
     color: var(--text-primary) !important;
     background: linear-gradient(135deg, #FFFFFF 40%, var(--gold-light) 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    text-shadow: 0 0 15px rgba(197, 168, 90, 0.15) !important;
+    text-shadow: 0 0 25px rgba(197, 168, 90, 0.25) !important;
   }
   
   .manifesto-word:not(.manifesto-word-final).active {
     opacity: 1 !important;
-    filter: none !important;
-    transform: translateY(0) scale(1.03) !important;
-  }
-
-  /* Dot na timeline */
-  .manifesto-word:not(.manifesto-word-final)::before {
-    content: '' !important;
-    position: absolute !important;
-    left: -20px !important; /* Centrado exatamente na linha vertical */
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 6px !important;
-    height: 6px !important;
-    border-radius: 50% !important;
-    background-color: var(--gold-primary) !important;
-    box-shadow: 0 0 8px var(--gold-primary) !important;
-    opacity: 0.4 !important;
-    transition: opacity 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease !important;
-    z-index: 2 !important;
-    display: block !important;
-  }
-
-  .manifesto-word:not(.manifesto-word-final).active::before {
-    background-color: var(--gold-light) !important;
-    box-shadow: 0 0 15px var(--gold-light), 0 0 6px #FFFFFF !important;
-    opacity: 1 !important;
-    transform: translateY(-50%) scale(1.4) !important;
+    filter: blur(0) !important;
+    transform: translate(-50%, -50%) scale(1.05) !important;
+    pointer-events: auto !important;
   }
   
   /* Card Final Manifesto */
   .manifesto-word-final {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    opacity: 0.15 !important;
-    filter: blur(3px) !important;
-    transform: translateY(25px) scale(0.96) !important;
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    pointer-events: auto !important;
-    margin-top: 40px !important;
-    width: 100% !important;
-    max-width: 500px !important;
-    align-self: center !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
+    opacity: 0 !important;
+    filter: blur(8px) !important;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    pointer-events: none !important;
+    margin-top: 0 !important;
+    width: 90% !important;
+    max-width: 420px !important;
+    align-self: auto !important;
+    box-sizing: border-box !important;
   }
   .manifesto-word-final.active {
     opacity: 1 !important;
-    filter: none !important;
-    transform: translateY(0) scale(1) !important;
+    filter: blur(0) !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    pointer-events: auto !important;
   }
 
   .final-card-glass {
-    padding: 24px 18px !important;
+    padding: 24px 20px !important;
     border-radius: 16px !important;
     gap: 12px !important;
     width: 100% !important;
+    background: linear-gradient(135deg, rgba(14, 14, 18, 0.55) 0%, rgba(8, 8, 10, 0.85) 100%) !important;
+    border: 1px solid rgba(197, 168, 90, 0.12) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Suporte a prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .manifesto-word {
+      transition: none !important;
+    }
   }
 
   /* --- Diretoria (NÃO ALTERAR) --- */

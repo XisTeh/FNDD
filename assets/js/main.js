@@ -707,51 +707,18 @@ function initManifestoMotion() {
   const updateManifestoScroll = () => {
     const isTabletOrMobile = window.innerWidth < 1024;
     
-    if (isTabletOrMobile) {
-      if (section) {
-        section.style.position = '';
-        section.style.top = '';
-        section.style.bottom = '';
-        section.style.left = '';
-        section.style.width = '';
-        section.style.zIndex = '';
-      }
-      words.forEach(word => {
-        word.classList.remove('prev', 'next', 'far-prev', 'far-next');
-        word.style.transform = '';
-      });
-      
-      if (!window.manifestoMobileObserver) {
-        window.manifestoMobileObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            } else {
-              entry.target.classList.remove('active');
-            }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '-30% 0px -30% 0px'
-        });
-        words.forEach(word => window.manifestoMobileObserver.observe(word));
-      }
-      ticking = false;
-      return;
-    } else {
-      if (window.manifestoMobileObserver) {
-        window.manifestoMobileObserver.disconnect();
-        window.manifestoMobileObserver = null;
-        words.forEach(word => word.classList.remove('active'));
-      }
+    // Desconecta o IntersectionObserver mobile se existir
+    if (window.manifestoMobileObserver) {
+      window.manifestoMobileObserver.disconnect();
+      window.manifestoMobileObserver = null;
     }
 
     const parentContainer = pinContainer || section;
     const rect = parentContainer.getBoundingClientRect();
     const viewHeight = window.innerHeight;
 
-    // Pinning via JavaScript
-    if (pinContainer) {
+    // Pinning via JavaScript (Apenas no Desktop)
+    if (!isTabletOrMobile && pinContainer) {
       if (rect.top <= 0 && rect.bottom >= viewHeight) {
         // PIN: fixar na tela
         section.style.position = 'fixed';
@@ -777,6 +744,14 @@ function initManifestoMotion() {
         section.style.width = '100%';
         section.style.zIndex = '3';
       }
+    } else if (isTabletOrMobile && section) {
+      // Garante limpeza de estilos inline no mobile (onde usamos CSS sticky)
+      section.style.position = '';
+      section.style.top = '';
+      section.style.bottom = '';
+      section.style.left = '';
+      section.style.width = '';
+      section.style.zIndex = '';
     }
 
     if (rect.top < viewHeight && rect.bottom > 0) {
@@ -798,7 +773,6 @@ function initManifestoMotion() {
         : (progress / transitionEndProgress) * 0.85;
 
       const totalWords = words.length;
-      const isTabletOrMobile = window.innerWidth < 1024;
 
       words.forEach((word, index) => {
         word.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
@@ -806,11 +780,13 @@ function initManifestoMotion() {
 
         if (index === activeIndex) {
           word.classList.add('active');
-          if (word.classList.contains('manifesto-word-final')) {
-            word.style.transform = 'scale(1) translateZ(0)';
-          } else {
-            const scrollFraction = (wordProgress * totalWords) - index;
-            word.style.transform = `translateX(${scrollFraction * 20}px) scale(1.1) translateZ(0)`;
+          if (!isTabletOrMobile) {
+            if (word.classList.contains('manifesto-word-final')) {
+              word.style.transform = 'scale(1) translateZ(0)';
+            } else {
+              const scrollFraction = (wordProgress * totalWords) - index;
+              word.style.transform = `translateX(${scrollFraction * 20}px) scale(1.1) translateZ(0)`;
+            }
           }
         } else if (!isTabletOrMobile) {
           if (index === activeIndex - 1) {
@@ -828,14 +804,11 @@ function initManifestoMotion() {
             word.classList.add('far-next');
             word.style.transform = `translateX(380px) scale(0.55) translateZ(0)`;
           }
-        } else {
-          word.classList.add('far-next');
-          word.style.transform = `scale(0.5) translateZ(0)`;
         }
       });
 
-      // Faísca SVG sincronizada
-      if (spark) {
+      // Faísca SVG sincronizada (Apenas no Desktop)
+      if (spark && !isTabletOrMobile) {
         const maxOffset = 1120, minOffset = 220;
         const sparkProgress = Math.min(1.0, progress / transitionEndProgress);
         spark.style.strokeDashoffset = maxOffset - (sparkProgress * (maxOffset - minOffset));
