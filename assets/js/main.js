@@ -822,27 +822,47 @@ function initManifestoMotion() {
   // 2. Progresso de palavras e animação de linha no Scroll
   let ticking = false;
 
+  const pinContainer = document.getElementById('manifesto-pin-container');
+
   const updateManifestoScroll = () => {
-    const rect = section.getBoundingClientRect();
+    const parentContainer = pinContainer || section;
+    const rect = parentContainer.getBoundingClientRect();
     const viewHeight = window.innerHeight;
     
-    // Executa apenas se a seção estiver ativamente cruzando a janela visível
+    // Executa apenas se o container de pinning estiver visível
     if (rect.top < viewHeight && rect.bottom > 0) {
-      // Calcula o progresso do scroll de forma normalizada (0 a 1)
-      const entryPoint = viewHeight;
-      const exitPoint = -rect.height;
-      const scrollRange = entryPoint - exitPoint;
-      const currentScroll = viewHeight - rect.top;
+      // Como o parentContainer é o .manifesto-pin-container, a rolagem útil (pinning)
+      // ocorre de fato a partir do momento em que o topo do container pai atinge o topo da tela (rect.top = 0)
+      // até que a base do container pai chegue à base da tela (rect.bottom = viewHeight).
+      const scrollRange = rect.height - viewHeight;
       
-      let progress = currentScroll / scrollRange;
+      // O progresso de scroll dentro do pinning varia de 0 a 1
+      let progress = -rect.top / scrollRange;
       progress = Math.max(0, Math.min(1, progress)); // Clampa entre 0 e 1
 
-      // Mapeia o progresso (usa o miolo de 15% a 80% do scroll para a transição)
-      let wordProgress = (progress - 0.15) / 0.65;
-      wordProgress = Math.max(0, Math.min(0.99, wordProgress));
+      // Mapeamento dos slides:
+      // De progress 0 a 0.70 transicionamos de forma linear as 7 palavras (indices de 0 a 6).
+      // De progress 0.70 a 1.00 exibimos e fixamos o card final (indice 7).
+      const transitionEndProgress = 0.70;
+      
+      let activeIndex = 0;
+      if (progress >= transitionEndProgress) {
+        activeIndex = 7; // Card final ativado
+      } else {
+        const norm = progress / transitionEndProgress; // Mapeia linearmente de 0 a 1
+        activeIndex = Math.floor(norm * 7); // Mapeia para os índices de 0 a 6
+        if (activeIndex > 6) activeIndex = 6;
+      }
+
+      // Calcula um wordProgress para manter os efeitos de transição das palavras e parallax suaves
+      let wordProgress = 0;
+      if (progress >= transitionEndProgress) {
+        wordProgress = 0.99;
+      } else {
+        wordProgress = (progress / transitionEndProgress) * 0.85;
+      }
 
       const totalWords = words.length;
-      const activeIndex = Math.floor(wordProgress * totalWords);
 
       // 3. Atualiza a palavra ativa com transição de opacidade/escala e coreografia 3D horizontal
       words.forEach((word, index) => {
@@ -854,9 +874,14 @@ function initManifestoMotion() {
 
         if (index === activeIndex) {
           word.classList.add('active');
-          const scrollFraction = (wordProgress * totalWords) - index; // De -0.5 a 0.5
-          const parallaxOffset = scrollFraction * 20; 
-          word.style.transform = `translateX(${parallaxOffset}px) scale(1.1) translateZ(0)`;
+          if (word.classList.contains('manifesto-word-final')) {
+            // Card final fica estático e centralizado para melhor legibilidade
+            word.style.transform = 'scale(1) translateZ(0)';
+          } else {
+            const scrollFraction = (wordProgress * totalWords) - index; // De -0.5 a 0.5
+            const parallaxOffset = scrollFraction * 20; 
+            word.style.transform = `translateX(${parallaxOffset}px) scale(1.1) translateZ(0)`;
+          }
         } else if (index === activeIndex - 1 && !isMobile) {
           word.classList.add('prev');
           const scrollFraction = (wordProgress * totalWords) - index; 
@@ -882,10 +907,11 @@ function initManifestoMotion() {
 
       // 4. Sincroniza a faísca do rastro do SVG em sentidos dinâmicos
       if (spark) {
-        // O dashoffset corre de 1120 (totalmente recuado à esquerda) até 220 (totalmente avançado à direita)
         const maxOffset = 1120;
         const minOffset = 220;
-        const currentSparkOffset = maxOffset - (progress * (maxOffset - minOffset));
+        // Corre até o final do rastro quando a transição de palavras acaba
+        const sparkProgress = Math.min(1.0, progress / transitionEndProgress);
+        const currentSparkOffset = maxOffset - (sparkProgress * (maxOffset - minOffset));
         spark.style.strokeDashoffset = currentSparkOffset;
       }
     }

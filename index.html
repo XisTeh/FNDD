@@ -603,82 +603,77 @@
     </div>
   </section>
 
-  <!-- Seção Manifesto em Movimento (Campanha Institucional Interativa) -->
-  <section class="manifesto-motion-section reveal-on-scroll" id="manifesto-movimento">
-    <div class="manifesto-spotlight" id="manifestoSpotlight"></div>
-    <div class="manifesto-watermark">FNDD</div>
-    <div class="manifesto-glow-orb"></div>
+  <!-- Seção Manifesto em Movimento (Campanha Institucional Interativa) com Pinning -->
+  <div class="manifesto-pin-container" id="manifesto-pin-container">
+    <section class="manifesto-motion-section" id="manifesto-movimento">
+      <div class="manifesto-spotlight" id="manifestoSpotlight"></div>
+      <div class="manifesto-watermark">FNDD</div>
+      <div class="manifesto-glow-orb"></div>
 
-    <div class="manifesto-motion-container">
-      
-      <!-- Cabeçalho do Manifesto -->
-      <div class="manifesto-header">
-        <div class="manifesto-eyebrow-container">
-          <span class="manifesto-eyebrow">Manifesto em Movimento</span>
-          <div class="manifesto-eyebrow-line"></div>
-        </div>
-        <h2 class="manifesto-title font-title">
-          Dança não é apenas movimento.<br>É <span class="gold-gradient-text">futuro em construção</span>.
-        </h2>
-        <div class="manifesto-title-separator"></div>
-      </div>
-
-      <!-- Palco das Palavras em Transformação -->
-      <div class="manifesto-word-stage" id="manifestoWordStage">
+      <div class="manifesto-motion-container">
         
-        <!-- Linha de Movimento Fluida (SVG Rastro de Dança) -->
-        <svg class="manifesto-line-svg" viewBox="0 0 1000 300" fill="none" preserveAspectRatio="none" id="manifestoSvg">
-          <!-- Rastro dourado sutil de fundo -->
-          <path class="manifesto-path-bg" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="rgba(197, 168, 90, 0.08)" stroke-width="3" stroke-linecap="round" />
-          <!-- Rastro dourado fluido principal -->
-          <path class="manifesto-path-line" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="url(#manifesto-gold-gradient)" stroke-width="2.5" stroke-linecap="round" />
-          <!-- Feixe luminoso / faísca que acompanha a palavra ativa -->
-          <path class="manifesto-path-spark" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="#F8E2A7" stroke-width="3.5" stroke-linecap="round" fill="none" />
+        <!-- Cabeçalho do Manifesto -->
+        <div class="manifesto-header">
+          <div class="manifesto-eyebrow-container">
+            <span class="manifesto-eyebrow">Manifesto em Movimento</span>
+            <div class="manifesto-eyebrow-line"></div>
+          </div>
+          <h2 class="manifesto-title font-title">
+            Dança não é apenas movimento.<br>É <span class="gold-gradient-text">futuro em construção</span>.
+          </h2>
+          <div class="manifesto-title-separator"></div>
+        </div>
+
+        <!-- Palco das Palavras em Transformação -->
+        <div class="manifesto-word-stage" id="manifestoWordStage">
           
-          <defs>
-            <linearGradient id="manifesto-gold-gradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#785A1D" stop-opacity="0.1" />
-              <stop offset="30%" stop-color="#C5A85A" stop-opacity="0.8" />
-              <stop offset="50%" stop-color="#F8E2A7" stop-opacity="1" />
-              <stop offset="70%" stop-color="#C5A85A" stop-opacity="0.8" />
-              <stop offset="100%" stop-color="#785A1D" stop-opacity="0.1" />
-            </linearGradient>
-          </defs>
-        </svg>
+          <!-- Linha de Movimento Fluida (SVG Rastro de Dança) -->
+          <svg class="manifesto-line-svg" viewBox="0 0 1000 300" fill="none" preserveAspectRatio="none" id="manifestoSvg">
+            <!-- Rastro dourado sutil de fundo -->
+            <path class="manifesto-path-bg" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="rgba(197, 168, 90, 0.08)" stroke-width="3" stroke-linecap="round" />
+            <!-- Rastro dourado fluido principal -->
+            <path class="manifesto-path-line" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="url(#manifesto-gold-gradient)" stroke-width="2.5" stroke-linecap="round" />
+            <!-- Feixe luminoso / faísca que acompanha a palavra ativa -->
+            <path class="manifesto-path-spark" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="#F8E2A7" stroke-width="3.5" stroke-linecap="round" fill="none" />
+            
+            <defs>
+              <linearGradient id="manifesto-gold-gradient" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#785A1D" stop-opacity="0.1" />
+                <stop offset="30%" stop-color="#C5A85A" stop-opacity="0.8" />
+                <stop offset="50%" stop-color="#F8E2A7" stop-opacity="1" />
+                <stop offset="70%" stop-color="#C5A85A" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#785A1D" stop-opacity="0.1" />
+              </linearGradient>
+            </defs>
+          </svg>
 
-        <!-- Palavras que se transformam em sequência cinemática -->
-        <div class="manifesto-words-wrapper">
-          <span class="manifesto-word active" data-index="0">É técnica.</span>
-          <span class="manifesto-word" data-index="1">É disciplina.</span>
-          <span class="manifesto-word" data-index="2">É formação.</span>
-          <span class="manifesto-word" data-index="3">É profissão.</span>
-          <span class="manifesto-word" data-index="4">É esporte.</span>
-          <span class="manifesto-word" data-index="5">É reconhecimento.</span>
-          <span class="manifesto-word" data-index="6">É futuro.</span>
+          <!-- Palavras que se transformam em sequência cinemática -->
+          <div class="manifesto-words-wrapper">
+            <span class="manifesto-word active" data-index="0">É técnica.</span>
+            <span class="manifesto-word" data-index="1">É disciplina.</span>
+            <span class="manifesto-word" data-index="2">É formação.</span>
+            <span class="manifesto-word" data-index="3">É profissão.</span>
+            <span class="manifesto-word" data-index="4">É esporte.</span>
+            <span class="manifesto-word" data-index="5">É reconhecimento.</span>
+            <span class="manifesto-word" data-index="6">É futuro.</span>
+            
+            <!-- Slide Final de Encerramento (Revelação de Prestígio Integrada no Palco) -->
+            <div class="manifesto-word manifesto-word-final" data-index="7">
+              <div class="final-card-glass glass-panel">
+                <h3 class="final-phrase font-title">Quando a dança é organizada,<br>ela ganha <span class="gold-gradient-text">voz, valor e futuro</span>.</h3>
+                <p class="final-desc">A FNDD atua para unificar, regular e impulsionar a dança desportiva como esporte e profissão em todo o país.</p>
+                <a href="#sobre" class="final-cta">
+                  Conheça a Federação
+                  <iconify-icon icon="solar:arrow-right-bold"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
-
-      <!-- Fechamento Narrativo da Campanha -->
-      <div class="manifesto-final">
-        <p class="manifesto-support-text">
-          A FNDD atua para ampliar a visão sobre a dança desportiva, fortalecendo sua dimensão esportiva, profissional, cultural e social.
-        </p>
-        <strong class="manifesto-final-phrase">
-          Quando a dança é organizada, ela ganha voz, valor e futuro.
-        </strong>
-
-        <!-- Link CTA de Prestígio Discreto -->
-        <div class="manifesto-cta-wrapper">
-          <a href="#sobre" class="manifesto-premium-link">
-            <span class="cta-text">Conheça a atuação da FNDD</span>
-            <span class="cta-arrow-line"></span>
-            <iconify-icon icon="solar:arrow-right-bold" class="cta-icon"></iconify-icon>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- Seção Diretoria FNDD (Galeria de Liderança Interativa) -->
   <section class="directors-section reveal-on-scroll" id="diretoria">

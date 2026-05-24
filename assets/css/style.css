@@ -54,11 +54,11 @@ html {
   color: var(--text-primary);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   background-color: var(--bg-deep);
 }
@@ -2868,12 +2868,21 @@ body {
 */
 
 /* ============================================
-   SEÇÃO MANIFESTO EM MOVIMENTO
+   SEÇÃO MANIFESTO EM MOVIMENTO com Pinning
    ============================================ */
-.manifesto-motion-section {
+.manifesto-pin-container {
   position: relative;
   width: 100%;
-  padding: 160px 0;
+  height: 250vh; /* Altura do scroll total para fixar as palavras */
+  background: transparent;
+}
+
+.manifesto-motion-section {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  transform: none !important; /* Previne quebras do position: sticky causadas por transformações */
   background: transparent; /* Deixa o canvas/background global visível */
   overflow: hidden;
   display: flex;
@@ -2882,6 +2891,7 @@ body {
   /* Vinhetas escuras superior/inferior para emenda perfeita e profundidade cinematográfica */
   box-shadow: inset 0 120px 100px -80px rgba(6, 6, 8, 0.95), 
               inset 0 -120px 100px -80px rgba(6, 6, 8, 0.95);
+  z-index: 3;
 }
 
 .manifesto-spotlight {
@@ -2978,11 +2988,11 @@ body {
 .manifesto-word-stage {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 380px; /* Aumentado para comportar o card final com elegância */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 0;
 }
 
 /* Linha de Movimento Fluida SVG */
@@ -3027,7 +3037,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 2;
-  perspective: 1200px; /* Adiciona perspectiva 3D chique */
+  perspective: 1200px;
 }
 
 .manifesto-word {
@@ -3092,96 +3102,125 @@ body {
   filter: blur(12px);
 }
 
-/* Fim / Conclusão Narrativa */
-.manifesto-final {
-  text-align: center;
-  max-width: 750px;
+/* =============================================
+   CARD FINAL DO MANIFESTO — Revelação de Prestígio
+   ============================================= */
+.manifesto-word-final {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  max-width: 680px;
+  height: auto;
+  z-index: 10;
+  /* Reseta os estilos gerais das palavras simples */
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  text-shadow: none !important;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.manifesto-word-final.active {
+  pointer-events: auto;
+}
+
+.final-card-glass {
+  background: rgba(15, 15, 18, 0.5);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1.5px solid rgba(197, 168, 90, 0.25);
+  border-radius: 24px;
+  padding: 36px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  text-align: center;
+  gap: 18px;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translate3d(0, 0, 0);
+  width: 100%;
 }
 
-.manifesto-support-text {
-  font-family: var(--font-body);
-  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  opacity: 0.8;
-}
-
-.manifesto-final-phrase {
-  font-family: var(--font-title);
-  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+.final-phrase {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
   font-weight: 800;
-  color: var(--gold-primary);
-  line-height: 1.3;
+  color: var(--text-primary);
+  line-height: 1.35;
   letter-spacing: -0.01em;
-  background: linear-gradient(135deg, var(--gold-light) 20%, var(--gold-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin: 0;
 }
 
-/* CTA Premium Discreto */
-.manifesto-cta-wrapper {
-  margin-top: 20px;
+.final-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  opacity: 0.85;
+  max-width: 500px;
+  margin: 0 0 4px 0;
 }
 
-.manifesto-premium-link {
+.final-cta {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--bg-deep) !important;
+  background: var(--gold-primary);
+  padding: 12px 30px;
+  border-radius: 8px;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--gold-primary);
-  position: relative;
-  padding: 6px 0;
-  transition: color 0.4s ease;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 10px 25px rgba(197, 168, 90, 0.2);
 }
 
-.manifesto-premium-link .cta-arrow-line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 1px;
-  background: var(--gold-primary);
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+.final-cta iconify-icon {
+  font-size: 1.05rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.manifesto-premium-link .cta-icon {
-  font-size: 1.1rem;
-  transform: translateX(0);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
-}
-
-.manifesto-premium-link:hover {
-  color: var(--gold-light);
-}
-
-.manifesto-premium-link:hover .cta-arrow-line {
-  width: 100%;
+.final-cta:hover {
   background: var(--gold-light);
+  box-shadow: 0 15px 30px rgba(197, 168, 90, 0.4);
+  transform: translateY(-2px);
 }
 
-.manifesto-premium-link:hover .cta-icon {
-  transform: translateX(6px);
-  color: var(--gold-light);
+.final-cta:hover iconify-icon {
+  transform: translateX(4px);
+}
+
+/* Quando inativo, o card final fica totalmente invisível para não poluir visualmente o palco */
+.manifesto-word-final:not(.active) {
+  opacity: 0 !important;
+  filter: blur(25px) !important;
+  pointer-events: none !important;
 }
 
 /* Responsividade do Manifesto */
 @media (max-width: 768px) {
   .manifesto-motion-section {
-    padding: 90px 0;
+    padding: 0;
+    height: 100vh;
   }
   .manifesto-word-stage {
-    height: 200px;
-    margin-bottom: 40px;
+    height: 380px; /* Mantém altura suficiente para comportar o card final no mobile */
+    margin-bottom: 20px;
   }
   .manifesto-word {
     font-size: clamp(2rem, 8vw, 3.2rem);
@@ -3196,8 +3235,24 @@ body {
   .manifesto-line-svg {
     opacity: 0.25; /* Simplifica a linha no mobile */
   }
-  .manifesto-final {
-    gap: 18px;
+  .manifesto-word-final {
+    max-width: 95%;
+  }
+  .final-card-glass {
+    padding: 24px 20px; /* Reduz padding para caber perfeitamente no celular */
+    gap: 14px;
+    border-radius: 16px;
+  }
+  .final-phrase {
+    font-size: 1.25rem;
+  }
+  .final-desc {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+  .final-cta {
+    padding: 10px 20px;
+    font-size: 0.8rem;
   }
   .manifesto-watermark {
     font-size: 20vw;
