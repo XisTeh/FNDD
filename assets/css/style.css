@@ -758,11 +758,12 @@ body {
 }
 
 /* Efeito Dourado Metálico Animado nos Textos Relevantes */
-.hero-headline span.gold-gradient-text {
+.gold-gradient-text {
   background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 30%, var(--gold-primary) 50%, var(--gold-light) 70%, var(--gold-dark) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: shineGoldText 6s linear infinite;
   display: inline-block;
 }
@@ -1984,11 +1985,17 @@ body {
 }
 
 /* ==========================================================================
-   11. SEÇÃO PILARES DE ATUAÇÃO (BENTO GRID INSTITUCIONAL FNDD)
+   11. SEÇÃO PILARES DE ATUAÇÃO — SISTEMA DE ATUAÇÃO FNDD
+   ========================================================================== */
+/* ==========================================================================
+   11. SECAO PILARES DE ATUACAO - SISTEMA DE ATUACAO FNDD (ORBITA ORGANIZADA)
+   ========================================================================== */
+/* ==========================================================================
+   11. SECAO PILARES DE ATUACAO - SISTEMA DE ATUACAO FNDD (ORBITA ORGANIZADA)
    ========================================================================== */
 .pillars-section {
   position: relative;
-  padding: 120px 8%;
+  padding: 140px 6%;
   background-color: transparent;
   z-index: 2;
   overflow: hidden;
@@ -2010,7 +2017,7 @@ body {
   z-index: 2;
 }
 
-/* Atmosfera local cinemática */
+/* Atmosfera local cinematica */
 .pillars-bg-decor {
   position: absolute;
   inset: 0;
@@ -2020,26 +2027,17 @@ body {
 
 .pillars-haze-local {
   position: absolute;
-  top: 25%;
-  right: -200px;
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(197, 168, 90, 0.03) 0%, transparent 70%);
-  filter: blur(120px);
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.02) 0%, transparent 70%);
+  filter: blur(150px);
   z-index: 1;
 }
 
-.pillars-decor-line {
-  position: absolute;
-  top: 0;
-  left: 15%;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.04) 0%, rgba(197, 168, 90, 0.01) 60%, transparent 100%);
-  z-index: 1;
-}
-
-/* Contêiner Geral */
+/* Conteiner Geral */
 .pillars-container {
   width: 100%;
   max-width: 1240px;
@@ -2048,10 +2046,10 @@ body {
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
 }
 
-/* Cabeçalho Centralizado e Chique */
+/* Cabecalho */
 .pillars-header {
   max-width: 820px;
   margin: 0 auto;
@@ -2110,188 +2108,558 @@ body {
   text-align: center;
 }
 
-/* Bento Grid */
-.pillars-bento {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  width: 100%;
-}
-
-/* Painéis Bento de Vidro */
-.pillar-panel {
+/* ============================================
+   PALCO DO SISTEMA DE ATUACAO (DESKTOP - ORBITA HORARIA)
+   ============================================ */
+.pillars-system-stage {
   position: relative;
-  padding: 36px 32px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(14, 14, 18, 0.4) 0%, rgba(8, 8, 10, 0.7) 100%);
-  border: 1px solid rgba(197, 168, 90, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  min-height: 280px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.01);
-  transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-
-.pillar-panel:hover {
-  border-color: rgba(197, 168, 90, 0.35);
-  background: linear-gradient(135deg, rgba(197, 168, 90, 0.05) 0%, rgba(10, 10, 12, 0.8) 100%);
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(197, 168, 90, 0.04);
-}
-
-/* Efeito de Flashlight/Spotlight seguindo o cursor */
-.pillar-panel::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 20px;
-  padding: 1px;
-  background: radial-gradient(circle 120px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(197, 168, 90, 0.35), transparent 70%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  width: 100%;
+  height: 750px;
+  max-width: 1100px;
+  margin: 20px auto 0 auto;
   z-index: 2;
 }
 
-.pillar-panel:hover::before {
-  opacity: 1;
-}
-
-/* Composição de Painéis Destaque (Featured) */
-.pillar-featured.pillar-sport {
-  grid-column: span 2;
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
-}
-
-.pillar-featured.pillar-value {
-  grid-column: span 3;
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
-}
-
-.pillar-featured .pillar-icon-box {
-  flex-shrink: 0;
-}
-
-.pillar-featured .pillar-content {
-  text-align: left;
-}
-
-/* Detalhe Dourado Decorativo de Canto para Destaques */
-.pillar-corner-decor {
+/* SVG das Linhas de Conexao e Elipse Orbital */
+.pillars-connection-lines {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 12px;
-  height: 12px;
-  border: 1px solid transparent;
-  border-top-color: var(--gold-primary);
-  border-right-color: var(--gold-primary);
-  opacity: 0.3;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.pillar-panel:hover .pillar-corner-decor {
-  opacity: 0.8;
-  transform: scale(1.1);
+.orbital-path-line {
+  stroke-dasharray: 6 8;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 2px rgba(197, 168, 90, 0.05));
+  transition: stroke 0.5s ease, stroke-width 0.5s ease;
 }
 
-/* Ícone */
-.pillar-icon-box {
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
-  background: rgba(197, 168, 90, 0.05);
-  border: 1px solid rgba(197, 168, 90, 0.15);
+.pillars-system-stage.has-active .orbital-path-line {
+  stroke: rgba(197, 168, 90, 0.15);
+  stroke-width: 1.5px;
+}
+
+.conn-line {
+  transition: stroke 0.5s ease, stroke-width 0.5s ease, filter 0.5s ease;
+  stroke-dasharray: 6 4;
+}
+
+.conn-line.active {
+  stroke: rgba(197, 168, 90, 0.6) !important;
+  stroke-width: 1.8 !important;
+  filter: drop-shadow(0 0 6px rgba(197, 168, 90, 0.25));
+  stroke-dasharray: none;
+}
+
+/* Faiscas ativas de pulsos luminosos radiais (Sparks) */
+.conn-spark {
+  stroke: var(--gold-light);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  pointer-events: none;
+  opacity: 0;
+  stroke-dasharray: 24 220; /* Faisca de 24px com espaco largo */
+  stroke-dashoffset: 240;
+  transition: opacity 0.3s ease;
+}
+
+.conn-spark.active {
+  opacity: 1;
+  animation: connSparkRun 1s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes connSparkRun {
+  0% {
+    stroke-dashoffset: 240;
+  }
+  100% {
+    stroke-dashoffset: -20;
+  }
+}
+
+.conn-dot {
+  transition: fill 0.5s ease, r 0.5s ease, filter 0.5s ease;
+  filter: drop-shadow(0 0 4px rgba(197, 168, 90, 0.1));
+}
+
+.conn-dot.active {
+  fill: rgba(197, 168, 90, 0.85);
+  r: 5.5;
+  filter: drop-shadow(0 0 8px rgba(197, 168, 90, 0.5));
+}
+
+.conn-dot-core {
+  transition: fill 0.5s ease, r 0.5s ease;
+}
+
+.conn-dot-core.active {
+  fill: rgba(197, 168, 90, 0.7);
+  r: 6.5;
+}
+
+/* ============================================
+   NUCLEO CENTRAL FNDD (PREMIUM LOGO)
+   ============================================ */
+.pillars-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition-bounce);
+  z-index: 10;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  background: rgba(10, 10, 12, 0.65);
 }
 
-.pillar-panel:hover .pillar-icon-box {
-  background: rgba(197, 168, 90, 0.15);
+.pillars-core.reacting {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Texto Curvo Circular Rotativo (Brasao de Prestigio) */
+.core-badge-text-rotator {
+  position: absolute;
+  inset: -15px; /* Maior que o circulo central, girando em volta dele */
+  z-index: 3;
+  pointer-events: none;
+  animation: rotation 30s linear infinite;
+  display: block;
+}
+
+.rotator-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.rotator-text {
+  font-family: var(--font-title);
+  font-size: 6.8px;
+  font-weight: 800;
+  fill: var(--gold-primary);
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  transition: opacity 0.5s ease, fill 0.5s ease;
+}
+
+.pillars-core.reacting .rotator-text {
+  opacity: 0.9;
+  fill: var(--gold-light);
+}
+
+/* Logo central premium no nucleo */
+.core-logo {
+  height: 85px;
+  width: auto;
+  object-fit: contain;
+  z-index: 4;
+  filter: drop-shadow(0 0 12px rgba(197, 168, 90, 0.25));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.pillars-core.reacting .core-logo {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 24px rgba(197, 168, 90, 0.55));
+}
+
+.core-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.08) 0%, transparent 70%);
+  filter: blur(35px);
+  z-index: 1;
+  transition: opacity 0.6s ease;
+}
+
+.pillars-core.reacting .core-glow {
+  opacity: 1.5;
+}
+
+/* Anel Externo Giratorio - Sentido Horario */
+.core-ring-outer {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 1px dashed rgba(197, 168, 90, 0.16);
+  z-index: 2;
+  animation: rotateCW 35s linear infinite;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Anel Interno Giratorio - Sentido Anti-Horario */
+.core-ring-inner {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(197, 168, 90, 0.15);
+  border-top-color: rgba(248, 226, 167, 0.4);
+  border-bottom-color: rgba(248, 226, 167, 0.4);
+  z-index: 2;
+  animation: rotateCCW 20s linear infinite;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.pillars-core.reacting .core-ring-outer {
   border-color: rgba(197, 168, 90, 0.45);
-  transform: scale(1.08) rotate(5deg);
+  box-shadow: 0 0 20px rgba(197, 168, 90, 0.12);
 }
 
-.pillar-icon {
-  font-size: 2rem;
+.pillars-core.reacting .core-ring-inner {
+  border-color: rgba(248, 226, 167, 0.45);
+  border-top-color: var(--gold-light);
+  border-bottom-color: var(--gold-light);
+  box-shadow: 0 0 15px rgba(248, 226, 167, 0.18), inset 0 0 10px rgba(197, 168, 90, 0.08);
+}
+
+@keyframes rotateCW {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateCCW {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.core-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+  padding: 0;
+}
+
+.core-brand-name {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  color: var(--gold-light);
+  background: linear-gradient(135deg, #FFF 30%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 4px;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.core-brand-sub {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
   color: var(--gold-primary);
-  filter: drop-shadow(0 0 8px rgba(197, 168, 90, 0.25));
-  transition: color 0.5s ease;
+  opacity: 0.55;
+  text-transform: uppercase;
+  transition: opacity 0.4s ease, color 0.4s ease;
 }
 
-.pillar-panel:hover .pillar-icon {
+.pillars-core.reacting .core-brand-name {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.15));
+}
+
+.pillars-core.reacting .core-brand-sub {
+  opacity: 0.9;
   color: var(--gold-light);
 }
 
-/* Conteúdo */
-.pillar-content {
+/* ============================================
+   MODULOS DE PILAR EM POSICAO DE ORBITA ABSOLUTA (.pillar-node)
+   ============================================ */
+.pillar-node {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 310px; /* Largura simetrica padronizada */
+  cursor: default;
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+/* Mapeamento orbital de posicoes no desktop */
+.p1 { left: 4%; top: 4%; }
+.p2 { right: 4%; top: 4%; }
+.p3 { right: 0%; top: 50%; transform: translateY(-50%); }
+.p4 { right: 4%; bottom: 4%; }
+.p5 { left: 4%; bottom: 4%; }
+.p6 { left: 0%; top: 50%; transform: translateY(-50%); }
+
+/* Delicados efeitos hover radiais */
+.pillar-node:hover {
+  z-index: 12;
+}
+
+.p1:hover { transform: translateY(-8px); }
+.p2:hover { transform: translateY(-8px); }
+.p3:hover { transform: translateY(-50%) translateX(8px); }
+.p4:hover { transform: translateY(8px); }
+.p5:hover { transform: translateY(8px); }
+.p6:hover { transform: translateY(-50%) translateX(-8px); }
+
+/* Quando outro pilar esta ativo, os inativos esmaecem */
+.pillars-system-stage.has-active .pillar-node:not(.active) {
+  opacity: 0.35;
+}
+
+.pillars-system-stage.has-active .pillar-node:not(.active) .node-body {
+  border-color: rgba(255, 255, 255, 0.015);
+  box-shadow: none;
+}
+
+/* Ancora de Conexao do Card */
+.node-anchor {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.left-side .node-anchor {
+  order: 3; /* Fica do lado direito do card (para apontar pro centro) */
+}
+
+.right-side .node-anchor {
+  order: 1; /* Fica do lado esquerdo do card (para apontar pro centro) */
+}
+
+.node-pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(197, 168, 90, 0.22);
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.pillar-node.active .node-pulse {
+  background: rgba(197, 168, 90, 0.7);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 12px rgba(197, 168, 90, 0.45);
+  transform: scale(1.35);
+}
+
+/* Corpo do Modulo (Card) com efeito de reflexo reflexivo de cristal */
+.node-body {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.45) 0%, rgba(8, 8, 10, 0.65) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.5s ease, background 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  flex: 1;
+  overflow: hidden;
+}
+
+.node-body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 90, 0.12), transparent);
+  transform: skewX(-25deg);
+  transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.pillar-node:hover .node-body::after {
+  left: 150%;
+}
+
+.left-side .node-body {
+  order: 1;
+}
+
+.right-side .node-body {
+  order: 3;
+}
+
+.pillar-node.active .node-body {
+  border-color: rgba(197, 168, 90, 0.35);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.04) 0%, rgba(10, 10, 12, 0.8) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 20px rgba(197, 168, 90, 0.03);
+}
+
+/* Icone com micro-rotacao atrativa */
+.node-icon-wrap {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: rgba(197, 168, 90, 0.04);
+  border: 1px solid rgba(197, 168, 90, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pillar-node.active .node-icon-wrap {
+  background: rgba(197, 168, 90, 0.16);
+  border-color: rgba(197, 168, 90, 0.5);
+  transform: scale(1.1) rotate(12deg);
+}
+
+.node-icon {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 6px rgba(197, 168, 90, 0.15));
+  transition: color 0.4s ease;
+}
+
+.pillar-node.active .node-icon {
+  color: var(--gold-light);
+}
+
+/* Info / Textos */
+.node-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   position: relative;
   width: 100%;
 }
 
-.pillar-number {
+.node-number {
   font-family: var(--font-title);
-  font-size: 1.4rem;
-  font-weight: 900;
+  font-size: 0.85rem;
+  font-weight: 800;
   color: var(--gold-primary);
-  opacity: 0.15;
+  opacity: 0.25;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   line-height: 1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.pillar-panel:hover .pillar-number {
-  opacity: 0.7;
-  transform: translateY(-2px);
+.pillar-node.active .node-number {
+  opacity: 0.85;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 5px rgba(197, 168, 90, 0.2));
 }
 
-.pillar-name {
+.node-title {
   font-family: var(--font-title);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+  line-height: 1.3;
 }
 
-.pillar-panel:hover .pillar-name {
+.pillar-node.active .node-title {
   color: var(--gold-primary);
 }
 
-.pillar-text {
+.node-text {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.55;
-  text-align: left;
+  line-height: 1.5;
+  opacity: 0.75;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE E ADAPTAÇÃO MOBILE/TABLET
-   ========================================================================== */
-@media (max-width: 1200px) {
+/* ============================================
+   ANIMACOES DE ENTRADA (STAGGER)
+   ============================================ */
+.pillars-system-stage .pillar-node {
+  opacity: 0;
+  transform: scale(0.95) translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.p3, .p6 {
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillars-system-stage .pillars-core {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillars-system-stage.revealed .pillars-core {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.pillars-system-stage.revealed .pillar-node {
+  opacity: 1;
+}
+
+.pillars-system-stage.revealed .p1 { transform: scale(1) translateY(0); transition-delay: 0.15s; }
+.pillars-system-stage.revealed .p2 { transform: scale(1) translateY(0); transition-delay: 0.25s; }
+.pillars-system-stage.revealed .p3 { transform: translateY(-50%) scale(1); transition-delay: 0.35s; }
+.pillars-system-stage.revealed .p4 { transform: scale(1) translateY(0); transition-delay: 0.45s; }
+.pillars-system-stage.revealed .p5 { transform: scale(1) translateY(0); transition-delay: 0.55s; }
+.pillars-system-stage.revealed .p6 { transform: translateY(-50%) scale(1); transition-delay: 0.65s; }
+
+/* Quando ativo via hover, mantem opacidade total */
+.pillar-node.active {
+  opacity: 1 !important;
+}
+
+/* SVG linhas entrada */
+.conn-line {
+  stroke-dashoffset: 600;
+  stroke-dasharray: 600;
+  transition: stroke-dashoffset 1.4s ease, stroke 0.5s ease, stroke-width 0.5s ease, filter 0.5s ease;
+}
+
+.pillars-system-stage.revealed .conn-line {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 6 4;
+}
+
+/* Timeline vertical mobile (oculta no desktop) */
+.pillars-mobile-timeline {
+  display: none;
+}
+
+/* ============================================
+   RESPONSIVIDADE PILARES
+   ============================================ */
+@media (max-width: 1100px) {
   .pillars-section {
-    padding: 100px 6%;
+    padding: 100px 4%;
   }
+  .pillars-system-stage {
+    max-width: 950px;
+    height: 700px;
+  }
+  .pillar-node {
+    width: 270px;
+  }
+  .p3 { right: -2%; }
+  .p6 { left: -2%; }
+  .pillars-core {
+    width: 180px;
+    height: 180px;
+  }
+  .core-logo { height: 75px; }
 }
 
 @media (max-width: 991px) {
@@ -2300,36 +2668,95 @@ body {
   }
   
   .pillars-container {
-    gap: 40px;
+    gap: 30px;
   }
   
   .pillars-title {
     font-size: 2.2rem;
   }
-  
-  /* Bento desfeito para Timeline Vertical */
-  .pillars-bento {
-    grid-template-columns: 1fr !important;
-    gap: 20px;
-  }
-  
-  /* Todos os painéis viram blocos simples empilhados */
-  .pillar-panel {
-    grid-column: span 1 !important;
+
+  /* Desfazer grid: timeline vertical organizada */
+  .pillars-system-stage {
+    display: flex !important;
     flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 20px !important;
+    gap: 24px !important;
+    height: auto !important;
     min-height: auto !important;
-    padding: 28px 24px !important;
+    position: relative !important;
+    padding: 0 10px !important;
+    margin-top: 30px !important;
+  }
+
+  /* SVG linhas ocultas no mobile */
+  .pillars-connection-lines {
+    display: none !important;
+  }
+
+  /* Ancoras ocultas no mobile */
+  .node-anchor {
+    display: none !important;
+  }
+
+  /* Nucleo no topo com order -1 */
+  .pillars-core {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 20px auto !important;
+    order: -1 !important;
+    justify-self: center;
+  }
+
+  .core-tagline { font-size: 0.58rem; max-width: 120px; }
+  .core-ring::before { display: none; }
+  
+  .core-logo {
+    height: 64px !important;
+  }
+
+  .core-badge-text-rotator {
+    display: none !important; /* Desliga o texto rotativo no mobile */
+  }
+
+  /* Modulos viram blocos empilhados com ordem correta */
+  .pillar-node {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    opacity: 1 !important;
   }
   
-  .pillar-featured .pillar-content {
-    text-align: left !important;
+  .pillar-node:hover {
+    transform: none !important;
   }
-  
-  .pillar-number {
-    top: 24px;
-    right: 24px;
+
+  .node-body {
+    width: 100% !important;
+    padding: 20px !important;
+    border-left: 2.5px solid rgba(197, 168, 90, 0.15) !important;
+    border-radius: 0 14px 14px 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+  }
+
+  /* Timeline vertical no mobile */
+  .pillars-mobile-timeline {
+    display: block !important;
+    position: absolute;
+    top: 180px;
+    left: 28px;
+    bottom: 20px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(197, 168, 90, 0.15), rgba(197, 168, 90, 0.02));
+    z-index: 1;
   }
 }
 
@@ -2337,8 +2764,17 @@ body {
   .pillars-title {
     font-size: 1.8rem;
   }
+  .pillars-core {
+    width: 140px;
+    height: 140px;
+  }
+  .core-logo { font-size: 55px; }
+  .node-body { padding: 16px !important; }
+  .node-icon-wrap { width: 40px; height: 40px; min-width: 40px; }
+  .node-icon { font-size: 1.3rem; }
+  .node-title { font-size: 1rem; }
+  .node-text { font-size: 0.78rem; }
 }
-
 
 /* ==========================================================================
    CLASSES REUTILIZÁVEIS PARA PRÓXIMAS DOBRAS (ATMOSFERA UNIFICADA)
@@ -2430,5 +2866,342 @@ body {
   opacity: 1 !important;
 }
 */
+
+/* ============================================
+   SEÇÃO MANIFESTO EM MOVIMENTO
+   ============================================ */
+.manifesto-motion-section {
+  position: relative;
+  width: 100%;
+  padding: 160px 0;
+  background: transparent; /* Deixa o canvas/background global visível */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Vinhetas escuras superior/inferior para emenda perfeita e profundidade cinematográfica */
+  box-shadow: inset 0 120px 100px -80px rgba(6, 6, 8, 0.95), 
+              inset 0 -120px 100px -80px rgba(6, 6, 8, 0.95);
+}
+
+.manifesto-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle 450px at var(--manifesto-mouse-x, 50%) var(--manifesto-mouse-y, 50%), rgba(197, 168, 90, 0.045) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.15s ease;
+}
+
+.manifesto-glow-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.02) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manifesto-watermark {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-family: var(--font-title);
+  font-size: 16vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.015);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.manifesto-motion-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.manifesto-header {
+  text-align: center;
+  margin-bottom: 70px;
+  width: 100%;
+}
+
+.manifesto-eyebrow-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.manifesto-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+}
+
+.manifesto-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary) 0%, transparent 100%);
+}
+
+.manifesto-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Palco das Palavras */
+.manifesto-word-stage {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+/* Linha de Movimento Fluida SVG */
+.manifesto-line-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manifesto-path-bg {
+  stroke: rgba(197, 168, 90, calc(var(--manifesto-line-glow, 0.15) * 0.45));
+  transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;
+}
+
+.manifesto-path-line {
+  stroke-dasharray: 6 12;
+  stroke: rgba(197, 168, 90, var(--manifesto-line-glow, 0.15));
+  transition: stroke 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 0 calc(var(--manifesto-line-glow, 0.1) * 8px) rgba(197, 168, 90, 0.3));
+}
+
+/* Spark que corre a linha */
+.manifesto-path-spark {
+  stroke-dasharray: 120 1000;
+  stroke-dashoffset: 1120;
+  opacity: calc(0.65 + calc(var(--manifesto-line-glow, 0.15) * 0.35));
+  filter: drop-shadow(0 0 6px rgba(248, 226, 167, 0.45));
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Palavras no Wrapper */
+.manifesto-words-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  perspective: 1200px; /* Adiciona perspectiva 3D chique */
+}
+
+.manifesto-word {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: clamp(2.3rem, 6.5vw, 5.8rem);
+  font-weight: 900;
+  color: var(--text-secondary);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  /* Transição otimizada para coreografia fluida de rastro */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.5s ease;
+}
+
+/* Ecos / Sombras da Coreografia (Anterior e Posterior) nas laterais */
+.manifesto-word.prev,
+.manifesto-word.next {
+  opacity: 0.12;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.manifesto-word.prev {
+  color: var(--gold-primary);
+  background: linear-gradient(135deg, var(--gold-primary) 0%, rgba(197, 168, 90, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.manifesto-word.next {
+  color: var(--gold-primary);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.2) 0%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Palavra Protagonista (Ativa no Centro) */
+.manifesto-word.active {
+  opacity: 1;
+  filter: blur(0);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #FFFFFF 40%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 35px rgba(197, 168, 90, 0.2), 0 0 10px rgba(248, 226, 167, 0.15);
+  z-index: 10;
+}
+
+.manifesto-word.far-prev,
+.manifesto-word.far-next {
+  opacity: 0;
+  filter: blur(12px);
+}
+
+/* Fim / Conclusão Narrativa */
+.manifesto-final {
+  text-align: center;
+  max-width: 750px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.manifesto-support-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.manifesto-final-phrase {
+  font-family: var(--font-title);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--gold-primary);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, var(--gold-light) 20%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* CTA Premium Discreto */
+.manifesto-cta-wrapper {
+  margin-top: 20px;
+}
+
+.manifesto-premium-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--gold-primary);
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.4s ease;
+}
+
+.manifesto-premium-link .cta-arrow-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: var(--gold-primary);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+}
+
+.manifesto-premium-link .cta-icon {
+  font-size: 1.1rem;
+  transform: translateX(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
+}
+
+.manifesto-premium-link:hover {
+  color: var(--gold-light);
+}
+
+.manifesto-premium-link:hover .cta-arrow-line {
+  width: 100%;
+  background: var(--gold-light);
+}
+
+.manifesto-premium-link:hover .cta-icon {
+  transform: translateX(6px);
+  color: var(--gold-light);
+}
+
+/* Responsividade do Manifesto */
+@media (max-width: 768px) {
+  .manifesto-motion-section {
+    padding: 90px 0;
+  }
+  .manifesto-word-stage {
+    height: 200px;
+    margin-bottom: 40px;
+  }
+  .manifesto-word {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+  .manifesto-word.prev,
+  .manifesto-word.next,
+  .manifesto-word.far-prev,
+  .manifesto-word.far-next {
+    opacity: 0 !important;
+    display: none !important;
+  }
+  .manifesto-line-svg {
+    opacity: 0.25; /* Simplifica a linha no mobile */
+  }
+  .manifesto-final {
+    gap: 18px;
+  }
+  .manifesto-watermark {
+    font-size: 20vw;
+  }
+}
 
 

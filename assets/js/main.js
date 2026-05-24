@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAboutScrollParallax();
   initCanvasBackground();
   initInteractiveStage();
+  initPillarsSystem();
+  initManifestoMotion();
 });
 
 /**
@@ -46,7 +48,7 @@ function initHeroVideo() {
  * Atualiza variáveis CSS (--mouse-x, --mouse-y) nos cards flutuantes e de pilares
  */
 function initSpotlightEffect() {
-  const cards = document.querySelectorAll('.float-metric-card, .step-card-glass, .pillar-panel');
+  const cards = document.querySelectorAll('.float-metric-card, .step-card-glass, .node-body');
   
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -351,7 +353,7 @@ function initCanvasBackground() {
   // ========================================
   // PARTÍCULAS DE POEIRA DE PALCO (VIVAS)
   // ========================================
-  const PARTICLE_COUNT = 80; // Quantidade boa sem peso
+  const PARTICLE_COUNT = 40; // Reduzido para ficar mais limpo e elegante
   const particles = [];
   
   // Cores da paleta FNDD
@@ -498,38 +500,74 @@ function initCanvasBackground() {
       ctx.fill();
     });
     
-    // --- Desenhar RASTROS CURVOS dourados ---
-    tracePhase += 0.0003;
+    // --- Desenhar RASTROS CURVOS dourados (com rotação contínua visível) ---
+    tracePhase += 0.003; // 10x mais rápido para rotação perceptível
     ctx.save();
-    ctx.globalAlpha = 0.08;
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.6)';
+    
+    // === ARCO 1 — canto superior esquerdo, girando lentamente ===
+    const cx1 = W * 0.15 + Math.sin(tracePhase * 0.3) * 50 + mnx * 25;
+    const cy1 = H * 0.2 + Math.cos(tracePhase * 0.2) * 30 + mny * 18;
+    const arcStart1 = tracePhase * 0.4; // Ângulo gira continuamente
+    const arcEnd1 = arcStart1 + 2.2;    // Arco parcial (~120°)
+    const r1 = 320 + Math.sin(tracePhase * 0.8) * 30;
+    
+    // Linha principal sólida
+    ctx.globalAlpha = 0.18;
+    ctx.strokeStyle = 'rgba(197, 168, 90, 0.8)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
+    ctx.stroke();
+    
+    // Linha paralela tracejada (acompanha)
+    ctx.setLineDash([8, 10]);
+    ctx.globalAlpha = 0.09;
     ctx.lineWidth = 1;
-    
-    // Curva 1 (canto superior esquerdo)
     ctx.beginPath();
-    const cx1 = W * 0.2 + Math.sin(tracePhase) * 40 + mnx * 20;
-    const cy1 = H * 0.15 + Math.cos(tracePhase * 0.7) * 20 + mny * 15;
-    ctx.arc(cx1, cy1, 350 + Math.sin(tracePhase * 2) * 20, -0.5, 1.5);
-    ctx.stroke();
-    
-    // Curva 2 (canto inferior direito)
-    ctx.strokeStyle = 'rgba(197, 168, 90, 0.5)';
-    ctx.beginPath();
-    const cx2 = W * 0.85 + Math.sin(tracePhase + 2) * 30 - mnx * 15;
-    const cy2 = H * 0.75 + Math.cos(tracePhase * 0.5 + 1) * 25 - mny * 10;
-    ctx.arc(cx2, cy2, 400 + Math.sin(tracePhase * 1.5) * 25, 2, 4.5);
-    ctx.stroke();
-    
-    // Linhas tracejadas paralelas
-    ctx.setLineDash([6, 8]);
-    ctx.globalAlpha = 0.04;
-    ctx.beginPath();
-    ctx.arc(cx1, cy1, 370, -0.5, 1.5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(cx2, cy2, 420, 2, 4.5);
+    ctx.arc(cx1, cy1, r1 + 18, arcStart1 + 0.1, arcEnd1 + 0.1);
     ctx.stroke();
     ctx.setLineDash([]);
+    
+    // Glow sutil no arco
+    ctx.globalAlpha = 0.04;
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = 'rgba(197, 168, 90, 0.4)';
+    ctx.beginPath();
+    ctx.arc(cx1, cy1, r1, arcStart1, arcEnd1);
+    ctx.stroke();
+    
+    // === ARCO 2 — canto inferior direito, gira no sentido oposto ===
+    const cx2 = W * 0.82 + Math.sin(tracePhase * 0.25 + 2) * 40 - mnx * 20;
+    const cy2 = H * 0.72 + Math.cos(tracePhase * 0.18 + 1) * 35 - mny * 15;
+    const arcStart2 = -tracePhase * 0.35; // Gira no sentido oposto
+    const arcEnd2 = arcStart2 + 2.5;
+    const r2 = 380 + Math.sin(tracePhase * 0.6) * 25;
+    
+    // Linha principal sólida
+    ctx.globalAlpha = 0.15;
+    ctx.strokeStyle = 'rgba(197, 168, 90, 0.7)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
+    ctx.stroke();
+    
+    // Linha paralela tracejada
+    ctx.setLineDash([6, 9]);
+    ctx.globalAlpha = 0.07;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(cx2, cy2, r2 + 20, arcStart2 - 0.1, arcEnd2 - 0.1);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // Glow sutil no arco 2
+    ctx.globalAlpha = 0.035;
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = 'rgba(197, 168, 90, 0.35)';
+    ctx.beginPath();
+    ctx.arc(cx2, cy2, r2, arcStart2, arcEnd2);
+    ctx.stroke();
+    
     ctx.restore();
     
     // --- Desenhar PARTÍCULAS de poeira ---
@@ -637,4 +675,227 @@ function initCanvasBackground() {
   }
   
   animate();
+}
+
+/**
+ * Inicialização e interatividade da seção Pilares de Atuação (Sistema de Atuação FNDD)
+ * Controla o acendimento das linhas de conexão, dots e reações do núcleo FNDD ao passar o mouse
+ */
+function initPillarsSystem() {
+  const stage = document.getElementById('pillarsStage');
+  const nodes = document.querySelectorAll('.pillar-node');
+  const core = document.getElementById('pillarsCore');
+  const connLines = document.querySelectorAll('.conn-line');
+  const connDots = document.querySelectorAll('.conn-dot');
+  const coreDot = document.querySelector('.conn-dot-core');
+
+  if (!stage || !nodes.length) return;
+
+  nodes.forEach((node, index) => {
+    node.addEventListener('mouseenter', () => {
+      // 1. Ativa estado global no palco
+      stage.classList.add('has-active');
+      
+      // 2. Ativa o nó atual
+      node.classList.add('active');
+      
+      // 3. Ativa a reação do núcleo central
+      if (core) core.classList.add('reacting');
+      
+      // 4. Acende a linha de conexão e a faísca (spark) correspondente
+      const lineId = node.getAttribute('data-line');
+      const targetLine = document.getElementById(lineId);
+      if (targetLine) targetLine.classList.add('active');
+      
+      const sparkId = lineId.replace('connLine', 'connSpark');
+      const targetSpark = document.getElementById(sparkId);
+      if (targetSpark) targetSpark.classList.add('active');
+      
+      // 5. Acende o ponto (dot) do lado do módulo correspondente pelo índice físico
+      if (connDots[index]) {
+        connDots[index].classList.add('active');
+      }
+      
+      // 6. Acende o ponto do núcleo central
+      if (coreDot) coreDot.classList.add('active');
+    });
+
+    node.addEventListener('mouseleave', () => {
+      // 1. Remove estado global do palco
+      stage.classList.remove('has-active');
+      
+      // 2. Desativa o nó atual
+      node.classList.remove('active');
+      
+      // 3. Desativa a reação do núcleo
+      if (core) core.classList.remove('reacting');
+      
+      // 4. Apaga todas as linhas de conexão e faíscas
+      connLines.forEach(line => line.classList.remove('active'));
+      const sparks = document.querySelectorAll('.conn-spark');
+      sparks.forEach(spark => spark.classList.remove('active'));
+      
+      // 5. Apaga todos os pontos (dots) de conexão
+      connDots.forEach(dot => dot.classList.remove('active'));
+      
+      // 6. Apaga o ponto do núcleo
+      if (coreDot) coreDot.classList.remove('active');
+    });
+  });
+
+  // Interação ao passar o mouse sobre o núcleo central (Reação limpa e focada)
+  if (core) {
+    core.addEventListener('mouseenter', () => {
+      core.classList.add('reacting');
+      if (coreDot) coreDot.classList.add('active');
+      
+      // Garante de forma proativa que todas as conexões e sparks estejam inativos ao passar o mouse no core
+      stage.classList.remove('has-active');
+      nodes.forEach(node => node.classList.remove('active'));
+      connLines.forEach(line => line.classList.remove('active'));
+      const sparks = document.querySelectorAll('.conn-spark');
+      sparks.forEach(spark => spark.classList.remove('active'));
+      connDots.forEach(dot => dot.classList.remove('active'));
+    });
+
+    core.addEventListener('mouseleave', () => {
+      core.classList.remove('reacting');
+      if (coreDot) coreDot.classList.remove('active');
+    });
+  }
+}
+
+/**
+ * Inicialização e controle cinético da seção Manifesto em Movimento
+ * Efeitos de:
+ * - Spotlight ultra suave acompanhando o mouse
+ * - Proximidade do mouse acendendo a linha fluida (SVG)
+ * - Progresso cronológico com coreografia 3D horizontal de revelação das palavras
+ * - Sincronização luminosa da faísca do SVG com o rastro cinético corporal
+ */
+function initManifestoMotion() {
+  const section = document.getElementById('manifesto-movimento');
+  const spotlight = document.getElementById('manifestoSpotlight');
+  const stage = document.getElementById('manifestoWordStage');
+  const words = document.querySelectorAll('.manifesto-word');
+  const spark = document.querySelector('.manifesto-path-spark');
+  
+  if (!section || !words.length) return;
+
+  // 1. Efeito Spotlight & Acendimento de Linha por proximidade do cursor
+  section.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    section.style.setProperty('--manifesto-mouse-x', `${x}px`);
+    section.style.setProperty('--manifesto-mouse-y', `${y}px`);
+
+    // Calcula a proximidade vertical do mouse com o centro do palco (onde a linha fica)
+    if (stage) {
+      const stageRect = stage.getBoundingClientRect();
+      const stageCenterY = stageRect.top - rect.top + stageRect.height / 2;
+      const distY = Math.abs(y - stageCenterY);
+      
+      // Se o mouse estiver a menos de 220px da linha, ela brilha progressivamente
+      let glowFactor = 1 - (distY / 220);
+      glowFactor = Math.max(0.12, Math.min(1.0, glowFactor)); // Brilho base de 0.12 a 1.0
+      section.style.setProperty('--manifesto-line-glow', glowFactor.toString());
+    }
+  }, { passive: true });
+
+  // 2. Progresso de palavras e animação de linha no Scroll
+  let ticking = false;
+
+  const updateManifestoScroll = () => {
+    const rect = section.getBoundingClientRect();
+    const viewHeight = window.innerHeight;
+    
+    // Executa apenas se a seção estiver ativamente cruzando a janela visível
+    if (rect.top < viewHeight && rect.bottom > 0) {
+      // Calcula o progresso do scroll de forma normalizada (0 a 1)
+      const entryPoint = viewHeight;
+      const exitPoint = -rect.height;
+      const scrollRange = entryPoint - exitPoint;
+      const currentScroll = viewHeight - rect.top;
+      
+      let progress = currentScroll / scrollRange;
+      progress = Math.max(0, Math.min(1, progress)); // Clampa entre 0 e 1
+
+      // Mapeia o progresso (usa o miolo de 15% a 80% do scroll para a transição)
+      let wordProgress = (progress - 0.15) / 0.65;
+      wordProgress = Math.max(0, Math.min(0.99, wordProgress));
+
+      const totalWords = words.length;
+      const activeIndex = Math.floor(wordProgress * totalWords);
+
+      // 3. Atualiza a palavra ativa com transição de opacidade/escala e coreografia 3D horizontal
+      words.forEach((word, index) => {
+        word.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
+        word.style.transform = '';
+        
+        // Verifica se é mobile para simplificar o layout e evitar sobreposição tridimensional lateral
+        const isMobile = window.innerWidth < 768;
+
+        if (index === activeIndex) {
+          word.classList.add('active');
+          const scrollFraction = (wordProgress * totalWords) - index; // De -0.5 a 0.5
+          const parallaxOffset = scrollFraction * 20; 
+          word.style.transform = `translateX(${parallaxOffset}px) scale(1.1) translateZ(0)`;
+        } else if (index === activeIndex - 1 && !isMobile) {
+          word.classList.add('prev');
+          const scrollFraction = (wordProgress * totalWords) - index; 
+          const parallaxOffset = -190 + (scrollFraction * 20);
+          word.style.transform = `translateX(${parallaxOffset}px) scale(0.78) rotate(-3.5deg) translateZ(0)`;
+        } else if (index === activeIndex + 1 && !isMobile) {
+          word.classList.add('next');
+          const scrollFraction = (wordProgress * totalWords) - index;
+          const parallaxOffset = 190 + (scrollFraction * 20);
+          word.style.transform = `translateX(${parallaxOffset}px) scale(0.78) rotate(3.5deg) translateZ(0)`;
+        } else if (index < activeIndex - 1 && !isMobile) {
+          word.classList.add('far-prev');
+          word.style.transform = `translateX(-380px) scale(0.55) translateZ(0)`;
+        } else if (!isMobile) {
+          word.classList.add('far-next');
+          word.style.transform = `translateX(380px) scale(0.55) translateZ(0)`;
+        } else {
+          // No mobile, as palavras não ativas ficam totalmente ocultas
+          word.classList.add('far-next');
+          word.style.transform = `scale(0.5) translateZ(0)`;
+        }
+      });
+
+      // 4. Sincroniza a faísca do rastro do SVG em sentidos dinâmicos
+      if (spark) {
+        // O dashoffset corre de 1120 (totalmente recuado à esquerda) até 220 (totalmente avançado à direita)
+        const maxOffset = 1120;
+        const minOffset = 220;
+        const currentSparkOffset = maxOffset - (progress * (maxOffset - minOffset));
+        spark.style.strokeDashoffset = currentSparkOffset;
+      }
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateManifestoScroll();
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Executa no resize para recalcular comportamento mobile se necessário
+  window.addEventListener('resize', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateManifestoScroll();
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Executa uma vez no carregamento para posicionamento correto
+  updateManifestoScroll();
 }

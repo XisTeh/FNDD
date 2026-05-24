@@ -11,7 +11,7 @@
   <meta name="robots" content="index, follow">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/logotipo FNDD png.png">
+  <link rel="icon" type="image/png" href="assets/images/Apenas Boneco Logo.png">
   
   <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -425,115 +425,262 @@
     </div>
   </section>
 
-  <!-- Seção Pilares de Atuação (Bento Grid Institucional FNDD) -->
-  <section class="pillars-section reveal-on-scroll" id="pilares">
-    
-    <!-- Atmosfera local cinemática da seção -->
+  <!-- Seção Pilares de Atuação (Sistema de Atuação FNDD) -->
+  <section class="pillars-section pillars-system reveal-on-scroll" id="pilares">
+
+    <!-- Divisor de transição superior -->
     <div class="pillars-bg-decor">
       <div class="pillars-haze-local"></div>
-      <div class="pillars-decor-line"></div>
     </div>
 
     <div class="pillars-container">
-      
-      <!-- Cabeçalho Centralizado Simétrico -->
+
+      <!-- Cabeçalho -->
       <div class="pillars-header reveal-on-scroll">
         <div class="pillars-eyebrow-container">
           <span class="pillars-eyebrow">Pilares de Atuação</span>
           <div class="pillars-eyebrow-line"></div>
         </div>
         <h2 class="pillars-title font-title">
-          Onde a dança ganha <span class="gold-gradient-text">estrutura, reconhecimento</span> e direção.
+          Um sistema nacional para fortalecer a <span class="gold-gradient-text">dança desportiva</span>.
         </h2>
         <div class="pillars-title-separator"></div>
         <p class="pillars-description">
-          A FNDD atua em diferentes frentes para fortalecer a dança desportiva no Brasil, conectando formação, competições, representatividade e valorização profissional em uma mesma visão institucional.
+          A FNDD conecta formação, competições, representatividade e valorização profissional em uma estrutura pensada para impulsionar a dança como esporte, profissão e transformação social.
         </p>
       </div>
 
-      <!-- Bento Grid Institucional Assimétrico -->
-      <div class="pillars-bento reveal-on-scroll delay-1">
+      <!-- Palco do Sistema de Atuação -->
+      <div class="pillars-system-stage reveal-on-scroll delay-1" id="pillarsStage">
+
+        <!-- SVG de Linhas de Conexão (Desktop) -->
+        <svg class="pillars-connection-lines" id="pillarsLines" viewBox="0 0 1000 700" fill="none" preserveAspectRatio="xMidYMid meet">
+          <!-- Elipse Orbital de Guia de Leitura (Sentido Horário) -->
+          <ellipse class="orbital-path-line" cx="500" cy="350" rx="260" ry="230" stroke="rgba(197, 168, 90, 0.08)" stroke-width="1.2" fill="none" stroke-dasharray="6 8"/>
+          
+          <!-- Linhas conectando os módulos ao núcleo central -->
+          <line class="conn-line" id="connLine1" x1="280" y1="120" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark1" x1="280" y1="120" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <line class="conn-line" id="connLine2" x1="720" y1="120" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark2" x1="720" y1="120" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <line class="conn-line" id="connLine3" x1="780" y1="350" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark3" x1="780" y1="350" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <line class="conn-line" id="connLine4" x1="720" y1="580" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark4" x1="720" y1="580" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <line class="conn-line" id="connLine5" x1="280" y1="580" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark5" x1="280" y1="580" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <line class="conn-line" id="connLine6" x1="220" y1="350" x2="500" y2="350" stroke="rgba(197,168,90,0.12)" stroke-width="1"/>
+          <line class="conn-spark" id="connSpark6" x1="220" y1="350" x2="500" y2="350" stroke="var(--gold-light)" stroke-width="2.2" stroke-linecap="round"/>
+          
+          <!-- Pontos/âncoras luminosos no final de cada linha (lado do módulo) -->
+          <circle class="conn-dot" cx="280" cy="120" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          <circle class="conn-dot" cx="720" cy="120" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          <circle class="conn-dot" cx="780" cy="350" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          <circle class="conn-dot" cx="720" cy="580" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          <circle class="conn-dot" cx="280" cy="580" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          <circle class="conn-dot" cx="220" cy="350" r="3.5" fill="rgba(197,168,90,0.25)"/>
+          
+          <!-- Ponto central no núcleo -->
+          <circle class="conn-dot-core" cx="500" cy="350" r="4.5" fill="rgba(197,168,90,0.3)"/>
+        </svg>
+
+        <!-- Núcleo Central FNDD -->
+        <div class="pillars-core" id="pillarsCore">
+          <div class="core-glow"></div>
+          <div class="core-ring-outer"></div>
+          <div class="core-ring-inner"></div>
+          <div class="core-content">
+            <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="core-logo">
+            <span class="core-brand-name">FNDD</span>
+            <span class="core-brand-sub">Dança Desportiva</span>
+          </div>
+        </div>
+
+        <!-- Módulos de Pilares em Órbita Horária Sequencial (01 a 06) -->
         
-        <!-- Pilar 1: Dança como Esporte (Destaque Horizontal - Span 2) -->
-        <article class="pillar-panel pillar-featured pillar-sport glass-panel">
-          <div class="pillar-corner-decor"></div>
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:bolt-circle-bold-duotone" class="pillar-icon"></iconify-icon>
+        <!-- Pilar 1: Dança como Esporte (Topo Esquerdo) -->
+        <article class="pillar-node p1 left-side" data-pillar="1" data-line="connLine1">
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:bolt-circle-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">01</span>
+              <h3 class="node-title font-title">Dança como Esporte</h3>
+              <p class="node-text">Reconhecer a dança como prática esportiva exige técnica, disciplina, performance e critérios que valorizem sua evolução como modalidade.</p>
+            </div>
           </div>
-          <div class="pillar-content">
-            <span class="pillar-number">01</span>
-            <h3 class="pillar-name font-title">Dança como Esporte</h3>
-            <p class="pillar-text">Reconhecer a dança como prática esportiva exige técnica, disciplina, performance e critérios oficiais que valorizem sua evolução constante como modalidade de alto rendimento.</p>
+          <div class="node-anchor"><div class="node-pulse"></div></div>
+        </article>
+
+        <!-- Pilar 2: Formação Profissional (Topo Direito) -->
+        <article class="pillar-node p2 right-side" data-pillar="2" data-line="connLine2">
+          <div class="node-anchor"><div class="node-pulse"></div></div>
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:square-academic-cap-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">02</span>
+              <h3 class="node-title font-title">Formação Profissional</h3>
+              <p class="node-text">Apoiar a construção de conhecimento, preparo técnico e desenvolvimento contínuo para professores, atletas e profissionais da dança.</p>
+            </div>
           </div>
         </article>
 
-        <!-- Pilar 2: Formação Profissional (Normal - Span 1) -->
-        <article class="pillar-panel glass-panel">
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:square-academic-cap-bold-duotone" class="pillar-icon"></iconify-icon>
-          </div>
-          <div class="pillar-content">
-            <span class="pillar-number">02</span>
-            <h3 class="pillar-name font-title">Formação Profissional</h3>
-            <p class="pillar-text">Apoiar a construção de conhecimento, preparo técnico e desenvolvimento contínuo para professores, atletas e profissionais da dança.</p>
-          </div>
-        </article>
-
-        <!-- Pilar 3: Competições e Eventos (Normal - Span 1) -->
-        <article class="pillar-panel glass-panel">
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:cup-bold-duotone" class="pillar-icon"></iconify-icon>
-          </div>
-          <div class="pillar-content">
-            <span class="pillar-number">03</span>
-            <h3 class="pillar-name font-title">Competições e Eventos</h3>
-            <p class="pillar-text">Fortalecer circuitos oficiais, congressos, workshops e encontros nacionais que movimentam e aquecem o mercado da dança no Brasil.</p>
+        <!-- Pilar 3: Competições e Eventos (Meio Direito) -->
+        <article class="pillar-node p3 right-side" data-pillar="3" data-line="connLine3">
+          <div class="node-anchor"><div class="node-pulse"></div></div>
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:cup-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">03</span>
+              <h3 class="node-title font-title">Competições e Eventos</h3>
+              <p class="node-text">Fortalecer circuitos, congressos, workshops e encontros que movimentam a cena da dança e ampliam sua presença nacional.</p>
+            </div>
           </div>
         </article>
 
-        <!-- Pilar 4: Representatividade Nacional (Normal - Span 1) -->
-        <article class="pillar-panel glass-panel">
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:global-bold-duotone" class="pillar-icon"></iconify-icon>
-          </div>
-          <div class="pillar-content">
-            <span class="pillar-number">04</span>
-            <h3 class="pillar-name font-title">Representatividade</h3>
-            <p class="pillar-text">Construir uma presença institucional sólida capaz de conectar profissionais, escolas e federações em todas as regiões do país.</p>
-          </div>
-        </article>
-
-        <!-- Pilar 5: Transformação Social (Normal - Span 1) -->
-        <article class="pillar-panel glass-panel">
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:hand-heart-bold-duotone" class="pillar-icon"></iconify-icon>
-          </div>
-          <div class="pillar-content">
-            <span class="pillar-number">05</span>
-            <h3 class="pillar-name font-title">Transformação Social</h3>
-            <p class="pillar-text">Usar a dança como ferramenta potente de inclusão, autoestima, cultura, educação e impacto social real na vida de milhares de brasileiros.</p>
+        <!-- Pilar 4: Representatividade (Baixo Direito) -->
+        <article class="pillar-node p4 right-side" data-pillar="4" data-line="connLine4">
+          <div class="node-anchor"><div class="node-pulse"></div></div>
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:global-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">04</span>
+              <h3 class="node-title font-title">Representatividade</h3>
+              <p class="node-text">Construir uma presença institucional capaz de conectar profissionais, escolas, companhias e organizações em diferentes regiões do país.</p>
+            </div>
           </div>
         </article>
 
-        <!-- Pilar 6: Valorização da Profissão (Destaque Horizontal de Encerramento - Span 3) -->
-        <article class="pillar-panel pillar-featured pillar-value glass-panel">
-          <div class="pillar-corner-decor"></div>
-          <div class="pillar-icon-box">
-            <iconify-icon icon="solar:shield-star-bold-duotone" class="pillar-icon"></iconify-icon>
+        <!-- Pilar 5: Valorização da Profissão (Baixo Esquerdo) -->
+        <article class="pillar-node p5 left-side" data-pillar="5" data-line="connLine5">
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:shield-star-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">05</span>
+              <h3 class="node-title font-title">Valorização da Profissão</h3>
+              <p class="node-text">Promover o reconhecimento de quem vive, ensina, organiza, compete e trabalha com a dança como atividade profissional.</p>
+            </div>
           </div>
-          <div class="pillar-content">
-            <span class="pillar-number">06</span>
-            <h3 class="pillar-name font-title">Valorização da Profissão</h3>
-            <p class="pillar-text">Promover a dignidade e o reconhecimento formal de quem vive, ensina, treina, compete, organiza e trabalha ativamente com a dança desportiva no Brasil, gerando novas oportunidades de crescimento e fomento profissional.</p>
-          </div>
+          <div class="node-anchor"><div class="node-pulse"></div></div>
         </article>
+
+        <!-- Pilar 6: Transformação Social (Meio Esquerdo) -->
+        <article class="pillar-node p6 left-side" data-pillar="6" data-line="connLine6">
+          <div class="node-body">
+            <div class="node-icon-wrap">
+              <iconify-icon icon="solar:hand-heart-bold-duotone" class="node-icon"></iconify-icon>
+            </div>
+            <div class="node-info">
+              <span class="node-number">06</span>
+              <h3 class="node-title font-title">Transformação Social</h3>
+              <p class="node-text">Usar a dança como ferramenta de inclusão, autoestima, bem-estar, cultura, educação e impacto positivo na vida das pessoas.</p>
+            </div>
+          </div>
+          <div class="node-anchor"><div class="node-pulse"></div></div>
+        </article>
+
+        <!-- Timeline Vertical Mobile ( timeline dourada de fundo) -->
+        <div class="pillars-mobile-timeline"></div>
+
+      </div>
 
       </div>
 
     </div>
   </section>
 
+  <!-- Seção Manifesto em Movimento (Campanha Institucional Interativa) -->
+  <section class="manifesto-motion-section reveal-on-scroll" id="manifesto-movimento">
+    <div class="manifesto-spotlight" id="manifestoSpotlight"></div>
+    <div class="manifesto-watermark">FNDD</div>
+    <div class="manifesto-glow-orb"></div>
+
+    <div class="manifesto-motion-container">
+      
+      <!-- Cabeçalho do Manifesto -->
+      <div class="manifesto-header">
+        <div class="manifesto-eyebrow-container">
+          <span class="manifesto-eyebrow">Manifesto em Movimento</span>
+          <div class="manifesto-eyebrow-line"></div>
+        </div>
+        <h2 class="manifesto-title font-title">
+          Dança não é apenas movimento.<br>É <span class="gold-gradient-text">futuro em construção</span>.
+        </h2>
+        <div class="manifesto-title-separator"></div>
+      </div>
+
+      <!-- Palco das Palavras em Transformação -->
+      <div class="manifesto-word-stage" id="manifestoWordStage">
+        
+        <!-- Linha de Movimento Fluida (SVG Rastro de Dança) -->
+        <svg class="manifesto-line-svg" viewBox="0 0 1000 300" fill="none" preserveAspectRatio="none" id="manifestoSvg">
+          <!-- Rastro dourado sutil de fundo -->
+          <path class="manifesto-path-bg" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="rgba(197, 168, 90, 0.08)" stroke-width="3" stroke-linecap="round" />
+          <!-- Rastro dourado fluido principal -->
+          <path class="manifesto-path-line" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="url(#manifesto-gold-gradient)" stroke-width="2.5" stroke-linecap="round" />
+          <!-- Feixe luminoso / faísca que acompanha a palavra ativa -->
+          <path class="manifesto-path-spark" d="M 0 150 Q 250 50 500 150 T 1000 150" stroke="#F8E2A7" stroke-width="3.5" stroke-linecap="round" fill="none" />
+          
+          <defs>
+            <linearGradient id="manifesto-gold-gradient" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#785A1D" stop-opacity="0.1" />
+              <stop offset="30%" stop-color="#C5A85A" stop-opacity="0.8" />
+              <stop offset="50%" stop-color="#F8E2A7" stop-opacity="1" />
+              <stop offset="70%" stop-color="#C5A85A" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#785A1D" stop-opacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Palavras que se transformam em sequência cinemática -->
+        <div class="manifesto-words-wrapper">
+          <span class="manifesto-word active" data-index="0">É técnica.</span>
+          <span class="manifesto-word" data-index="1">É disciplina.</span>
+          <span class="manifesto-word" data-index="2">É formação.</span>
+          <span class="manifesto-word" data-index="3">É profissão.</span>
+          <span class="manifesto-word" data-index="4">É esporte.</span>
+          <span class="manifesto-word" data-index="5">É reconhecimento.</span>
+          <span class="manifesto-word" data-index="6">É futuro.</span>
+        </div>
+      </div>
+
+      <!-- Fechamento Narrativo da Campanha -->
+      <div class="manifesto-final">
+        <p class="manifesto-support-text">
+          A FNDD atua para ampliar a visão sobre a dança desportiva, fortalecendo sua dimensão esportiva, profissional, cultural e social.
+        </p>
+        <strong class="manifesto-final-phrase">
+          Quando a dança é organizada, ela ganha voz, valor e futuro.
+        </strong>
+
+        <!-- Link CTA de Prestígio Discreto -->
+        <div class="manifesto-cta-wrapper">
+          <a href="#sobre" class="manifesto-premium-link">
+            <span class="cta-text">Conheça a atuação da FNDD</span>
+            <span class="cta-arrow-line"></span>
+            <iconify-icon icon="solar:arrow-right-bold" class="cta-icon"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Lógica de Parallax e Efeitos Dinâmicos -->
-  <script src="assets/js/main.js?v=2.0.0"></script>
+  <script src="assets/js/main.js?v=2.0.2"></script>
 </body>
 </html>
