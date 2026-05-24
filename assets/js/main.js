@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDirectorsGallery();
   initFeaturedPanelSpotlight();
   initEventsInteractiveCards();
+  initFaqAccordion();
 });
 
 /**
@@ -51,7 +52,7 @@ function initHeroVideo() {
  * Atualiza variáveis CSS (--mouse-x, --mouse-y) nos cards flutuantes e de pilares
  */
 function initSpotlightEffect() {
-  const cards = document.querySelectorAll('.float-metric-card, .step-card-glass, .node-body');
+  const cards = document.querySelectorAll('.float-metric-card, .step-card-glass, .node-body, .faq-item, .contact-main-panel');
   
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -1084,7 +1085,7 @@ function initFeaturedPanelSpotlight() {
  * coordenadas para os glows e bordas brilhantes.
  */
 function initEventsInteractiveCards() {
-  const cards = document.querySelectorAll('.station-card, .station-card-highlight, .events-cta');
+  const cards = document.querySelectorAll('.station-card, .station-card-highlight, .events-cta-simple');
   
   if (cards.length === 0) return;
   
@@ -1106,7 +1107,7 @@ function initEventsInteractiveCards() {
       const yc = ((y / rect.height) - 0.5);
       
       // Define a inclinação máxima (ex: 3 graus para o CTA grande, 5 para os cartões menores)
-      const maxTilt = card.classList.contains('events-cta') ? 3 : 5;
+      const maxTilt = card.classList.contains('events-cta-simple') ? 3 : 5;
       
       // Ângulo de rotação invertido para acompanhar de forma intuitiva
       const rotateX = yc * -maxTilt;
@@ -1121,6 +1122,62 @@ function initEventsInteractiveCards() {
       card.style.setProperty('--mouse-x', `-999px`);
       card.style.setProperty('--mouse-y', `-999px`);
       card.style.transform = '';
+    });
+  });
+}
+
+/**
+ * Inicializa a interatividade do Acordeão de FAQ Premium.
+ * Realiza transições suaves usando scrollHeight dinâmico e suporta acessibilidade (ARIA).
+ */
+function initFaqAccordion() {
+  const accordionContainer = document.getElementById('faqAccordion');
+  if (!accordionContainer) return;
+
+  const faqItems = accordionContainer.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    if (!questionBtn || !answer) return;
+
+    questionBtn.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Fecha todos os outros itens ativos para manter a interface limpa e premium
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item && otherItem.classList.contains('active')) {
+          otherItem.classList.remove('active');
+          const otherBtn = otherItem.querySelector('.faq-question');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+          if (otherAnswer) otherAnswer.style.maxHeight = null;
+        }
+      });
+
+      // Alterna o estado do item atual
+      if (isActive) {
+        item.classList.remove('active');
+        questionBtn.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('active');
+        questionBtn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Atualiza as alturas dos itens ativos no redimensionamento da janela
+  window.addEventListener('resize', () => {
+    faqItems.forEach(item => {
+      if (item.classList.contains('active')) {
+        const answer = item.querySelector('.faq-answer');
+        if (answer) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      }
     });
   });
 }
