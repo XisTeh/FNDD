@@ -2873,7 +2873,7 @@ body {
 .manifesto-pin-container {
   position: relative;
   width: 100%;
-  height: 250vh; /* Altura do scroll total para fixar as palavras */
+  height: 200vh; /* Altura do scroll total para fixar as palavras (encurtada para dinamismo) */
   background: transparent;
 }
 

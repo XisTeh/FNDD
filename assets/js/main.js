@@ -841,9 +841,9 @@ function initManifestoMotion() {
       progress = Math.max(0, Math.min(1, progress)); // Clampa entre 0 e 1
 
       // Mapeamento dos slides:
-      // De progress 0 a 0.70 transicionamos de forma linear as 7 palavras (indices de 0 a 6).
-      // De progress 0.70 a 1.00 exibimos e fixamos o card final (indice 7).
-      const transitionEndProgress = 0.70;
+      // De progress 0 a 0.88 transicionamos de forma linear as 7 palavras (indices de 0 a 6).
+      // De progress 0.88 a 1.00 exibimos e fixamos o card final (indice 7).
+      const transitionEndProgress = 0.88;
       
       let activeIndex = 0;
       if (progress >= transitionEndProgress) {
