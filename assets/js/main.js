@@ -705,6 +705,45 @@ function initManifestoMotion() {
   const pinContainer = document.getElementById('manifesto-pin-container');
 
   const updateManifestoScroll = () => {
+    const isTabletOrMobile = window.innerWidth < 1024;
+    
+    if (isTabletOrMobile) {
+      if (section) {
+        section.style.position = '';
+        section.style.top = '';
+        section.style.bottom = '';
+        section.style.left = '';
+        section.style.width = '';
+        section.style.zIndex = '';
+      }
+      words.forEach(word => {
+        word.classList.remove('prev', 'next', 'far-prev', 'far-next');
+        word.style.transform = '';
+      });
+      
+      if (!window.manifestoMobileObserver) {
+        window.manifestoMobileObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -100px 0px'
+        });
+        words.forEach(word => window.manifestoMobileObserver.observe(word));
+      }
+      ticking = false;
+      return;
+    } else {
+      if (window.manifestoMobileObserver) {
+        window.manifestoMobileObserver.disconnect();
+        window.manifestoMobileObserver = null;
+        words.forEach(word => word.classList.remove('active'));
+      }
+    }
+
     const parentContainer = pinContainer || section;
     const rect = parentContainer.getBoundingClientRect();
     const viewHeight = window.innerHeight;
