@@ -4,6 +4,11 @@
    breakpoints obrigatórios, priorizando a resiliência móvel e a imersão de telas grandes.
    ========================================================================== */
 
+/* Regras Base Globais de Responsividade */
+.mobile-metrics-grid {
+  display: none !important;
+}
+
 /* ==========================================================================
    BREAKPOINTS GRANDES & MONITORES CINEMA (1600px a 1920px)
    ========================================================================== */
@@ -440,23 +445,32 @@
     overflow: visible;
   }
   .directors-rail {
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: auto;
-    padding: 8px 4px 12px 4px;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    height: auto !important;
+    padding: 8px 4px 16px 4px !important;
+    gap: 12px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
   }
   .directors-rail::-webkit-scrollbar {
-    height: 2px;
+    height: 4px;
+  }
+  .directors-rail::-webkit-scrollbar-thumb {
+    background: rgba(197, 168, 90, 0.25) !important;
+    border-radius: 10px;
   }
   .rail-fade-top,
   .rail-fade-bottom {
     display: none;
   }
   .rail-item {
-    width: 170px;
-    flex-shrink: 0;
+    width: 170px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
   }
   .rail-item:hover {
     transform: none;
@@ -632,13 +646,21 @@
     width: 130px;
   }
   .mobile-metrics-grid {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
     width: 100%;
     margin-top: 30px;
   }
-  .float-metric-card {
+  
+  /* Ocultar cards flutuantes de desktop no mobile para evitar sobreposições e duplicações */
+  .hero-visual-container .float-metric-card {
+    display: none !important;
+  }
+  
+  /* Exibição limpa das métricas em grid no mobile */
+  .mobile-metrics-grid .float-metric-card {
+    display: flex !important;
     position: relative !important;
     top: auto !important;
     bottom: auto !important;
@@ -648,6 +670,7 @@
     max-width: 100% !important;
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important; /* Desativar animações de flutuação no mobile */
   }
 
   /* --- Diretoria --- */
@@ -685,7 +708,9 @@
     text-align: left;
   }
   .rail-item {
-    width: 155px;
+    width: 155px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
   }
 
   /* --- Eventos --- */

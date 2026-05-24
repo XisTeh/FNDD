@@ -505,8 +505,7 @@
   animation-duration: 1.8s;
 }
 
-/* border-glow-beam: removida a animação contínua de rotação (conic-gradient 400% é muito pesado).
-   Efeito mantido apenas como borda dourada sutil no hover — sem loop rotativo. */
+/* border-glow-beam: efeito premium de borda iluminada dourada rotativa que anda pelo card no hover */
 .border-glow-beam {
   position: absolute;
   inset: 0;
@@ -515,12 +514,8 @@
   z-index: 1;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.5s ease;
-  /* Borda dourada simples substitui o conic-gradient rotativo */
-  border: 1px solid rgba(197, 168, 90, 0);
+  transition: opacity 0.4s ease;
 }
-
-/* Sem pseudo ::before e ::after rotando — removidos por impacto negativo em GPU */
 
 /* Garante que os conteúdos dos cards fiquem acima do efeito de borda brilhante */
 .station-card > *:not(.border-glow-beam),
@@ -530,15 +525,44 @@
   z-index: 3;
 }
 
-/* Ativação no Hover — glow de borda, sem rotação */
+/* Ativação no Hover */
 .station-card:hover .border-glow-beam,
 .station-card-highlight:hover .border-glow-beam,
 .events-cta:hover .border-glow-beam {
   opacity: 1;
-  border-color: rgba(197, 168, 90, 0.35);
 }
 
-/* @keyframes rotateBeam removido — era uma animação de 360deg em elemento 400%x400% */
+.border-glow-beam::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(197, 168, 90, 0.75) 15%,
+    transparent 35%,
+    transparent 50%,
+    rgba(248, 226, 167, 0.75) 65%,
+    transparent 85%,
+    transparent 100%
+  );
+  animation: rotateBeam 3.5s linear infinite;
+  will-change: transform;
+  
+  /* Máscara premium para desenhar apenas a borda de 1px mantendo o card translúcido */
+  padding: 1.2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+@keyframes rotateBeam {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
 /* Badge Premium para o Card Central */
 .highlight-badge {
