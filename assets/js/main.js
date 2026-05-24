@@ -807,6 +807,20 @@ function initManifestoMotion() {
         }
       });
 
+      // Atualiza indicador de progresso no mobile
+      const progressFill = document.getElementById('manifestoMobileProgressFill');
+      const progressNumCurrent = document.querySelector('.manifesto-mobile-progress .progress-num:first-child');
+      if (isTabletOrMobile) {
+        const displayIndex = activeIndex === 7 ? 7 : activeIndex + 1;
+        if (progressNumCurrent) {
+          progressNumCurrent.textContent = `0${displayIndex}`;
+        }
+        if (progressFill) {
+          const fillPercentage = activeIndex === 7 ? 100 : ((activeIndex + 1) / 7) * 100;
+          progressFill.style.width = `${fillPercentage}%`;
+        }
+      }
+
       // Faísca SVG sincronizada (Apenas no Desktop)
       if (spark && !isTabletOrMobile) {
         const maxOffset = 1120, minOffset = 220;

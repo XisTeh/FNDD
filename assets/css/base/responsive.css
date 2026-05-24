@@ -35,8 +35,9 @@ html, body {
   position: relative;
 }
 
-/* Reset de métricas adicionais */
-.mobile-metrics-grid {
+/* Reset de métricas adicionais e elementos mobile */
+.mobile-metrics-grid,
+.manifesto-mobile-progress {
   display: none;
 }
 
@@ -416,37 +417,148 @@ html, body {
     align-items: center !important;
     justify-content: center !important;
     overflow: hidden !important;
-    background: var(--bg-deep) !important;
+    background: radial-gradient(circle at 50% 50%, rgba(14, 14, 18, 0.94) 0%, rgba(5, 5, 6, 0.99) 100%),
+                radial-gradient(circle at 50% 100%, rgba(197, 168, 90, 0.05) 0%, transparent 60%) !important;
     /* Vinhetas escuras superior/inferior para emenda perfeita e profundidade cinematográfica */
     box-shadow: inset 0 80px 70px -50px rgba(6, 6, 8, 0.98), 
                 inset 0 -80px 70px -50px rgba(6, 6, 8, 0.98) !important;
     z-index: 3 !important;
     padding: 0 !important;
   }
+
+  /* Ruído/Grain sutil de fundo em SVG puro */
+  .manifesto-motion-section::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E") !important;
+    opacity: 0.015 !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
+  }
+
+  .manifesto-motion-container {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important; /* Aproxima título e palavras */
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+  }
+
+  /* Detalhe de linha de rodapé com ponto luminoso para tirar o vazio escuro inferior */
+  .manifesto-motion-container::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 50px !important;
+    left: 10% !important;
+    width: 80% !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(197, 168, 90, 0.15) 30%, rgba(248, 226, 167, 0.35) 50%, rgba(197, 168, 90, 0.15) 70%, transparent 100%) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+  }
+
   .manifesto-header {
-    margin-bottom: 20px !important;
+    margin-bottom: 0 !important;
     text-align: center !important;
     padding: 0 24px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 3 !important;
   }
+
   .manifesto-title {
     font-size: clamp(1.7rem, 6vw, 2.3rem) !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
     max-width: 100% !important;
   }
+
+  .manifesto-title-separator {
+    width: 40px !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent) !important;
+    margin: 10px auto 0 auto !important;
+  }
+
+  /* Linha vertical que desce do título apontando para as palavras */
+  .manifesto-header::after {
+    content: '' !important;
+    display: block !important;
+    width: 1px !important;
+    height: 35px !important;
+    background: linear-gradient(to bottom, var(--gold-primary), transparent) !important;
+    margin: 8px auto 0 auto !important;
+    opacity: 0.35 !important;
+  }
+
+  /* Glow, Anel Orbital e Partículas de fundo no Palco */
   .manifesto-word-stage {
-    height: 280px !important;
-    margin-top: 10px !important;
+    height: 260px !important; /* Ajustado para aproximar verticalmente */
+    margin-top: 5px !important;
     width: 100% !important;
     position: relative !important;
     display: flex !important;
+    flex-direction: column !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: center;
   }
+
+  /* Glow dourado suave E anel orbital discreto atrás da palavra ativa */
+  .manifesto-word-stage::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 250px !important;
+    height: 250px !important;
+    background: 
+      radial-gradient(circle, rgba(197, 168, 90, 0.12) 0%, transparent 70%),
+      radial-gradient(circle, transparent 65%, rgba(197, 168, 90, 0.04) 66%, rgba(197, 168, 90, 0.04) 70%, transparent 71%) !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+  }
+
+  /* Partículas muito sutis flutuando no ar via CSS keyframes */
+  .manifesto-word-stage::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: 
+      radial-gradient(circle 2px at 20% 30%, rgba(197, 168, 90, 0.35) 100%, transparent 100%),
+      radial-gradient(circle 1.5px at 80% 40%, rgba(197, 168, 90, 0.25) 100%, transparent 100%),
+      radial-gradient(circle 2px at 35% 75%, rgba(197, 168, 90, 0.3) 100%, transparent 100%),
+      radial-gradient(circle 1.2px at 70% 20%, rgba(248, 226, 167, 0.35) 100%, transparent 100%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    opacity: 0.6 !important;
+    animation: manifestoGlowFloat 16s ease-in-out infinite alternate !important;
+  }
+
+  @keyframes manifestoGlowFloat {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-8px) scale(1.03); }
+  }
+
+  /* Rastro dourado curvo de fundo (Reativado com opacidade e altura menor) */
   .manifesto-line-svg {
-    display: none !important;
+    display: block !important;
+    opacity: 0.22 !important;
+    width: 100% !important;
+    height: 120px !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
   }
+
   .manifesto-words-wrapper {
     position: relative !important;
     width: 100% !important;
@@ -459,13 +571,10 @@ html, body {
     max-width: 100% !important;
     margin: 0 !important;
     box-sizing: border-box !important;
+    z-index: 2 !important;
   }
-  
-  /* Remover a linha vertical dourada da timeline e os dots */
+
   .manifesto-words-wrapper::before {
-    display: none !important;
-  }
-  .manifesto-word:not(.manifesto-word-final)::before {
     display: none !important;
   }
 
@@ -474,14 +583,14 @@ html, body {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.85) !important;
+    transform: translate(-50%, -50%) scale(0.88) !important;
     opacity: 0 !important;
-    filter: blur(8px) !important;
+    filter: blur(6px) !important;
     transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 filter 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    font-size: clamp(1.8rem, 6.5vw, 3rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(2rem, 8vw, 3.4rem) !important;
+    line-height: 1.25 !important;
     text-align: center !important;
     white-space: nowrap !important;
     pointer-events: none !important;
@@ -494,16 +603,47 @@ html, body {
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    text-shadow: 0 0 25px rgba(197, 168, 90, 0.25) !important;
+    text-shadow: 0 0 25px rgba(197, 168, 90, 0.25), 0 4px 12px rgba(0, 0, 0, 0.5) !important;
   }
-  
+
+  .manifesto-word:not(.manifesto-word-final)::before {
+    display: none !important;
+  }
+
   .manifesto-word:not(.manifesto-word-final).active {
     opacity: 1 !important;
     filter: blur(0) !important;
-    transform: translate(-50%, -50%) scale(1.05) !important;
+    transform: translate(-50%, -50%) scale(1.04) !important;
     pointer-events: auto !important;
   }
-  
+
+  /* Watermark FNDD gigantesca e muito sutil de fundo para preencher cantos */
+  .manifesto-watermark {
+    display: block !important;
+    font-size: 32vw !important;
+    opacity: 0.008 !important;
+    position: absolute !important;
+    top: 55% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: #FFFFFF !important;
+    z-index: 1 !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+    pointer-events: none !important;
+    user-select: none !important;
+  }
+
+  .manifesto-glow-orb {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 320px !important;
+    height: 320px !important;
+    background: radial-gradient(circle, rgba(197, 168, 90, 0.04) 0%, transparent 75%) !important;
+    filter: blur(35px) !important;
+  }
+
   /* Card Final Manifesto */
   .manifesto-word-final {
     position: absolute !important;
@@ -521,7 +661,9 @@ html, body {
     max-width: 420px !important;
     align-self: auto !important;
     box-sizing: border-box !important;
+    z-index: 3 !important;
   }
+
   .manifesto-word-final.active {
     opacity: 1 !important;
     filter: blur(0) !important;
@@ -530,21 +672,66 @@ html, body {
   }
 
   .final-card-glass {
-    padding: 24px 20px !important;
-    border-radius: 16px !important;
+    padding: 26px 22px !important;
+    border-radius: 18px !important;
     gap: 12px !important;
     width: 100% !important;
-    background: linear-gradient(135deg, rgba(14, 14, 18, 0.55) 0%, rgba(8, 8, 10, 0.85) 100%) !important;
-    border: 1px solid rgba(197, 168, 90, 0.12) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    background: linear-gradient(135deg, rgba(14, 14, 18, 0.68) 0%, rgba(6, 6, 8, 0.94) 100%) !important;
+    border: 1px solid rgba(197, 168, 90, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(197, 168, 90, 0.05) !important;
     box-sizing: border-box !important;
+  }
+
+  /* Indicador de Progresso Mobile Reposicionado absolutamente no canto inferior direito do palco */
+  .manifesto-mobile-progress {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    position: absolute !important;
+    bottom: 12px !important;
+    right: 24px !important;
+    margin-top: 0 !important;
+    z-index: 4 !important;
+    pointer-events: none !important;
+  }
+  .manifesto-mobile-progress .progress-num {
+    font-family: var(--font-title) !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    color: var(--gold-primary) !important;
+    letter-spacing: 0.05em !important;
+    opacity: 0.65 !important;
+  }
+  .manifesto-mobile-progress .progress-line-track {
+    width: 45px !important;
+    height: 1.5px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 1px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  .manifesto-mobile-progress .progress-line-fill {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: 14.28% !important;
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light)) !important;
+    box-shadow: 0 0 5px var(--gold-light) !important;
+    border-radius: 1px !important;
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
   }
 
   /* Suporte a prefers-reduced-motion */
   @media (prefers-reduced-motion: reduce) {
-    .manifesto-word {
+    .manifesto-word,
+    .manifesto-word-final,
+    .manifesto-word-stage::after {
       transition: none !important;
+      animation: none !important;
     }
   }
 
