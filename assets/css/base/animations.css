@@ -1,0 +1,136 @@
+﻿/* ==========================================================================
+   8. INDICADOR DE SCROLL PREMIUM (MICRO-MOTION)
+   ========================================================================== */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  z-index: 10;
+}
+
+.hero-scroll-indicator:hover {
+  color: var(--gold-primary);
+}
+
+.scroll-indicator-mouse {
+  width: 20px;
+  height: 32px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 20px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.hero-scroll-indicator:hover .scroll-indicator-mouse {
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-gold-sutil);
+}
+
+.scroll-indicator-wheel {
+  width: 3px;
+  height: 6px;
+  background-color: var(--gold-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheelAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes scrollWheelAnim {
+  0% { top: 6px; opacity: 1; }
+  50% { top: 16px; opacity: 0; }
+  100% { top: 6px; opacity: 1; }
+}
+
+/* ==========================================================================
+   11. ANIMAÇÕES DE REVEAL EM SCROLL (OPACIDADE E TRANSLATE)
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays para Stagger */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.25s; }
+.delay-3 { transition-delay: 0.4s; }
+.delay-4 { transition-delay: 0.55s; }
+
+/* ============================================
+   ANIMACOES DE ENTRADA (STAGGER)
+   ============================================ */
+.pillars-system-stage .pillar-node {
+  opacity: 0;
+  transform: scale(0.95) translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.p3, .p6 {
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillars-system-stage .pillars-core {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillars-system-stage.revealed .pillars-core {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.pillars-system-stage.revealed .pillar-node {
+  opacity: 1;
+}
+
+.pillars-system-stage.revealed .p1 { transform: scale(1) translateY(0); transition-delay: 0.15s; }
+.pillars-system-stage.revealed .p2 { transform: scale(1) translateY(0); transition-delay: 0.25s; }
+.pillars-system-stage.revealed .p3 { transform: translateY(-50%) scale(1); transition-delay: 0.35s; }
+.pillars-system-stage.revealed .p4 { transform: scale(1) translateY(0); transition-delay: 0.45s; }
+.pillars-system-stage.revealed .p5 { transform: scale(1) translateY(0); transition-delay: 0.55s; }
+.pillars-system-stage.revealed .p6 { transform: translateY(-50%) scale(1); transition-delay: 0.65s; }
+
+/* Quando ativo via hover, mantem opacidade total */
+.pillar-node.active {
+  opacity: 1 !important;
+}
+
+/* SVG linhas entrada */
+.conn-line {
+  stroke-dashoffset: 600;
+  stroke-dasharray: 600;
+  transition: stroke-dashoffset 1.4s ease, stroke 0.5s ease, stroke-width 0.5s ease, filter 0.5s ease;
+}
+
+.pillars-system-stage.revealed .conn-line {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 6 4;
+}
+
+/* Timeline vertical mobile (oculta no desktop) */
+.pillars-mobile-timeline {
+  display: none;
+}
+

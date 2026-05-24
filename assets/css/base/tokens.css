@@ -1,0 +1,41 @@
+﻿/* ==========================================================================
+   1. DESIGN SYSTEM TOKENS & VARIÁVEIS (FNDD PREMIUM)
+   ========================================================================== */
+:root {
+  /* Cores de Fundo (Profundidade Cinematográfica) */
+  --bg-deep: #050506;
+  --bg-surface: #0a0a0c;
+  --bg-surface-alt: #101013;
+  
+  /* Tons Dourados Premium (FNDD Gold) */
+  --gold-primary: #C5A85A;
+  --gold-light: #F8E2A7;
+  --gold-dark: #785A1D;
+  --gold-glow: rgba(197, 168, 90, 0.08);
+  --gold-glow-strong: rgba(197, 168, 90, 0.35);
+  --gold-bg: rgba(197, 168, 90, 0.03);
+  
+  /* Tons de Texto */
+  --text-primary: #FDFDFD;
+  --text-secondary: #9FA4B4;
+  --text-muted: #595E6D;
+  --text-gold: #EAC97D;
+  
+  /* Efeitos Visuais e Bordas */
+  --border-glass: rgba(255, 255, 255, 0.03);
+  --border-glass-hover: rgba(255, 255, 255, 0.08);
+  --border-gold-glass: rgba(197, 168, 90, 0.12);
+  --border-gold-glass-hover: rgba(197, 168, 90, 0.35);
+  --shadow-premium: 0 30px 60px -15px rgba(0, 0, 0, 0.9);
+  --shadow-gold-sutil: 0 0 30px rgba(197, 168, 90, 0.05);
+  
+  /* Transições e Curvas Rítmicas */
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Fontes */
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+

@@ -1,0 +1,311 @@
+﻿/* ==========================================================================
+   2.5. BARRA DE NAVEGAÇÃO SUPERIOR (HEADER)
+   ========================================================================== */
+.fndd-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
+}
+
+/* Quando scrollar mais de 30px */
+.fndd-navbar.scrolled {
+  height: 70px;
+  background-color: rgba(7, 7, 8, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Marca / Logotipo no Header */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.nav-brand:hover {
+  transform: translateY(-1px);
+}
+
+.nav-logo {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 0 8px rgba(197, 168, 90, 0.2));
+  transition: var(--transition-smooth);
+}
+
+.fndd-navbar.scrolled .nav-logo {
+  height: 44px;
+}
+
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.brand-subtitle {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+
+/* Links do Menu Desktop */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  position: relative;
+  padding: 8px 0;
+  transition: var(--transition-fast);
+  letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  color: var(--gold-primary);
+  font-weight: 600;
+}
+
+/* Linha de hover/active minimalista */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary));
+  transition: var(--transition-fast);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background: var(--gold-primary);
+}
+
+/* Ações e CTA do Header */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-nav-cta {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-gold-glass);
+  padding: 10px 22px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-gold-sutil);
+}
+
+.btn-nav-cta iconify-icon {
+  font-size: 1.1rem;
+  color: var(--gold-primary);
+  transition: var(--transition-smooth);
+}
+
+.btn-nav-cta:hover {
+  border-color: var(--gold-primary);
+  background-color: var(--gold-bg);
+  box-shadow: 0 0 20px rgba(197, 168, 90, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-nav-cta:hover iconify-icon {
+  transform: scale(1.15) rotate(10deg);
+  color: var(--gold-light);
+}
+
+/* Botão Hamburguer Menu Mobile */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1001;
+}
+
+.toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: var(--transition-fast);
+  border-radius: 2px;
+}
+
+/* Menu Mobile Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 5, 6, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  transform: translateY(30px);
+  transition: var(--transition-smooth);
+  padding: 40px;
+}
+
+.mobile-menu-overlay.active .mobile-menu-content {
+  transform: translateY(0);
+}
+
+.mobile-nav-link {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  letter-spacing: 0.05em;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--gold-primary);
+  transform: scale(1.05);
+}
+
+.btn-mobile-cta {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--bg-deep);
+  background: var(--gold-primary);
+  border: 1px solid var(--gold-primary);
+  padding: 14px 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition-smooth);
+  margin-top: 15px;
+  box-shadow: 0 10px 25px rgba(197, 168, 90, 0.25);
+}
+
+.btn-mobile-cta:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(197, 168, 90, 0.4);
+}
+
+/* Responsividade do Header */
+@media (max-width: 991px) {
+  .nav-container {
+    padding: 0 24px;
+  }
+  .nav-menu {
+    display: none; /* Oculta menu desktop */
+  }
+  .btn-nav-cta {
+    display: none; /* Oculta cta desktop */
+  }
+  .nav-toggle {
+    display: flex; /* Mostra hamburguer */
+  }
+}
+
+/* Transições do Hamburguer Ativo */
+.nav-toggle.active .toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background-color: var(--gold-primary);
+}
+
+.nav-toggle.active .toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active .toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--gold-primary);
+}
+

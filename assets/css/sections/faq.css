@@ -1,0 +1,454 @@
+﻿   SEÇÃO FAQ — DÚVIDAS FREQUENTES (FNDD PREMIUM)
+   ========================================================================== */
+.faq-section {
+  position: relative;
+  padding: 120px 0;
+  background: transparent; /* Totalmente integrado ao canvas global e ao ruído orgânico de fundo do site */
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Fundo de quadradinhos removido para preservar a identidade visual do site */
+.faq-grid-bg {
+  display: none;
+}
+
+/* Orbes de Brilho Dourado Ultra Sutis e Discretos */
+.faq-glow-orb-1 {
+  position: absolute;
+  top: 10%;
+  left: -10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.02) 0%, rgba(197, 168, 90, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+.faq-glow-orb-2 {
+  position: absolute;
+  bottom: -5%;
+  right: -10%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.025) 0%, rgba(197, 168, 90, 0) 75%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+/* Marca d'água monumental sutil */
+.faq-watermark {
+  position: absolute;
+  bottom: -50px;
+  left: 5%;
+  font-size: 15rem;
+  font-weight: 900;
+  font-family: var(--font-title);
+  color: rgba(255, 255, 255, 0.005);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+/* Grid de Layout Principal (2 Colunas) */
+.faq-container {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 80px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 30px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* Coluna de Contexto (Esquerda) */
+.faq-context {
+  position: sticky;
+  top: 120px;
+}
+
+.faq-eyebrow-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.faq-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-primary);
+}
+
+.faq-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
+}
+
+.faq-title {
+  font-family: var(--font-title);
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+/* Efeito de Shimmer Metálico Dourado Dinâmico no Título */
+.faq-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #785A1D 0%,
+    #EAC97D 25%,
+    #F8E2A7 50%,
+    #EAC97D 75%,
+    #785A1D 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShimmer 5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Linha Separadora com Brilho Dinâmico */
+.faq-title-separator {
+  width: 80px;
+  height: 2px;
+  background: rgba(197, 168, 90, 0.15);
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.faq-title-separator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(248, 226, 167, 0.7), transparent);
+  animation: lineSpark 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes lineSpark {
+  0% {
+    left: -100%;
+  }
+  40%, 100% {
+    left: 200%;
+  }
+}
+
+.faq-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* Bloco de Citação Editorial Lateral */
+.faq-quote-block {
+  position: relative;
+  padding-left: 24px;
+  margin-top: 45px;
+}
+
+.faq-quote-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold-primary) 0%, rgba(197, 168, 90, 0.1) 100%);
+}
+
+.faq-quote {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--text-gold);
+}
+
+/* Coluna do Acordeão (Direita) */
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Item Individual do Acordeão (Glassmorphism Escuro Sutil) */
+.faq-item {
+  position: relative;
+  background: rgba(10, 10, 12, 0.4); /* Glass escuro sutil integrado */
+  border: 1px solid rgba(255, 255, 255, 0.03); /* Borda discreta */
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.faq-item:hover {
+  background: rgba(10, 10, 12, 0.6);
+  border-color: rgba(197, 168, 90, 0.15); /* Borda dourada sutil no hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Estado Ativo do Acordeão */
+.faq-item.active {
+  background: rgba(10, 10, 12, 0.85); /* Fundo escuro sutil e de alta legibilidade */
+  border-color: rgba(197, 168, 90, 0.35); /* Borda dourada discreta no estado ativo */
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Efeito de Spotlight dinâmico seguindo o cursor do mouse */
+.faq-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    250px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(197, 168, 90, 0.04),
+    transparent 80%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.faq-item:hover::before {
+  opacity: 1;
+}
+
+/* Linha sutil dourada no topo quando ativo com cintilação discreta */
+.faq-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.faq-item.active::after {
+  opacity: 0.4;
+}
+
+/* Botão de Pergunta */
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.faq-q-num {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--gold-primary);
+  opacity: 0.7;
+  transition: var(--transition-fast);
+  margin-right: 12px;
+  display: inline-block;
+}
+
+.faq-q-text {
+  flex: 1;
+  color: var(--text-primary);
+  transition: var(--transition-fast);
+  line-height: 1.4;
+}
+
+.faq-q-icon {
+  font-size: 1.2rem;
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover e Efeitos de Foco na Pergunta */
+.faq-question:hover .faq-q-text {
+  color: var(--text-gold);
+}
+
+.faq-question:hover .faq-q-icon {
+  background: rgba(197, 168, 90, 0.1);
+  border-color: rgba(197, 168, 90, 0.25);
+  transform: translateY(1px);
+}
+
+/* Estilos quando o acordeão está ativo */
+.faq-item.active .faq-question {
+  padding-bottom: 16px;
+}
+
+.faq-item.active .faq-q-num {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(197, 168, 90, 0.3);
+}
+
+.faq-item.active .faq-q-text {
+  color: var(--text-gold);
+  font-weight: 700;
+}
+
+.faq-item.active .faq-q-icon {
+  transform: rotate(-180deg);
+  background: var(--gold-primary);
+  color: var(--bg-deep);
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 12px rgba(197, 168, 90, 0.25);
+}
+
+/* Container de Resposta Collapsible (Abertura Suave) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.faq-answer-inner {
+  padding: 0 32px 28px 74px;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  font-family: var(--font-body);
+}
+
+.faq-answer-inner p {
+  margin: 0;
+}
+
+/* Responsividade da Seção FAQ */
+@media (max-width: 991px) {
+  .faq-section {
+    padding: 100px 0;
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .faq-context {
+    position: relative;
+    top: 0;
+  }
+
+  .faq-title {
+    font-size: 2.2rem;
+  }
+
+  .faq-quote-block {
+    margin-top: 30px;
+  }
+
+  .faq-watermark {
+    font-size: 10rem;
+    bottom: -30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 80px 0;
+  }
+
+  .faq-container {
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .faq-title {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+  }
+
+  .faq-description {
+    font-size: 0.98rem;
+    margin-bottom: 25px;
+  }
+
+  .faq-question {
+    padding: 20px 24px;
+  }
+
+  .faq-item.active .faq-question {
+    padding-bottom: 12px;
+  }
+
+  .faq-q-num {
+    font-size: 0.95rem;
+    margin-right: 8px;
+  }
+
+  .faq-q-text {
+    font-size: 1.02rem;
+  }
+
+  .faq-q-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+  }
+
+  .faq-answer-inner {
+    padding: 0 24px 20px 58px;
+    font-size: 0.92rem;
+  }
+}
+

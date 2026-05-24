@@ -1,0 +1,978 @@
+/* ==========================================================================
+   9. RESPONSIVIDADE E ADAPTAÇÃO MULTI-TELA (320px a 1920px) — FNDD PREMIUM
+   Este arquivo unifica as regras de visualização do site inteiro em todos os
+   breakpoints obrigatórios, priorizando a resiliência móvel e a imersão de telas grandes.
+   ========================================================================== */
+
+/* ==========================================================================
+   BREAKPOINTS GRANDES & MONITORES CINEMA (1600px a 1920px)
+   ========================================================================== */
+@media (min-width: 1600px) {
+  .hero-layout-grid,
+  .about-choreo-container,
+  .pillars-container,
+  .events-container,
+  .faq-container,
+  .contact-container,
+  .footer-container,
+  .footer-bottom-inner {
+    max-width: 1440px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-headline {
+    font-size: 5rem !important;
+  }
+
+  .about-title,
+  .pillars-title,
+  .events-title,
+  .faq-title,
+  .contact-title {
+    font-size: 3.8rem !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero-layout-grid,
+  .about-choreo-container,
+  .pillars-container,
+  .events-container,
+  .faq-container,
+  .contact-container,
+  .footer-container,
+  .footer-bottom-inner {
+    max-width: 1680px !important;
+  }
+
+  .hero-headline {
+    font-size: 5.6rem !important;
+  }
+
+  .about-title,
+  .pillars-title,
+  .events-title,
+  .faq-title,
+  .contact-title {
+    font-size: 4.2rem !important;
+  }
+
+  .hero-subheadline,
+  .about-description,
+  .faq-description,
+  .contact-description {
+    font-size: 1.3rem !important;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS NOTEBOOKS PADRÃO & RESOLUÇÕES MÉDIAS (1280px, 1366px, 1440px)
+   ========================================================================== */
+@media (max-width: 1440px) {
+  .hero-layout-grid {
+    gap: 40px;
+  }
+  .about-choreo-stage {
+    height: 500px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .hero-headline {
+    font-size: 3.5rem;
+  }
+  .about-title,
+  .pillars-title,
+  .events-title,
+  .faq-title,
+  .contact-title {
+    font-size: 2.8rem;
+  }
+  .directors-showcase {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero-layout-grid {
+    gap: 30px;
+    padding: 0 20px;
+  }
+  .about-choreo-stage {
+    height: 480px;
+  }
+  .step-01 { left: 2%; top: 6%; }
+  .step-02 { left: 20%; top: 54%; }
+  .step-03 { left: 74%; top: 6%; }
+  .step-04 { left: 74%; top: 54%; }
+  
+  .directors-showcase {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS TABLETS EM PAISAGEM / NETBOOKS COMPACTOS (1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  /* --- Hero --- */
+  .hero-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+    text-align: center;
+  }
+  
+  .hero-text-container {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-subheadline {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 650px;
+  }
+  
+  .hero-ctas-wrapper {
+    justify-content: center;
+  }
+  
+  .hero-visual-container {
+    min-height: 420px;
+    margin-top: 30px;
+  }
+  
+  /* Cards flutuantes dispostos de forma concêntrica mais compacta */
+  .card-rep { left: 5%; top: 5%; }
+  .card-formacao { left: 2%; bottom: 5%; }
+  .card-competicoes { right: 5%; top: 15%; }
+  .card-valorizacao { right: 2%; bottom: 10%; }
+
+  /* --- Sobre (Arena Cinematográfica) --- */
+  .about-choreo-container {
+    gap: 50px;
+  }
+  .about-choreo-image {
+    display: none !important; /* Oculta a imagem central no tablet para evitar sobreposição */
+  }
+  .about-choreo-stage {
+    height: 480px;
+  }
+  .step-01 { left: 0%; top: 4%; width: 220px; }
+  .step-02 { left: 22%; top: 54%; width: 220px; }
+  .step-03 { left: 72%; top: 4%; width: 220px; }
+  .step-04 { left: 72%; top: 54%; width: 220px; }
+
+  /* --- Pilares de Atuação --- */
+  .pillars-section {
+    padding: 100px 4%;
+  }
+  .pillars-system-stage {
+    max-width: 950px;
+    height: 700px;
+  }
+  .pillar-node {
+    width: 260px;
+  }
+  .p3 { right: -2%; }
+  .p6 { left: -2%; }
+  .pillars-core {
+    width: 170px;
+    height: 170px;
+  }
+  .core-logo { height: 70px; }
+
+  /* --- Diretoria --- */
+  .director-featured-panel {
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  /* --- FAQ --- */
+  .faq-container {
+    gap: 40px;
+    padding: 0 20px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS TABLETS EM RETRATO (768px a 991px)
+   ========================================================================== */
+@media (max-width: 991px) {
+  /* --- Menu Superior (Navbar) --- */
+  .fndd-navbar {
+    padding: 14px 24px;
+  }
+
+  /* --- Sobre (Linha Coreográfica) --- */
+  .about-choreography {
+    padding: 100px 24px 80px 24px;
+  }
+  
+  .about-title {
+    font-size: 2.2rem;
+  }
+  
+  .about-choreo-stage {
+    height: auto !important;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-left: 32px;
+    margin-top: 40px;
+  }
+  
+  .about-svg-line-container {
+    display: none; /* Desativa SVG de linha horizontal */
+  }
+  
+  /* Elegante linha dourada vertical lateral de timeline */
+  .about-choreo-stage::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold-dark), var(--gold-primary) 30%, var(--gold-light) 60%, var(--gold-dark));
+    opacity: 0.35;
+    z-index: 1;
+  }
+  
+  /* Imagem reposicionada no topo do stage no Mobile/Tablet */
+  .about-choreo-image {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    max-width: 480px;
+    height: 300px;
+    margin: 0 auto 30px auto;
+    display: block !important;
+  }
+  
+  .choreo-badge {
+    right: 20px;
+    bottom: -15px;
+  }
+  
+  /* Estações convertidas em linhas empilhadas verticalmente */
+  .about-choreo-step {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+    transform: none !important;
+  }
+  
+  .about-choreo-step:hover {
+    transform: none !important;
+  }
+  
+  .step-glow-dot {
+    margin-top: 15px;
+    flex-shrink: 0;
+  }
+  
+  .step-card-glass {
+    flex-grow: 1;
+  }
+  
+  .about-manifesto-badge {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 480px;
+    margin: 20px auto 0 auto;
+    background: linear-gradient(135deg, rgba(14, 14, 18, 0.45) 0%, rgba(8, 8, 10, 0.6) 100%);
+  }
+
+  /* --- Pilares de Atuação --- */
+  .pillars-section {
+    padding: 80px 24px;
+  }
+  
+  .pillars-container {
+    gap: 30px;
+  }
+  
+  .pillars-title {
+    font-size: 2.2rem;
+  }
+
+  /* Desfazer grid circular: timeline vertical organizada */
+  .pillars-system-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    padding: 0 10px !important;
+    margin-top: 30px !important;
+  }
+
+  /* Ocultar conexões SVG e ancoras */
+  .pillars-connection-lines,
+  .node-anchor {
+    display: none !important;
+  }
+
+  /* Núcleo Central no topo do empilhamento */
+  .pillars-core {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 20px auto !important;
+    order: -1 !important;
+    justify-self: center;
+  }
+
+  .core-tagline { font-size: 0.58rem; max-width: 120px; }
+  .core-ring::before { display: none; }
+  .core-logo { height: 64px !important; }
+  .core-badge-text-rotator { display: none !important; }
+
+  /* Módulos viram blocos empilhados */
+  .pillar-node {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    opacity: 1 !important;
+  }
+  
+  .pillar-node:hover {
+    transform: none !important;
+  }
+
+  .node-body {
+    width: 100% !important;
+    padding: 20px !important;
+    border-left: 2.5px solid rgba(197, 168, 90, 0.15) !important;
+    border-radius: 0 14px 14px 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02) !important;
+  }
+
+  /* Timeline vertical dos pilares */
+  .pillars-mobile-timeline {
+    display: block !important;
+    position: absolute;
+    top: 180px;
+    left: 28px;
+    bottom: 20px;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(197, 168, 90, 0.15), rgba(197, 168, 90, 0.02));
+    z-index: 1;
+  }
+
+  /* --- Manifesto em Movimento --- */
+  .manifesto-pin-container {
+    height: auto !important; /* Desativa Pinning longo no tablet/mobile por usabilidade */
+  }
+  .manifesto-motion-section {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    padding: 100px 0;
+  }
+  .manifesto-word-stage {
+    height: auto !important;
+    flex-direction: column !important;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .manifesto-line-svg {
+    display: none !important; /* Oculta linha e faísca SVG */
+  }
+  .manifesto-word {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
+    display: block !important;
+    text-align: center;
+    color: var(--text-primary) !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+  }
+  .manifesto-word-final {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    margin-top: 30px;
+    width: 100% !important;
+  }
+
+  /* --- Diretoria --- */
+  .directors-showcase {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .director-featured-panel {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 16px;
+    padding: 14px;
+  }
+  .featured-bio {
+    padding-right: 6px;
+  }
+  .directors-rail-wrapper {
+    height: auto;
+    overflow: visible;
+  }
+  .directors-rail {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+    padding: 8px 4px 12px 4px;
+    gap: 8px;
+  }
+  .directors-rail::-webkit-scrollbar {
+    height: 2px;
+  }
+  .rail-fade-top,
+  .rail-fade-bottom {
+    display: none;
+  }
+  .rail-item {
+    width: 170px;
+    flex-shrink: 0;
+  }
+  .rail-item:hover {
+    transform: none;
+  }
+
+  /* --- Eventos --- */
+  .events-svg-line {
+    left: 28px;
+    transform: none;
+    width: 60px;
+  }
+  .timeline-station {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+  .station-spacer { display: none; }
+  .station-node {
+    width: auto;
+    height: auto;
+    min-height: auto;
+    padding-top: 18px;
+  }
+  .node-core { width: 12px; height: 12px; }
+  .node-pulse { width: 30px; height: 30px; }
+  .station-card {
+    flex: 1;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+  .station-card::after {
+    left: -20px !important;
+    right: auto !important;
+    width: 20px !important;
+    background: linear-gradient(90deg, rgba(197, 168, 90, 0.35) 0%, transparent 100%) !important;
+  }
+  .station-left .station-card:hover,
+  .station-right .station-card:hover {
+    transform: translateX(5px) scale(1.01);
+  }
+  .station-center {
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+  .station-center .station-node {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    padding-top: 24px;
+  }
+  .station-card-highlight {
+    flex: 1;
+    max-width: 100%;
+    padding: 30px 24px;
+    text-align: left;
+    align-items: flex-start;
+    margin: 0 !important;
+    border-top: 1.5px solid var(--gold-primary);
+    border-bottom: 1.5px solid var(--gold-primary);
+  }
+  .events-cta-simple {
+    margin-top: 40px;
+    padding: 22px 28px;
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  /* --- FAQ --- */
+  .faq-section {
+    padding: 100px 0;
+  }
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .faq-context {
+    position: relative;
+    top: 0;
+  }
+  .faq-title {
+    font-size: 2.2rem;
+  }
+  .faq-quote-block {
+    margin-top: 30px;
+  }
+  .faq-watermark {
+    font-size: 10rem;
+    bottom: -30px;
+  }
+
+  /* --- Contato --- */
+  .contact-section {
+    padding: 100px 0;
+  }
+  .contact-title {
+    font-size: 2.2rem;
+  }
+  .contact-main-panel {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 45px 30px;
+    border-radius: 24px;
+  }
+  .contact-panel-divider {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0;
+  }
+  .contact-panel-divider .divider-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(197, 168, 90, 0.04) 0%, rgba(197, 168, 90, 0.22) 50%, rgba(197, 168, 90, 0.04) 100%);
+  }
+  .contact-panel-divider .divider-glow-dot {
+    left: 50%;
+    top: auto;
+    transform: translate(-50%, -50%);
+  }
+  .contact-col-text {
+    margin-bottom: 25px;
+  }
+
+  /* --- Rodapé --- */
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS DISPOSITIVOS MÓVEIS (768px e abaixo)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* --- Hero --- */
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+  .hero-frame-container {
+    inset: 12px;
+  }
+  .hero-headline {
+    font-size: 2.3rem;
+  }
+  .hero-ctas-wrapper {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .btn-fndd {
+    width: 100%;
+  }
+  .hero-visual-container {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .hero-logo-frame {
+    width: 220px;
+    height: 220px;
+  }
+  .hero-logo-image {
+    width: 130px;
+  }
+  .mobile-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-top: 30px;
+  }
+  .float-metric-card {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100%;
+    max-width: 100% !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* --- Diretoria --- */
+  .directors-section {
+    padding: 80px 0;
+  }
+  .director-featured-panel {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .featured-image-wrapper {
+    aspect-ratio: 4 / 5;
+    max-height: 380px;
+    border-radius: 20px;
+  }
+  .featured-info {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+  .featured-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .featured-number { font-size: 1.8rem; }
+  .featured-name { font-size: 1.3rem; }
+  .featured-role-wrapper { justify-content: center; }
+  .featured-role { font-size: 0.8rem; }
+  .featured-info-separator { margin: 10px 0; }
+  .featured-bio {
+    font-size: 0.85rem;
+    padding-right: 6px;
+    text-align: left;
+  }
+  .rail-item {
+    width: 155px;
+  }
+
+  /* --- Eventos --- */
+  .events-section {
+    padding: 80px 0;
+  }
+  .events-header { margin-bottom: 40px; }
+  .events-title-separator { margin: 18px auto; }
+  .station-card-highlight {
+    padding: 24px 20px;
+    border-radius: 16px;
+    gap: 12px;
+  }
+  .highlight-title { font-size: 1.5rem; }
+  .highlight-desc { font-size: 0.92rem; }
+  .station-card {
+    padding: 20px 24px;
+    border-radius: 16px;
+  }
+  .station-num { font-size: 1.3rem; }
+  .station-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  .station-desc { font-size: 0.85rem; }
+  .events-cta-simple {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 24px;
+    gap: 18px;
+    margin-top: 30px;
+  }
+  .cta-text { font-size: 1.05rem; }
+  .btn-cta-clean {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 0.85rem;
+  }
+
+  /* --- FAQ --- */
+  .faq-section {
+    padding: 80px 0;
+  }
+  .faq-container {
+    padding: 0 20px;
+    gap: 40px;
+  }
+  .faq-title {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+  }
+  .faq-description {
+    font-size: 0.98rem;
+    margin-bottom: 25px;
+  }
+  .faq-question {
+    padding: 20px 24px;
+  }
+  .faq-item.active .faq-question {
+    padding-bottom: 12px;
+  }
+  .faq-q-num {
+    font-size: 0.95rem;
+    margin-right: 8px;
+  }
+  .faq-q-text { font-size: 1.02rem; }
+  .faq-q-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+  }
+  .faq-answer-inner {
+    padding: 0 24px 20px 58px;
+    font-size: 0.92rem;
+  }
+
+  /* --- Contato --- */
+  .contact-section {
+    padding: 80px 0;
+  }
+  .contact-container { padding: 0 20px; }
+  .contact-title { font-size: 1.8rem; }
+  .contact-description { font-size: 0.98rem; }
+  .contact-main-panel {
+    padding: 35px 24px;
+    gap: 30px;
+  }
+  .contact-col-title { font-size: 1.25rem; }
+  .contact-col-text { font-size: 0.95rem; }
+  .contact-institutional-badges {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .institutional-badge { padding: 12px 16px; }
+
+  /* --- Rodapé --- */
+  .fndd-footer {
+    padding-top: 60px;
+  }
+  .footer-separator {
+    margin-bottom: 40px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 35px;
+    padding-bottom: 30px;
+  }
+  .footer-brand-col { align-items: center; }
+  .footer-brand-desc { margin: 0 auto; }
+  .footer-col-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-link { margin: 0 auto; }
+  .footer-list li { justify-content: center; }
+  .btn-footer-cta { margin: 0 auto; }
+  .footer-bottom {
+    margin-top: 15px;
+    padding: 20px 0;
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS SMARTPHONES GRANDES E MÉDIOS (375px a 414px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* --- Hero --- */
+  .hero-headline {
+    font-size: 1.85rem;
+  }
+  .mobile-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- Sobre (Linha Coreográfica) --- */
+  .about-title { font-size: 1.8rem; }
+  .about-choreo-stage { padding-left: 24px; }
+  .about-choreo-stage::before { left: 7px; }
+  .step-glow-dot { margin-top: 12px; }
+  .about-choreo-step { gap: 12px; }
+  .step-card-glass { padding: 16px 18px; }
+  .choreo-badge {
+    right: 10px;
+    padding: 8px 14px;
+  }
+
+  /* --- Pilares --- */
+  .pillars-title { font-size: 1.8rem; }
+  .pillars-core {
+    width: 140px;
+    height: 140px;
+  }
+  .core-logo { font-size: 55px; }
+  .node-body { padding: 16px !important; }
+  .node-icon-wrap { width: 40px; height: 40px; min-width: 40px; }
+  .node-icon { font-size: 1.3rem; }
+  .node-title { font-size: 1rem; }
+  .node-text { font-size: 0.78rem; }
+}
+
+@media (max-width: 414px) {
+  .hero-headline {
+    font-size: 1.75rem;
+  }
+  .contact-title, .faq-title, .events-title {
+    font-size: 1.65rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-headline {
+    font-size: 1.68rem;
+  }
+  .about-title, .pillars-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-headline {
+    font-size: 1.6rem;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINTS SMARTPHONES PEQUENOS (320px)
+   ========================================================================== */
+@media (max-width: 320px) {
+  /* --- Ajustes Globais --- */
+  body, html {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  /* Paddings de Segurança Extrema para Celulares Pequenos */
+  .hero-section,
+  .about-choreography,
+  .pillars-section,
+  .events-section,
+  .faq-section,
+  .contact-section,
+  .fndd-footer {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  
+  .faq-container, .contact-container, .footer-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* --- Hero --- */
+  .hero-badge-institutional {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+  }
+  .hero-headline {
+    font-size: 1.45rem;
+  }
+  .hero-subheadline {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+  }
+  .hero-logo-frame {
+    width: 180px;
+    height: 180px;
+  }
+  .hero-logo-image {
+    width: 105px;
+  }
+
+  /* --- Sobre --- */
+  .about-title { font-size: 1.45rem; }
+  .about-choreo-stage { padding-left: 16px; }
+  .about-choreo-stage::before { left: 4px; }
+  .step-glow-dot { margin-top: 10px; }
+  .step-card-glass { padding: 12px 14px; }
+  .step-title { font-size: 0.95rem; }
+  .step-text { font-size: 0.78rem; }
+
+  /* --- Pilares --- */
+  .pillars-title { font-size: 1.45rem; }
+  .pillars-core {
+    width: 120px;
+    height: 120px;
+  }
+  .core-logo { height: 48px !important; }
+  .node-body { padding: 12px !important; }
+  .node-title { font-size: 0.9rem; }
+  .node-text { font-size: 0.75rem; }
+
+  /* --- Manifesto --- */
+  .manifesto-title { font-size: 1.45rem !important; }
+
+  /* --- Diretoria --- */
+  .featured-name { font-size: 1.15rem; }
+  .featured-role { font-size: 0.72rem; }
+  .featured-bio { font-size: 0.8rem; }
+  .rail-item { width: 130px; }
+
+  /* --- Eventos --- */
+  .events-title { font-size: 1.45rem; }
+  .station-card { padding: 16px; }
+  .station-title { font-size: 0.98rem; }
+  .station-desc { font-size: 0.78rem; }
+  .station-card-highlight { padding: 20px 16px; }
+  .highlight-title { font-size: 1.25rem; }
+
+  /* --- FAQ --- */
+  .faq-title { font-size: 1.45rem; }
+  .faq-question { padding: 16px; }
+  .faq-q-text { font-size: 0.92rem; }
+  .faq-answer-inner { padding: 0 16px 16px 40px; }
+
+  /* --- Contato --- */
+  .contact-title { font-size: 1.45rem; }
+  .contact-main-panel { padding: 24px 16px; }
+  .btn-contact-whatsapp {
+    padding: 12px 24px;
+    font-size: 0.88rem;
+  }
+}

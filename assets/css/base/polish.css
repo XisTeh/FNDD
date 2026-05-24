@@ -1,0 +1,372 @@
+/* ==========================================================================
+   CLASSES REUTILIZÁVEIS PARA PRÓXIMAS DOBRAS (ATMOSFERA UNIFICADA)
+   ========================================================================== */
+.section-shell {
+  position: relative;
+  padding: 120px 6%;
+  background-color: transparent;
+  overflow: hidden;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* section-bg-soft: backdrop-filter:blur removido — era aplicado em MÚCTIPLAS seções causando
+   recomputação de compositing em toda page. Mantido apenas gradiente de fundo. */
+.section-bg-soft {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(10, 10, 12, 0.25) 0%, rgba(5, 5, 6, 0.5) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.section-transition {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, rgba(197, 168, 90, 0.02) 50%, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 90, 0.08) 50%, transparent);
+}
+
+.gold-dot-pattern {
+  background-image: radial-gradient(var(--gold-primary) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.gold-arc-detail {
+  position: absolute;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--gold-primary);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.stage-glow-soft {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.04) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   FERRAMENTA DE TESTE DE VISIBILIDADE DO BACKGROUND (OPACIDADE CONTROLADA)
+   Para testes futuros, descomente a classe abaixo para forçar 100% de visibilidade
+   ========================================================================== */
+/*
+.background-visibility-test .site-haze-one,
+.background-visibility-test .site-haze-two {
+  filter: blur(100px) !important;
+  opacity: 0.95 !important;
+}
+.background-visibility-test .site-particles {
+  opacity: 1 !important;
+}
+.background-visibility-test .site-motion-trace {
+  opacity: 0.85 !important;
+  filter: blur(0.5px) drop-shadow(0 0 15px rgba(197, 168, 90, 0.8)) !important;
+}
+.background-visibility-test .site-editorial-dots {
+  opacity: 1 !important;
+}
+*/
+
+/* ==========================================================================
+   FINAL POLISH PASS (DIREÇÃO DE ARTE & MICROINTERAÇÕES ULTRA-PREMIUM)
+   ========================================================================== */
+
+/* Aceleração de Hardware do vídeo removida — causava sumiço do vídeo no render do navegador */
+
+/* Transições elegantes e leves entre dobras (Sem box-shadows gigantes pesados) */
+.hero-section, .about-section, .pillars-section, .manifesto-section, .directors-section, .events-section, .faq-section, .contact-section {
+  position: relative;
+  background-image: radial-gradient(circle at 50% 30%, rgba(197, 168, 90, 0.012) 0%, transparent 70%);
+}
+
+/* 2. Super Polimento de Todos os Botões Premium (Suave, Elegante e Reativo) */
+.btn-nav-cta, .btn-mobile-cta, .btn-fndd-primary, .btn-fndd-secondary, .btn-contact-whatsapp, .btn-footer-cta {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Efeito Shimmer de Brilho de Luz Passante ao Hover - Suave, Devagar, Sem Efeito Lâmina */
+.btn-nav-cta::before, .btn-mobile-cta::before, .btn-fndd-primary::before, .btn-fndd-secondary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: left 1.5s cubic-bezier(0.16, 1, 0.3, 1) !important; /* Passagem poética de 1.5 segundos, sutil e tranquila */
+  z-index: 1;
+}
+
+.btn-nav-cta:hover::before, .btn-mobile-cta:hover::before, .btn-fndd-primary:hover::before, .btn-fndd-secondary:hover::before, .btn-contact-whatsapp:hover::before, .btn-footer-cta:hover::before {
+  left: 200%;
+}
+
+/* Micro-elevação dos botões premium no hover (Sutil e Macio) */
+.btn-nav-cta:hover, .btn-mobile-cta:hover, .btn-fndd-primary:hover, .btn-fndd-secondary:hover, .btn-contact-whatsapp:hover, .btn-footer-cta:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(197, 168, 90, 0.22) !important;
+}
+
+/* Especificidade dos Botões da Hero para maior contraste e prestígio */
+.btn-fndd-primary {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.btn-fndd-primary:hover {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%) !important;
+  box-shadow: 0 10px 30px rgba(197, 168, 90, 0.3) !important;
+}
+
+.btn-fndd-secondary {
+  border: 1px solid var(--border-gold-glass) !important;
+  background: rgba(255, 255, 255, 0.01) !important;
+}
+
+.btn-fndd-secondary:hover {
+  background: rgba(197, 168, 90, 0.06) !important;
+  border-color: var(--gold-primary) !important;
+  color: var(--gold-light) !important;
+}
+
+/* 3. Refinamentos da Navbar */
+.fndd-navbar.scrolled {
+  border-bottom: 1px solid rgba(197, 168, 90, 0.16) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Menu desktop: sublinhado expansível em hover e ativo */
+.nav-link {
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold-primary);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* 4. Enriquecimento Visual da Hero (Flutuação contínua usando translate individual para evitar conflitos com transform e absolute) */
+@keyframes floatMetricCardOrganic {
+  0% { translate: 0 0px; }
+  100% { translate: 0 -12px; }
+}
+
+/* Otimização sutil nos cards, sem conflitar com transições originais */
+.hero-visual-container .float-metric-card {
+  opacity: 1 !important;
+  animation: floatMetricCardOrganic 4.8s ease-in-out infinite alternate !important;
+  box-shadow: var(--shadow-premium), 0 0 25px rgba(197, 168, 90, 0.04) !important;
+  transition: var(--transition-smooth) !important; /* Restaurada transição completa original do design */
+}
+
+/* Delays independentes para cada card de desktop para gerar um balanço orgânico */
+.hero-visual-container .float-metric-card.card-rep {
+  animation-delay: 0.1s !important;
+}
+
+.hero-visual-container .float-metric-card.card-formacao {
+  animation-delay: 1.2s !important;
+}
+
+.hero-visual-container .float-metric-card.card-competicoes {
+  animation-delay: 2.3s !important;
+}
+
+.hero-visual-container .float-metric-card.card-valorizacao {
+  animation-delay: 3.4s !important;
+}
+
+/* Halo de luz de palco dourada e respiração elegante ao redor do logotipo da Hero */
+.hero-logo-frame {
+  position: relative;
+}
+
+.hero-logo-frame::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.15) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+  animation: glowBreathe 6.5s ease-in-out infinite;
+}
+
+/* glowBreathe: animação do halo de luz da logo (estava referenciada mas não definida aqui) */
+@keyframes glowBreathe {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* 5. Suavização de Sobre, Pilares e Manifesto */
+.about-eyebrow-line, .contact-eyebrow-line, .section-title-line {
+  background: linear-gradient(90deg, var(--gold-primary), transparent) !important;
+  height: 1.5px !important;
+}
+
+.step-card-glass, .pillar-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.step-card-glass:hover, .pillar-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(197, 168, 90, 0.3);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.85), 0 0 22px rgba(197, 168, 90, 0.08);
+}
+
+/* 6. Refinamento de Painéis e Imagens de Diretoria */
+.director-rail-item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.director-rail-item:hover {
+  background: rgba(197, 168, 90, 0.06);
+  border-left: 2px solid var(--gold-primary);
+  padding-left: 18px; /* Micro recuo sutil do rail */
+}
+
+.director-main-panel {
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.director-main-panel:hover {
+  border-color: rgba(197, 168, 90, 0.35);
+  box-shadow: 0 45px 80px rgba(0, 0, 0, 0.95), 0 0 30px rgba(197, 168, 90, 0.05);
+}
+
+.director-photo-container img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.director-main-panel:hover .director-photo-container img {
+  transform: scale(1.025);
+}
+
+/* 7. Refinamento de Pontos de Encontro de Eventos */
+.events-timeline-line {
+  background: linear-gradient(180deg, rgba(197, 168, 90, 0.05) 0%, var(--gold-primary) 50%, rgba(197, 168, 90, 0.05) 100%) !important;
+}
+
+.timeline-node::before {
+  box-shadow: 0 0 12px var(--gold-primary) !important;
+  transition: box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.timeline-node:hover::before {
+  box-shadow: 0 0 20px var(--gold-light), 0 0 35px var(--gold-primary) !important;
+  background-color: var(--gold-light);
+}
+
+.agenda-construction-panel {
+  border: 1px solid rgba(197, 168, 90, 0.18) !important;
+  background: rgba(255, 255, 255, 0.01) !important;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.75);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.agenda-construction-panel:hover {
+  border-color: rgba(197, 168, 90, 0.42) !important;
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.9), 0 0 30px rgba(197, 168, 90, 0.1);
+}
+
+/* 8. Refinamento do Accordion de FAQ */
+.faq-item {
+  background: rgba(255, 255, 255, 0.012);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, background-color 0.4s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(197, 168, 90, 0.28);
+  background-color: rgba(197, 168, 90, 0.015);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
+  transform: translateY(-2px);
+}
+
+.faq-trigger {
+  transition: color 0.3s ease;
+}
+
+.faq-item:hover .faq-trigger {
+  color: var(--text-primary);
+}
+
+.faq-icon-wrap {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, color 0.4s ease;
+}
+
+.faq-item.active .faq-icon-wrap {
+  background-color: var(--gold-primary);
+  color: #000000;
+  box-shadow: 0 0 15px rgba(197, 168, 90, 0.45);
+}
+
+/* 9. Refinamentos de Contato & Filiação */
+.contact-main-panel {
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.contact-main-panel:hover {
+  border-color: rgba(197, 168, 90, 0.35);
+  box-shadow: 0 45px 85px rgba(0, 0, 0, 0.95), 0 0 30px rgba(197, 168, 90, 0.05);
+}
+
+/* Suporte de Acessibilidade: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .float-metric-card {
+    animation: none !important;
+  }
+  .btn-nav-cta::before, .btn-mobile-cta::before, .btn-fndd-primary::before, .btn-fndd-secondary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before {
+    transition: none !important;
+    animation: none !important;
+  }
+  .hero-logo-frame::before {
+    animation: none !important;
+  }
+}

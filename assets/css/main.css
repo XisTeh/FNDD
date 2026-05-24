@@ -1,0 +1,44 @@
+/**
+ * main.css — FNDD
+ * Arquivo de entrada CSS. Importa todos os módulos na ordem correta.
+ *
+ * Arquitetura:
+ *   base/tokens.css         → Design System Tokens (variáveis CSS)
+ *   base/reset.css          → Reset e estilos globais de suporte
+ *   base/animations.css     → Keyframes de animação globais reutilizáveis
+ *   components/navbar.css   → Barra de navegação + menu mobile
+ *   components/cards.css    → Cards flutuantes, glass-panel e scroll reveal
+ *   sections/hero.css       → Hero section completa (bg, layout, conteúdo)
+ *   sections/pillars.css    → Seção Pilares de Atuação
+ *   sections/manifesto.css  → Seção Manifesto em Movimento / Linha Coreográfica
+ *   sections/directors.css  → Seção Diretoria FNDD
+ *   sections/events.css     → Seção Eventos FNDD
+ *   sections/faq.css        → Seção FAQ
+ *   sections/contact.css    → Seção Contato & Filiação
+ *   sections/footer-premium.css → Estilos premium do rodapé
+ *   base/responsive.css     → Media queries responsivas globais
+ *   base/polish.css         → Final polish pass (micro-interações premium)
+ */
+
+/* ---- Base ---- */
+@import 'base/tokens.css';
+@import 'base/reset.css';
+@import 'base/animations.css';
+
+/* ---- Componentes Reutilizáveis ---- */
+@import 'components/navbar.css';
+@import 'components/cards.css';
+
+/* ---- Seções ---- */
+@import 'sections/hero.css';
+@import 'sections/pillars.css';
+@import 'sections/manifesto.css';
+@import 'sections/directors.css';
+@import 'sections/events.css';
+@import 'sections/faq.css';
+@import 'sections/contact.css';
+@import 'sections/footer-premium.css';
+
+/* ---- Responsividade & Polimento Final ---- */
+@import 'base/responsive.css';
+@import 'base/polish.css';

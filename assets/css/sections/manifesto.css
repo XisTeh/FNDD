@@ -1,0 +1,917 @@
+/* ==========================================================================
+   10. SEÇÃO MANIFESTO INSTITUCIONAL - LINHA COREOGRÁFICA FNDD (DA EXPRESSÃO AO MOVIMENTO)
+   ========================================================================== */
+.about-choreography {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 160px 8% 120px 8%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Emenda ultra-suave na divisa 100vh: Fade reverso para a Hero acima */
+.about-choreography::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(to bottom, #050506 0%, rgba(5, 5, 6, 0.8) 35%, rgba(5, 5, 6, 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Background local da seção com detalhes editoriais discretos */
+.about-choreo-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Marca d'água FNDD gigante em fonte refinada e opacidade controlada */
+.about-watermark {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: clamp(8rem, 16vw, 20rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.01);
+  top: 8%;
+  left: -2%;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  z-index: 1;
+}
+
+/* Linhas Editoriais Finas Douradas FNDD */
+.about-decor-line-one {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(197, 168, 90, 0.08) 0%, rgba(197, 168, 90, 0.01) 70%, transparent 100%);
+}
+
+.about-decor-line-two {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  width: 1px;
+  height: 80%;
+  background: linear-gradient(to top, rgba(197, 168, 90, 0.06) 0%, rgba(197, 168, 90, 0.01) 60%, transparent 100%);
+}
+
+/* Camadas locais de iluminação cinemática */
+.about-haze-local {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 60%, rgba(197, 168, 90, 0.03) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* Contêiner de Layout Principal */
+.about-choreo-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Reduzido de 60px para aproximar os cards e palco do texto */
+}
+
+/* Cabeçalho Editorial Superior */
+.about-choreo-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizado */
+  text-align: center; /* Centralizado */
+}
+
+.about-eyebrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centralizado */
+  gap: 16px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.about-eyebrow {
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  line-height: 1;
+}
+
+.eyebrow-decor-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
+}
+
+/* Cabeçalho Clean em Coluna Unificada */
+.about-header-clean {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizado */
+  max-width: 820px; /* Concentra a leitura */
+  width: 100%;
+  margin: 0 auto; /* Centralizado */
+}
+
+.about-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.about-title-separator {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-primary), var(--gold-dark));
+  margin: 0 auto 18px auto; /* Centralizado */
+}
+
+.about-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  text-align: center; /* Centralizado */
+}
+
+/* ==========================================================================
+   O PALCO DA LINHA COREOGRÁFICA (TELA CINETICA DESKTOP)
+   ========================================================================== */
+.about-choreo-stage {
+  position: relative;
+  width: 100%;
+  height: 540px; /* Reduzido de 620px para aproximar os cards superiores e inferiores */
+  margin-top: 10px; /* Reduzido de 40px */
+  z-index: 2;
+}
+
+/* Container do SVG da Linha Coreográfica */
+.about-svg-line-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.choreo-svg-path {
+  width: 100%;
+  height: 100%;
+}
+
+.choreo-path-line {
+  stroke-dasharray: 2500;
+  stroke-dashoffset: 2500;
+  transition: stroke-dashoffset 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Desenha a linha quando a seção for revelada no scroll */
+.revealed .choreo-path-line {
+  stroke-dashoffset: 0;
+}
+
+.choreo-path-dash {
+  opacity: 0.5;
+}
+
+/* Tracinho de luz brilhante que corre pela linha */
+.choreo-path-line-spark {
+  stroke-dasharray: 100 1500; /* Tracinho de 100px com espaçamento largo */
+  stroke-dashoffset: 1600;
+  animation: sparkRun 4s linear infinite; /* 4s para correr suavemente */
+  filter: drop-shadow(0 0 6px rgba(248, 226, 167, 0.95)) drop-shadow(0 0 2px rgba(197, 168, 90, 0.6));
+  opacity: 1; /* Exibido sempre por padrão */
+  z-index: 2;
+}
+
+@keyframes sparkRun {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Card de Observação da Frase Manifesto (Discreto, Alongado e Retraído) */
+.about-manifesto-badge {
+  position: absolute;
+  left: 4%;
+  bottom: 12px;
+  width: 440px; /* Alongado e horizontal */
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.015); /* Quase transparente */
+  border: none;
+  border-left: 2px solid rgba(197, 168, 90, 0.15); /* Rastro sutil de borda dourada */
+  padding: 6px 14px;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: center;
+  box-shadow: none; /* Sem sombras marcantes */
+  z-index: 4;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.about-manifesto-badge:hover {
+  border-color: rgba(197, 168, 90, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-1px);
+}
+
+.m-text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted); /* Cinza escuro discreto */
+  font-style: italic;
+  line-height: 1.45;
+  margin: 0;
+  text-align: left;
+}
+
+.about-manifesto-badge:hover .m-text {
+  color: var(--text-secondary); /* Leve realce ao hover */
+  transition: color 0.3s ease;
+}
+
+/* Recorte Editorial de Imagem Parcialmente Sobreposta */
+.about-choreo-image {
+  position: absolute;
+  top: 18%;
+  left: 45%;
+  width: 250px;
+  height: 380px;
+  z-index: 3;
+  border-radius: 24px;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-image-window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  border: 1px solid rgba(197, 168, 90, 0.15);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+  background-color: #050506;
+  transition: border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-choreo-image:hover .about-image-window {
+  border-color: rgba(197, 168, 90, 0.45);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.98), 0 0 30px rgba(197, 168, 90, 0.05);
+}
+
+.choreo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55) contrast(1.1) saturate(0.8);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.about-choreo-image:hover .choreo-img {
+  transform: scale(1.08);
+  filter: brightness(0.68) contrast(1.15) saturate(0.9);
+}
+
+.about-image-overlay-window {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(5, 5, 6, 0) 50%, rgba(5, 5, 6, 0.85) 100%), linear-gradient(to right, rgba(5, 5, 6, 0.1) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Selo Oficial do Palco Integrado ao Recorte */
+.choreo-badge {
+  position: absolute;
+  bottom: 25px;
+  right: -25px;
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.6) 0%, rgba(8, 8, 10, 0.85) 100%);
+  border: 1px solid rgba(197, 168, 90, 0.22);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+  z-index: 4;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.choreo-badge:hover {
+  border-color: rgba(197, 168, 90, 0.45);
+  transform: translateY(-2px);
+}
+
+.choreo-badge-icon {
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+}
+
+.choreo-badge-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.c-title {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.c-sub {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Estações Coreográficas (Posicionamento Assimétrico Tridimensional no Desktop) */
+.about-choreo-step {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 2;
+  width: 250px;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+/* Mapeamento exato de posições para acompanhar o traçado do SVG no Desktop */
+.step-01 { left: 4%; top: 6%; }
+.step-02 { left: 22%; top: 54%; }
+.step-03 { left: 76%; top: 6%; }
+.step-04 { left: 76%; top: 54%; }
+
+.about-choreo-step:hover {
+  transform: translateY(-8px);
+  z-index: 4;
+}
+
+/* Pontos Luminosos de Conexão na Linha */
+.step-glow-dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--gold-primary);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.revealed .pulse-ring,
+.about-choreo-step:hover .pulse-ring {
+  animation: dotPulseAnim 2.5s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dotPulseAnim {
+  0% { opacity: 0.8; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+.core-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--gold-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold-primary);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-choreo-step:hover .core-dot {
+  background-color: var(--gold-light);
+  box-shadow: 0 0 18px var(--gold-light);
+}
+
+/* Cartões de Vidro Premium das Estações */
+.step-card-glass {
+  position: relative;
+  width: 100%;
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(14, 14, 18, 0.4) 0%, rgba(8, 8, 10, 0.7) 100%);
+  border: 1px solid rgba(197, 168, 90, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.01);
+  transition: border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.about-choreo-step:hover .step-card-glass {
+  border-color: rgba(197, 168, 90, 0.35);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.06) 0%, rgba(10, 10, 12, 0.8) 100%);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(197, 168, 90, 0.04);
+}
+
+/* Efeito de Flashlight seguindo o cursor do mouse no vidro */
+.step-card-glass::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1px;
+  background: radial-gradient(circle 100px at var(--mouse-x, 0) var(--mouse-y, 0), rgba(197, 168, 90, 0.3), transparent 70%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.about-choreo-step:hover .step-card-glass::before {
+  opacity: 1;
+}
+
+.step-number {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+  opacity: 0.22;
+  line-height: 1;
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.about-choreo-step:hover .step-number {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.step-icon {
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 5px rgba(197, 168, 90, 0.2));
+}
+
+.step-title {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.about-choreo-step:hover .step-title {
+  color: var(--gold-primary);
+}
+
+.step-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  text-align: left;
+}
+
+/* ============================================
+   SEÇÃO MANIFESTO EM MOVIMENTO com Pinning
+   ============================================ */
+.manifesto-pin-container {
+  position: relative;
+  width: 100%;
+  height: 200vh; /* Altura do scroll total para fixar as palavras (encurtada para dinamismo) */
+  background: transparent;
+}
+
+.manifesto-motion-section {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  transform: none !important; /* Previne quebras do position: sticky causadas por transformações */
+  background: transparent; /* Deixa o canvas/background global visível */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Vinhetas escuras superior/inferior para emenda perfeita e profundidade cinematográfica */
+  box-shadow: inset 0 120px 100px -80px rgba(6, 6, 8, 0.95), 
+              inset 0 -120px 100px -80px rgba(6, 6, 8, 0.95);
+  z-index: 3;
+}
+
+.manifesto-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle 450px at var(--manifesto-mouse-x, 50%) var(--manifesto-mouse-y, 50%), rgba(197, 168, 90, 0.045) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.15s ease;
+}
+
+/* manifesto-glow-orb: blur estático — sem animação no elemento com filter (economiza GPU) */
+.manifesto-glow-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(197, 168, 90, 0.025) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manifesto-watermark {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-family: var(--font-title);
+  font-size: 16vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.015);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.manifesto-motion-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.manifesto-header {
+  text-align: center;
+  margin-bottom: 70px;
+  width: 100%;
+}
+
+.manifesto-eyebrow-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.manifesto-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--gold-primary);
+  text-transform: uppercase;
+}
+
+.manifesto-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-primary) 0%, transparent 100%);
+}
+
+.manifesto-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Palco das Palavras */
+.manifesto-word-stage {
+  position: relative;
+  width: 100%;
+  height: 380px; /* Aumentado para comportar o card final com elegância */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+/* Linha de Movimento Fluida SVG */
+.manifesto-line-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manifesto-path-bg {
+  stroke: rgba(197, 168, 90, calc(var(--manifesto-line-glow, 0.15) * 0.45));
+  transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;
+}
+
+.manifesto-path-line {
+  stroke-dasharray: 6 12;
+  stroke: rgba(197, 168, 90, var(--manifesto-line-glow, 0.15));
+  transition: stroke 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 0 calc(var(--manifesto-line-glow, 0.1) * 8px) rgba(197, 168, 90, 0.3));
+}
+
+/* Spark que corre a linha */
+.manifesto-path-spark {
+  stroke-dasharray: 120 1000;
+  stroke-dashoffset: 1120;
+  opacity: calc(0.65 + calc(var(--manifesto-line-glow, 0.15) * 0.35));
+  filter: drop-shadow(0 0 6px rgba(248, 226, 167, 0.45));
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Palavras no Wrapper */
+.manifesto-words-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  perspective: 1200px;
+}
+
+.manifesto-word {
+  position: absolute;
+  font-family: var(--font-title);
+  font-size: clamp(2.3rem, 6.5vw, 5.8rem);
+  font-weight: 900;
+  color: var(--text-secondary);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  /* will-change: promove para compositor layer e evita recalc de layout */
+  will-change: opacity, transform, filter;
+  /* Transição otimizada para coreografia fluida de rastro */
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.5s ease;
+}
+
+/* Ecos / Sombras da Coreografia (Anterior e Posterior) nas laterais */
+.manifesto-word.prev,
+.manifesto-word.next {
+  opacity: 0.12;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.manifesto-word.prev {
+  color: var(--gold-primary);
+  background: linear-gradient(135deg, var(--gold-primary) 0%, rgba(197, 168, 90, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.manifesto-word.next {
+  color: var(--gold-primary);
+  background: linear-gradient(135deg, rgba(197, 168, 90, 0.2) 0%, var(--gold-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Palavra Protagonista (Ativa no Centro) */
+.manifesto-word.active {
+  opacity: 1;
+  filter: blur(0);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #FFFFFF 40%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 35px rgba(197, 168, 90, 0.2), 0 0 10px rgba(248, 226, 167, 0.15);
+  z-index: 10;
+}
+
+.manifesto-word.far-prev,
+.manifesto-word.far-next {
+  opacity: 0;
+  filter: blur(12px);
+}
+
+/* =============================================
+   CARD FINAL DO MANIFESTO — Revelação de Prestígio
+   ============================================= */
+.manifesto-word-final {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  z-index: 10;
+  /* Reseta os estilos gerais das palavras simples */
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: normal;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  text-shadow: none !important;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.manifesto-word-final.active {
+  pointer-events: auto;
+}
+
+.final-card-glass {
+  background: rgba(15, 15, 18, 0.5);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1.5px solid rgba(197, 168, 90, 0.25);
+  border-radius: 24px;
+  padding: 36px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+}
+
+.final-phrase {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.final-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  opacity: 0.85;
+  max-width: 500px;
+  margin: 0 0 4px 0;
+}
+
+.final-cta {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--bg-deep) !important;
+  background: var(--gold-primary);
+  padding: 12px 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 10px 25px rgba(197, 168, 90, 0.2);
+}
+
+.final-cta iconify-icon {
+  font-size: 1.05rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.final-cta:hover {
+  background: var(--gold-light);
+  box-shadow: 0 15px 30px rgba(197, 168, 90, 0.4);
+  transform: translateY(-2px);
+}
+
+.final-cta:hover iconify-icon {
+  transform: translateX(4px);
+}
+
+/* Quando inativo, o card final fica totalmente invisível para não poluir visualmente o palco */
+.manifesto-word-final:not(.active) {
+  opacity: 0 !important;
+  filter: blur(25px) !important;
+  pointer-events: none !important;
+}
+
+/* Responsividade do Manifesto */
+@media (max-width: 768px) {
+  .manifesto-motion-section {
+    padding: 0;
+    height: 100vh;
+  }
+  .manifesto-word-stage {
+    height: 380px; /* Mantém altura suficiente para comportar o card final no mobile */
+    margin-bottom: 20px;
+  }
+  .manifesto-word {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+  }
+  .manifesto-word.prev,
+  .manifesto-word.next,
+  .manifesto-word.far-prev,
+  .manifesto-word.far-next {
+    opacity: 0 !important;
+    display: none !important;
+  }
+  .manifesto-line-svg {
+    opacity: 0.25; /* Simplifica a linha no mobile */
+  }
+  .manifesto-word-final {
+    max-width: 95%;
+  }
+  .final-card-glass {
+    padding: 24px 20px; /* Reduz padding para caber perfeitamente no celular */
+    gap: 14px;
+    border-radius: 16px;
+  }
+  .final-phrase {
+    font-size: 1.25rem;
+  }
+  .final-desc {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+  .final-cta {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+  .manifesto-watermark {
+    font-size: 20vw;
+  }
+}
+
