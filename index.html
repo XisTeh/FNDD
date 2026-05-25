@@ -3,34 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO & Tags Institucionais -->
   <title>FNDD — Federação Nacional de Danças Desportivas</title>
   <meta name="description" content="A Federação Nacional de Danças Desportivas (FNDD) promove, representa e fortalece a dança desportiva no Brasil por meio de formação, competições e valorização profissional.">
   <meta name="keywords" content="FNDD, dança desportiva, federação de dança, esporte desportivo, dança brasil, break desportivo, dança profissional">
   <meta name="robots" content="index, follow">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/images/Apenas Boneco Logo.png">
-  
-  <!-- DNS Prefetch para recursos externos (reduz latência) -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="dns-prefetch" href="https://code.iconify.design">
 
-  <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
+  <!-- Favicon WebP (menor, carrega mais rápido) -->
+  <link rel="icon" type="image/webp" href="assets/images/Apenas Boneco Logo.webp">
+
+  <!-- Preconnect externos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Iconify CDN — defer para não bloquear o parser (ícones não são críticos para LCP) -->
+  <link rel="dns-prefetch" href="https://code.iconify.design">
+
+  <!-- Preload LCP crítico: logotipo hero (WebP, 54 KB ao invés de 508 KB) -->
+  <link rel="preload" href="assets/images/logotipo FNDD png.webp" as="image" fetchpriority="high">
+  <!-- Preload LCP: logo da navbar (WebP, 25 KB ao invés de 609 KB) -->
+  <link rel="preload" href="assets/images/Apenas Boneco Logo.webp" as="image" fetchpriority="high">
+
+  <!-- CSS Bundle Único Minificado (1 request ao invés de 16; elimina bloqueio de renderização) -->
+  <link rel="stylesheet" href="assets/css/bundle.min.css?v=4.0.0">
+
+  <!-- Google Fonts — display=swap garante texto visível enquanto carrega (FOUT controlado) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+
+  <!-- Iconify CDN — defer (ícones não são críticos para LCP) -->
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
 
-  <!-- Preload do vídeo hero (LCP crítico — inicia download antes do parser chegar ao <video> no desktop) -->
+  <!-- Preload vídeo hero (LCP desktop) -->
   <link rel="preload" href="assets/videos/dancers-hero-loop.mp4" as="video" type="video/mp4" media="(min-width: 1024px)">
-  
-  <!-- CSS Modular FNDD (main.css importa todos os módulos via @import) -->
-  <link rel="stylesheet" href="assets/css/main.css?v=3.2.1">
 </head>
 <body>
 
@@ -47,7 +50,10 @@
         
         <!-- Logo Institucional da Federação -->
         <a href="#" class="nav-brand" id="navBrand">
-          <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="nav-logo" width="38" height="38" fetchpriority="high">
+          <picture>
+            <source srcset="assets/images/Apenas Boneco Logo.webp" type="image/webp">
+            <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="nav-logo" width="38" height="38" fetchpriority="high">
+          </picture>
           <div class="nav-brand-text">
             <span class="brand-title">FNDD</span>
             <span class="brand-subtitle">Federação Nacional</span>
@@ -160,7 +166,10 @@
           
           <!-- Moldura Circular Estilizada da Logo FNDD -->
           <div class="hero-logo-frame">
-            <img src="assets/images/logotipo FNDD png.png" alt="Logotipo Oficial FNDD" class="hero-logo-image" id="fnddHeroLogo" width="190" height="190" fetchpriority="high">
+            <picture>
+              <source srcset="assets/images/logotipo FNDD png.webp" type="image/webp">
+              <img src="assets/images/logotipo FNDD png.png" alt="Logotipo Oficial FNDD" class="hero-logo-image" id="fnddHeroLogo" width="190" height="190" fetchpriority="high">
+            </picture>
           </div>
           
           <!-- Desktop/Tablet: Cards de Métrica Flutuantes -->
@@ -331,7 +340,10 @@
         <!-- Janela/Recorte Editorial de Imagem parcialmente sobreposta -->
         <div class="about-choreo-image reveal-on-scroll delay-1">
           <div class="about-image-window">
-            <img src="assets/images/FNDD SOBRE.jpeg" alt="Espetáculo de Dança FNDD" class="choreo-img" id="aboutImg" width="250" height="380" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="assets/images/FNDD SOBRE.webp" type="image/webp">
+              <img src="assets/images/FNDD SOBRE.jpeg" alt="Espetáculo de Dança FNDD" class="choreo-img" id="aboutImg" width="250" height="380" loading="lazy" decoding="async">
+            </picture>
             <div class="about-image-overlay-window"></div>
           </div>
           <!-- Selo Oficial integrado de canto -->
@@ -485,7 +497,10 @@
           <div class="core-ring-outer"></div>
           <div class="core-ring-inner"></div>
           <div class="core-content">
-            <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="core-logo" width="80" height="80" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="assets/images/Apenas Boneco Logo.webp" type="image/webp">
+              <img src="assets/images/Apenas Boneco Logo.png" alt="Logo FNDD" class="core-logo" width="80" height="80" loading="lazy" decoding="async">
+            </picture>
             <span class="core-brand-name">FNDD</span>
             <span class="core-brand-sub">Dança Desportiva</span>
           </div>
@@ -1469,7 +1484,7 @@ Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiaç
 
   </footer>
 
-  <!-- JavaScript Modular FNDD (ES Modules nativos) -->
-  <script src="assets/js/main.js?v=3.2.1"></script>
+  <!-- JavaScript FNDD Minificado -->
+  <script src="assets/js/main.min.js?v=4.0.0" defer></script>
 </body>
 </html>
