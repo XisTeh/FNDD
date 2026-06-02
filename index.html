@@ -72,6 +72,9 @@
 
         <!-- Ações do Header -->
         <div class="nav-actions">
+          <a href="https://www.instagram.com/fndd.danca" target="_blank" rel="noopener" class="nav-social-icon" aria-label="Instagram FNDD">
+            <iconify-icon icon="ri:instagram-fill"></iconify-icon>
+          </a>
           <a href="https://wa.me/5561983648757?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20FNDD%20e%20tenho%20interesse%20em%20saber%20mais%20sobre%20filia%C3%A7%C3%A3o%20e%20participa%C3%A7%C3%A3o%20na%20FNDD.%0A" target="_blank" rel="noopener" class="btn-nav-cta" id="navCta">
             Filie-se
             <iconify-icon icon="solar:user-plus-bold-duotone"></iconify-icon>
@@ -277,149 +280,155 @@
     </section>
   </header>
 
-  <!-- Seção Quem é a FNDD (Linha Coreográfica FNDD) -->
-  <section class="about-section about-choreography reveal-on-scroll" id="sobre">
+  <!-- Seção Quem é a FNDD (História em Movimento - Sobre FNDD) -->
+  <section class="about-section about-story-motion reveal-on-scroll" id="sobre">
     
-    <!-- Emenda ultra-suave e background local da linha coreográfica -->
-    <div class="about-choreo-bg">
+    <!-- Emenda ultra-suave e background local -->
+    <div class="about-story-bg">
       <div class="about-watermark">FNDD</div>
       <div class="about-haze-local"></div>
       <div class="about-decor-line-one"></div>
       <div class="about-decor-line-two"></div>
     </div>
 
-    <div class="about-choreo-container">
+    <div class="about-story-container">
       
       <!-- Cabeçalho Editorial Superior -->
-      <div class="about-choreo-header reveal-on-scroll">
+      <header class="about-story-header reveal-on-scroll">
         <div class="about-eyebrow-container">
           <span class="about-eyebrow">Sobre a FNDD</span>
           <div class="eyebrow-decor-line"></div>
         </div>
-        
         <div class="about-header-clean">
           <h2 class="about-title font-title">
-            Da expressão individual ao <span class="gold-gradient-text">movimento nacional</span>.
+            Uma federação criada para <span class="gold-gradient-text">fortalecer a dança</span> no Brasil.
           </h2>
           <div class="about-title-separator"></div>
           <p class="about-description">
-            A FNDD nasce para representar, organizar e valorizar a dança desportiva no Brasil, conectando profissionais, atletas, escolas, eventos e instituições em torno de um propósito comum: transformar a dança em reconhecimento, formação e oportunidade.
+            A FNDD nasce para organizar, valorizar e criar oportunidades para toda a cultura da dança.
           </p>
         </div>
-      </div>
+      </header>
 
-      <!-- O Palco da Linha Coreográfica (Coreografia Dinâmica) -->
-      <div class="about-choreo-stage">
+      <!-- Layout Editorial Fora da Caixa -->
+      <div class="about-editorial-layout">
         
-        <!-- A Linha Dourada Coreográfica Principal (SVG para desenho exato e fluido) -->
-        <div class="about-svg-line-container">
-          <svg class="choreo-svg-path" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
-            <path class="choreo-path-line" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="url(#gold-gradient-svg)" stroke-width="2.5" />
-            <path class="choreo-path-dash" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="rgba(248, 226, 167, 0.25)" stroke-width="1.2" stroke-dasharray="8 8" />
+        <!-- Coluna Esquerda: Protagonista Visual, Timeline e Apoio -->
+        <div class="editorial-left">
+          
+          <div class="editorial-video-container reveal-on-scroll delay-1">
+            <div class="video-glow-backdrop"></div>
+            <div class="about-video-window" id="aboutVideoWindow">
+              <video 
+                class="about-video-element" 
+                id="aboutVideo" 
+                controls 
+                preload="metadata" 
+                playsinline>
+                <source src="assets/videos/sobre-fndd.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+              <div class="about-video-overlay-window"></div>
+            </div>
             
-            <!-- Tracinho de luz brilhante que corre pela linha -->
-            <path class="choreo-path-line-spark" d="M 0 100 Q 150 350 400 200 T 800 200 T 1200 300" stroke="#F8E2A7" stroke-width="3" stroke-linecap="round" fill="none" />
+            <div class="about-video-badge glass-panel">
+              <iconify-icon icon="solar:shield-star-bold-duotone" class="badge-icon"></iconify-icon>
+              <div class="badge-text">
+                <span class="b-title">História, Propósito</span>
+                <span class="b-sub">e Movimento</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="editorial-meta reveal-on-scroll delay-2">
+            <!-- Timeline Compacta Integrada -->
+            <div class="timeline-compact">
+              <div class="tc-item">
+                <div class="tc-dot"></div>
+                <div class="tc-content">
+                  <span class="tc-year">+10 anos</span>
+                  <span class="tc-text">Luta pela consolidação</span>
+                </div>
+              </div>
+              <div class="tc-item">
+                <div class="tc-dot"></div>
+                <div class="tc-content">
+                  <span class="tc-year">2025</span>
+                  <span class="tc-text">FNDD consolidada</span>
+                </div>
+              </div>
+              <div class="tc-item">
+                <div class="tc-dot"></div>
+                <div class="tc-content">
+                  <span class="tc-year">2026</span>
+                  <span class="tc-text">Registro oficial</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Apoio Institucional Próximo ao Vídeo -->
+            <div class="support-compact">
+              <iconify-icon icon="solar:star-fall-minimalistic-bold-duotone" class="sup-icon"></iconify-icon>
+              <div class="sup-content">
+                <span class="sup-label">Apoio Institucional</span>
+                <span class="sup-names">Deputado Martins Machado • Deputado Júlio César</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Coluna Direita: Manifesto, Constelação e Frase de Impacto -->
+        <div class="editorial-right">
+          
+          <div class="editorial-manifesto reveal-on-scroll delay-2">
+            <p class="manifesto-lead">A Federação Nacional de Danças Desportivas nasceu para fortalecer, organizar e valorizar a dança no Brasil, unindo professores, escolas, atletas, jurados, organizadores e amantes da arte.</p>
+            <p class="manifesto-sub">Mais do que representar profissionais, a FNDD busca criar estrutura, reconhecimento e oportunidades para toda a classe da dança.</p>
+          </div>
+
+          <!-- Constelação de Palavras-Chave (Sem Cards) -->
+          <div class="editorial-constellation reveal-on-scroll delay-3">
+            <div class="constellation-item c-1">
+              <div class="c-node"></div>
+              <div class="c-text">
+                <span class="c-title">FORTALECER</span>
+                <span class="c-desc">organizar e valorizar a dança no Brasil</span>
+              </div>
+            </div>
             
-            <defs>
-              <linearGradient id="gold-gradient-svg" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#785A1D" />
-                <stop offset="30%" stop-color="#C5A85A" />
-                <stop offset="60%" stop-color="#F8E2A7" />
-                <stop offset="100%" stop-color="#C5A85A" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
+            <div class="constellation-item c-2">
+              <div class="c-node"></div>
+              <div class="c-text">
+                <span class="c-title">UNIR</span>
+                <span class="c-desc">professores, escolas, atletas, jurados e organizadores</span>
+              </div>
+            </div>
 
-        <!-- Card de Observação da Frase Manifesto (Discreto e Retraído de Canto) -->
-        <!-- Card de Observação da Frase Manifesto (Discreto e Retraído de Canto) -->
-        <div class="about-manifesto-badge reveal-on-scroll delay-1">
-          <p class="m-text">"A dança não é apenas performance. É técnica, formação, profissão, esporte e transformação social."</p>
-        </div>
+            <div class="constellation-item c-3">
+              <div class="c-node"></div>
+              <div class="c-text">
+                <span class="c-title">RECONHECER</span>
+                <span class="c-desc">criar estrutura, oportunidades e respaldo profissional</span>
+              </div>
+            </div>
 
-        <!-- Janela/Recorte Editorial de Imagem parcialmente sobreposta -->
-        <div class="about-choreo-image reveal-on-scroll delay-1">
-          <div class="about-image-window">
-            <picture>
-              <source srcset="assets/images/FNDD SOBRE.webp" type="image/webp">
-              <img src="assets/images/FNDD SOBRE.jpeg" alt="Espetáculo de Dança FNDD" class="choreo-img" id="aboutImg" width="250" height="380" loading="lazy" decoding="async">
-            </picture>
-            <div class="about-image-overlay-window"></div>
-          </div>
-          <!-- Selo Oficial integrado de canto -->
-          <div class="choreo-badge glass-panel">
-            <iconify-icon icon="solar:shield-star-bold-duotone" class="choreo-badge-icon"></iconify-icon>
-            <div class="choreo-badge-text">
-              <span class="c-title">Entidade Oficial</span>
-              <span class="c-sub">Dança Desportiva</span>
+            <div class="constellation-item c-4">
+              <div class="c-node"></div>
+              <div class="c-text">
+                <span class="c-title">ABRIR CAMINHOS</span>
+                <span class="c-desc">projetos, eventos, capacitações e ações para a cultura da dança</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Estações Coreográficas (Ancoradas de forma assimétrica e flutuante no Palco) -->
-        
-        <!-- Estação 1: Representar -->
-        <div class="about-choreo-step step-01 reveal-on-scroll delay-1" id="choreoStep1">
-          <div class="step-glow-dot">
-            <div class="pulse-ring"></div>
-            <div class="core-dot"></div>
+          <!-- Frase de Impacto Premium -->
+          <div class="about-impact-card glass-panel reveal-on-scroll delay-4">
+            <iconify-icon icon="solar:double-alt-arrow-right-bold-duotone" class="impact-icon"></iconify-icon>
+            <p class="impact-phrase">
+              Um sonho de mais de 10 anos, consolidado para <span class="gold-gradient-text">agregar, fortalecer e transformar</span> a dança no Brasil.
+            </p>
           </div>
-          <div class="step-card-glass glass-panel">
-            <span class="step-number">01</span>
-            <div class="step-header">
-              <iconify-icon icon="solar:users-group-two-rounded-bold-duotone" class="step-icon"></iconify-icon>
-              <h3 class="step-title font-title">Representar</h3>
-            </div>
-            <p class="step-text">Dar voz e presença institucional aos profissionais e praticantes da dança desportiva.</p>
-          </div>
-        </div>
 
-        <!-- Estação 2: Organizar -->
-        <div class="about-choreo-step step-02 reveal-on-scroll delay-2" id="choreoStep2">
-          <div class="step-glow-dot">
-            <div class="pulse-ring"></div>
-            <div class="core-dot"></div>
-          </div>
-          <div class="step-card-glass glass-panel">
-            <span class="step-number">02</span>
-            <div class="step-header">
-              <iconify-icon icon="solar:structure-bold-duotone" class="step-icon"></iconify-icon>
-              <h3 class="step-title font-title">Organizar</h3>
-            </div>
-            <p class="step-text">Criar uma base estruturada para competições, formação e crescimento da modalidade.</p>
-          </div>
-        </div>
-
-        <!-- Estação 3: Valorizar -->
-        <div class="about-choreo-step step-03 reveal-on-scroll delay-3" id="choreoStep3">
-          <div class="step-glow-dot">
-            <div class="pulse-ring"></div>
-            <div class="core-dot"></div>
-          </div>
-          <div class="step-card-glass glass-panel">
-            <span class="step-number">03</span>
-            <div class="step-header">
-              <iconify-icon icon="solar:cup-first-bold-duotone" class="step-icon"></iconify-icon>
-              <h3 class="step-title font-title">Valorizar</h3>
-            </div>
-            <p class="step-text">Fortalecer o reconhecimento da dança como profissão, esporte e cultura nacional.</p>
-          </div>
-        </div>
-
-        <!-- Estação 4: Conectar -->
-        <div class="about-choreo-step step-04 reveal-on-scroll delay-4" id="choreoStep4">
-          <div class="step-glow-dot">
-            <div class="pulse-ring"></div>
-            <div class="core-dot"></div>
-          </div>
-          <div class="step-card-glass glass-panel">
-            <span class="step-number">04</span>
-            <div class="step-header">
-              <iconify-icon icon="solar:link-round-angle-bold-duotone" class="step-icon"></iconify-icon>
-              <h3 class="step-title font-title">Conectar</h3>
-            </div>
-            <p class="step-text">Aproximar atletas, escolas e instituições em torno de uma causa comum.</p>
-          </div>
         </div>
 
       </div>
@@ -737,7 +746,6 @@
             <div class="featured-editorial-header">
               <span class="editorial-label">Trajetória Institucional</span>
               <div class="editorial-line"></div>
-              <span class="editorial-counter"><span id="featuredNum">01</span> / 11</span>
             </div>
             
             <div class="featured-bio-wrapper" id="bioWrapper">
@@ -746,12 +754,10 @@
 Bicampeão brasileiro de forró eletrônico e campeão mundial, atua ativamente na representatividade e valorização profissional da categoria no país.
 
 Como Presidente da FNDD, lidera o fortalecimento institucional da dança desportiva e articula diálogos para a implementação de políticas públicas no setor.</p>
-              <div class="bio-fade-overlay"></div>
             </div>
           </div>
         </div>
 
-        <!-- Trilho de Membros da Diretoria (Filmstrip) -->
         <div class="directors-rail-wrapper">
           <div class="rail-fade-top"></div>
           <div class="directors-rail" id="directorsRail">
@@ -802,170 +808,32 @@ Atualmente, exerce o cargo de Vice-presidente da FNDD, unindo forças para estru
               <div class="rail-active-glow"></div>
             </button>
 
-            <!-- Membro 3: Raabe Reis -->
+            <!-- Membro 3: Letícia Puttini -->
             <button class="rail-item" 
                     data-id="3"
-                    data-name="Raabe Reis"
-                    data-role="Diretora de Comunicação e Marketing"
-                    data-bio="Bailarina, professora e coreógrafa com sólida atuação nas danças urbanas e de salão desde 2014. Especialista em forró eletrônico ao lado de seu parceiro Sidney Alves, atua em congressos por todo o país.
+                    data-name="Letícia Puttini"
+                    data-role="Diretora de Secretariado e Administrativo"
+                    data-bio="Bailarina, professora e coreógrafa com mais de 15 anos de experiência, Letícia Puttini é especialista em dança do ventre e zouk, com experiências de ensino no Brasil e exterior.
 
-É cofundadora do Olimpo Studio de Dança e idealizadora de projetos voltados à formação técnica, performance de palco e empreendedorismo no segmento.
+Fundadora da Essence Dance Company e gestora da Fênix Academia de Dança, é também idealizadora do Universo Paralelo Congress.
 
-Como diretora de Comunicação e Marketing da FNDD, lidera a presença digital da federação e a difusão de ações institucionais para o reconhecimento da dança."
-                    data-img="assets/images/Raabe.webp"
+Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiações, rotinas burocráticas e a conformidade regulamentar da instituição."
+                    data-img="assets/images/Letícia.webp"
                     data-num="03">
               <div class="rail-item-img-wrap">
-                <img src="assets/images/Raabe.webp" alt="Raabe Reis" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+                <img src="assets/images/Letícia.webp" alt="Letícia Puttini" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
               </div>
               <div class="rail-item-info">
                 <span class="rail-item-num">03</span>
-                <span class="rail-item-name">Raabe Reis</span>
-                <span class="rail-item-role">Dir. de Comunicação</span>
+                <span class="rail-item-name">Letícia Puttini</span>
+                <span class="rail-item-role">Dir. de Secretariado</span>
               </div>
               <div class="rail-active-glow"></div>
             </button>
 
-            <!-- Membro 4: Nayra Medeiros -->
+            <!-- Membro 4: Marília Carmo -->
             <button class="rail-item" 
                     data-id="4"
-                    data-name="Nayra Medeiros"
-                    data-role="Diretora de Comunicação e Marketing"
-                    data-bio="Professora e dançarina profissional de dança de salão desde 2019, Nayra iniciou sua formação ainda na infância, desenvolvendo grande versatilidade técnica em diversos ritmos tradicionais.
-
-Campeã estadual de forró eletrônico no Recife em 2023, consolidou seu espaço no cenário competitivo nacional com participações em grandes festivais.
-
-Integra a diretoria de Comunicação e Marketing da FNDD, atuando no planejamento de campanhas de engajamento e no fortalecimento das relações institucionais da federação."
-                    data-img="assets/images/Nayra.webp"
-                    data-num="04">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Nayra.webp" alt="Nayra Medeiros" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">04</span>
-                <span class="rail-item-name">Nayra Medeiros</span>
-                <span class="rail-item-role">Dir. de Comunicação</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 5: Rodrigo R2 -->
-            <button class="rail-item" 
-                    data-id="5"
-                    data-name="Rodrigo R2"
-                    data-role="Diretor de Eventos e Cursos"
-                    data-bio="Rodrigo R2 atua na dança de salão desde 2018 com especialidade em forró e sertanejo. É fundador e CEO de uma das maiores redes de escolas de dança do Distrito Federal, com seis unidades e milhares de alunos atendidos.
-
-Formado em Análise de Sistemas e especialista em Engenharia de Software, une sua bagagem de gestão executiva ao desenvolvimento da economia criativa no país.
-
-Diretor de Eventos e Cursos da FNDD, é responsável pela organização de workshops, competições oficiais e formação continuada para profissionais do setor."
-                    data-img="assets/images/Rodrigo.webp"
-                    data-num="05">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Rodrigo.webp" alt="Rodrigo R2" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">05</span>
-                <span class="rail-item-name">Rodrigo R2</span>
-                <span class="rail-item-role">Dir. de Eventos & Cursos</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 6: Sidney Alves -->
-            <button class="rail-item" 
-                    data-id="6"
-                    data-name="Sidney Alves"
-                    data-role="Diretor Técnico"
-                    data-bio="Atuando profissionalmente desde 2018, Sidney Alves é um dos grandes nomes da nova geração do forró eletrônico e das danças de salão no Distrito Federal.
-
-Fundador do Olimpo Studio de Dança, atua na formação de bailarinos e atua como professor de destaque em congressos nacionais e internacionais.
-
-Como Diretor Técnico da FNDD, trabalha no desenvolvimento de regras competitivas, capacitação profissional e fortalecimento técnico da modalidade."
-                    data-img="assets/images/Sidney.webp"
-                    data-num="06">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Sidney.webp" alt="Sidney Alves" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">06</span>
-                <span class="rail-item-name">Sidney Alves</span>
-                <span class="rail-item-role">Diretor Técnico</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 7: Charles Almeida -->
-            <button class="rail-item" 
-                    data-id="7"
-                    data-name="Charles Almeida"
-                    data-role="Diretor Técnico"
-                    data-bio="Com 15 anos de experiência no mercado de dança de salão do Distrito Federal, Charles é professor especializado em forró eletrônico e piseiro.
-
-À frente da Academia Crazy, no Recanto das Emas, realiza um trabalho consolidado com foco na transformação social através da arte.
-
-Atua como Diretor Técnico da FNDD, contribuindo para a organização pedagógica, excelência em competições e valorização da cultura de dança no Brasil."
-                    data-img="assets/images/Charles.webp"
-                    data-num="07">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Charles.webp" alt="Charles Almeida" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">07</span>
-                <span class="rail-item-name">Charles Almeida</span>
-                <span class="rail-item-role">Diretor Técnico</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 8: Fernanda Rodrigues -->
-            <button class="rail-item" 
-                    data-id="8"
-                    data-name="Fernanda Rodrigues"
-                    data-role="Diretora Técnica"
-                    data-bio="Professora há 8 anos, Fernanda Rodrigues é referência em charmes e feminilidade na dança. É bicampeã brasileira de forró eletrônico e campeã mundial.
-
-Ministrou aulas em congressos nacionais e cruzeiros internacionais, além de atuar como jurada técnica em diversas competições do segmento.
-
-Diretora Técnica da FNDD, atua no desenvolvimento de normas e metodologias de avaliação que asseguram a excelência técnica dos torneios promovidos."
-                    data-img="assets/images/Fernanda.webp"
-                    data-num="08">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Fernanda.webp" alt="Fernanda Rodrigues" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">08</span>
-                <span class="rail-item-name">Fernanda Rodrigues</span>
-                <span class="rail-item-role">Diretora Técnica</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 9: Wanessa Beluco -->
-            <button class="rail-item" 
-                    data-id="9"
-                    data-name="Wanessa Beluco"
-                    data-role="Diretora Técnica"
-                    data-bio="Wanessa Beluco é professora de dança de salão e coreógrafa com mais de dez anos de dedicação à promoção e difusão da arte em âmbito escolar e profissional.
-
-Bacharel em Educação Física e servidora da Secretaria de Educação do DF, atua com projetos pedagógicos focados no desenvolvimento humano.
-
-Integra a diretoria técnica da FNDD, estruturando diretrizes que integram dança e atividade física sob a perspectiva esportiva."
-                    data-img="assets/images/Wanessa.webp"
-                    data-num="09">
-              <div class="rail-item-img-wrap">
-                <img src="assets/images/Wanessa.webp" alt="Wanessa Beluco" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
-              </div>
-              <div class="rail-item-info">
-                <span class="rail-item-num">09</span>
-                <span class="rail-item-name">Wanessa Beluco</span>
-                <span class="rail-item-role">Diretora Técnica</span>
-              </div>
-              <div class="rail-active-glow"></div>
-            </button>
-
-            <!-- Membro 10: Marília Carmo -->
-            <button class="rail-item" 
-                    data-id="10"
                     data-name="Marília Carmo"
                     data-role="Diretora Financeira"
                     data-bio="Bailarina, coreógrafa e professora de dança de salão em Brasília desde 1996, com vasta experiência em samba de gafieira, tango, zouk, bolero e salsa.
@@ -974,37 +842,173 @@ Graduada em Educação Física, é sócia-coordenadora da Casa de Dança William
 
 Exerce a função de Diretora Financeira da FNDD, garantindo a gestão contábil, sustentabilidade administrativa e transparência nas operações da federação."
                     data-img="assets/images/Marília.webp"
-                    data-num="10">
+                    data-num="04">
               <div class="rail-item-img-wrap">
                 <img src="assets/images/Marília.webp" alt="Marília Carmo" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
               </div>
               <div class="rail-item-info">
-                <span class="rail-item-num">10</span>
+                <span class="rail-item-num">04</span>
                 <span class="rail-item-name">Marília Carmo</span>
                 <span class="rail-item-role">Diretora Financeira</span>
               </div>
               <div class="rail-active-glow"></div>
             </button>
 
-            <!-- Membro 11: Letícia Puttini -->
+            <!-- Membro 5: Charles Almeida -->
+            <button class="rail-item" 
+                    data-id="5"
+                    data-name="Charles Almeida"
+                    data-role="Diretor Técnico"
+                    data-bio="Com 15 anos de experiência no mercado de dança de salão do Distrito Federal, Charles é professor especializado em forró eletrônico e piseiro.
+
+À frente da Academia Crazy, no Recanto das Emas, realiza um trabalho consolidado com foco na transformação social através da arte.
+
+Atua como Diretor Técnico da FNDD, contribuindo para a organização pedagógica, excelência em competições e valorização da cultura de dança no Brasil."
+                    data-img="assets/images/Charles.webp"
+                    data-num="05">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Charles.webp" alt="Charles Almeida" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">05</span>
+                <span class="rail-item-name">Charles Almeida</span>
+                <span class="rail-item-role">Diretor Técnico</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 6: Fernanda Rodrigues -->
+            <button class="rail-item" 
+                    data-id="6"
+                    data-name="Fernanda Rodrigues"
+                    data-role="Diretora Técnica"
+                    data-bio="Professora há 8 anos, Fernanda Rodrigues é referência em charmes e feminilidade na dança. É bicampeã brasileira de forró eletrônico e campeã mundial.
+
+Ministrou aulas em congressos nacionais e cruzeiros internacionais, além de atuar como jurada técnica em diversas competições do segmento.
+
+Diretora Técnica da FNDD, atua no desenvolvimento de normas e metodologias de avaliação que asseguram a excelência técnica dos torneios promovidos."
+                    data-img="assets/images/Fernanda.webp"
+                    data-num="06">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Fernanda.webp" alt="Fernanda Rodrigues" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">06</span>
+                <span class="rail-item-name">Fernanda Rodrigues</span>
+                <span class="rail-item-role">Diretora Técnica</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 7: Sidney Alves -->
+            <button class="rail-item" 
+                    data-id="7"
+                    data-name="Sidney Alves"
+                    data-role="Diretor Técnico"
+                    data-bio="Atuando profissionalmente desde 2018, Sidney Alves é um dos grandes nomes da nova geração do forró eletrônico e das danças de salão no Distrito Federal.
+
+Fundador do Olimpo Studio de Dança, atua na formação de bailarinos e atua como professor de destaque em congressos nacionais e internacionais.
+
+Como Diretor Técnico da FNDD, trabalha no desenvolvimento de regras competitivas, capacitação profissional e fortalecimento técnico da modalidade."
+                    data-img="assets/images/Sidney.webp"
+                    data-num="07">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Sidney.webp" alt="Sidney Alves" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">07</span>
+                <span class="rail-item-name">Sidney Alves</span>
+                <span class="rail-item-role">Diretor Técnico</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 8: Wanessa Beluco -->
+            <button class="rail-item" 
+                    data-id="8"
+                    data-name="Wanessa Beluco"
+                    data-role="Diretora Técnica"
+                    data-bio="Wanessa Beluco é professora de dança de salão e coreógrafa com mais de dez anos de dedicação à promoção e difusão da arte em âmbito escolar e profissional.
+
+Bacharel em Educação Física e servidora da Secretaria de Educação do DF, atua com projetos pedagógicos focados no desenvolvimento humano.
+
+Integra a diretoria técnica da FNDD, estruturando diretrizes que integram dança e atividade física sob a perspectiva esportiva."
+                    data-img="assets/images/Wanessa.webp"
+                    data-num="08">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Wanessa.webp" alt="Wanessa Beluco" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">08</span>
+                <span class="rail-item-name">Wanessa Beluco</span>
+                <span class="rail-item-role">Diretora Técnica</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 9: Rodrigo R2 -->
+            <button class="rail-item" 
+                    data-id="9"
+                    data-name="Rodrigo R2"
+                    data-role="Diretor de Eventos e Cursos"
+                    data-bio="Rodrigo R2 atua na dança de salão desde 2018 com especialidade em forró e sertanejo. É fundador e CEO de uma das maiores redes de escolas de dança do Distrito Federal, com seis unidades e milhares de alunos atendidos.
+
+Formado em Análise de Sistemas e especialista em Engenharia de Software, une sua bagagem de gestão executiva ao desenvolvimento da economia criativa no país.
+
+Diretor de Eventos e Cursos da FNDD, é responsável pela organização de workshops, competições oficiais e formação continuada para profissionais do setor."
+                    data-img="assets/images/Rodrigo.webp"
+                    data-num="09">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Rodrigo.webp" alt="Rodrigo R2" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">09</span>
+                <span class="rail-item-name">Rodrigo R2</span>
+                <span class="rail-item-role">Dir. de Eventos & Cursos</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 10: Nayara Medeiros -->
+            <button class="rail-item" 
+                    data-id="10"
+                    data-name="Nayara Medeiros"
+                    data-role="Diretora de Comunicação e Marketing"
+                    data-bio="Nayara Medeiros é especialista em comunicação corporativa e relações públicas, atuando há mais de seis anos no alinhamento de estratégias de engajamento social.
+
+Sua trajetória na dança engloba a participação ativa no desenvolvimento de coletivos universitários e a promoção da dança de salão em ambientes corporativos.
+
+Integra a diretoria de Comunicação e Marketing da FNDD, atuando no planejamento de campanhas de engajamento e no fortalecimento das relações institucionais da federação."
+                    data-img="assets/images/Nayra.webp"
+                    data-num="10">
+              <div class="rail-item-img-wrap">
+                <img src="assets/images/Nayra.webp" alt="Nayara Medeiros" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+              </div>
+              <div class="rail-item-info">
+                <span class="rail-item-num">10</span>
+                <span class="rail-item-name">Nayara Medeiros</span>
+                <span class="rail-item-role">Dir. de Comunicação</span>
+              </div>
+              <div class="rail-active-glow"></div>
+            </button>
+
+            <!-- Membro 11: Raabe Reis -->
             <button class="rail-item" 
                     data-id="11"
-                    data-name="Letícia Puttini"
-                    data-role="Diretora de Secretariado e Administrativo"
-                    data-bio="Bailarina e professora com 15 anos de atuação, Letícia Puttini é especialista em dança do ventre e zouk, com experiências de ensino no Brasil e exterior.
+                    data-name="Raabe Reis"
+                    data-role="Diretora de Comunicação e Marketing"
+                    data-bio="Raabe Reis é dançarina, professora, coreógrafa, instrutora de fit dance e empreendedora que transforma movimento em potência. Desde 2014, destaca-se no cenário da dança, transitando das danças urbanas para as danças de salão, com forte atuação no forró eletrônico ao lado de seu parceiro Sidney Alves.
 
-Fundadora da Essence Dance Company e gestora da Fênix Academia de Dança, é também idealizadora do Universo Paralelo Congress.
-
-Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiações, rotinas burocráticas e a conformidade regulamentar da institution."
-                    data-img="assets/images/Letícia.webp"
+Cofundadora do Olimpo Studio de Dança, atua na formação de artistas e no desenvolvimento de projetos que unem performance, inovação e identidade. Sua trajetória inclui premiações, participação em grandes eventos e atuação como professora em congressos e workshops por todo o Brasil."
+                    data-img="assets/images/Raabe.webp"
                     data-num="11">
               <div class="rail-item-img-wrap">
-                <img src="assets/images/Letícia.webp" alt="Letícia Puttini" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
+                <img src="assets/images/Raabe.webp" alt="Raabe Reis" class="rail-item-img" loading="lazy" decoding="async" width="46" height="46">
               </div>
               <div class="rail-item-info">
                 <span class="rail-item-num">11</span>
-                <span class="rail-item-name">Letícia Puttini</span>
-                <span class="rail-item-role">Dir. de Secretariado</span>
+                <span class="rail-item-name">Raabe Reis</span>
+                <span class="rail-item-role">Dir. de Comunicação</span>
               </div>
               <div class="rail-active-glow"></div>
             </button>
@@ -1168,8 +1172,8 @@ Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiaç
       <!-- CTA Final de Conexão (Design Clean & Simples) -->
       <div class="events-cta-simple reveal-on-scroll">
         <span class="cta-text">Quer aproximar seu evento ou projeto da <span class="gold-text">FNDD</span>?</span>
-        <a href="https://wa.me/5561983648757?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20FNDD%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20federa%C3%A7%C3%A3o.%0A" target="_blank" rel="noopener" class="btn-cta-clean">
-          Fale com a Federação
+        <a href="https://www.instagram.com/fndd.danca" target="_blank" rel="noopener" class="btn-cta-clean">
+          Falar com a FNDD
           <iconify-icon icon="solar:chat-round-line-bold"></iconify-icon>
         </a>
       </div>
@@ -1347,25 +1351,29 @@ Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiaç
         <div class="contact-frame-corner corner-bl"></div>
         <div class="contact-frame-corner corner-br"></div>
 
-        <!-- Coluna Esquerda: O Convite Ativo (Conversão) -->
+        <!-- Coluna Esquerda: O Convite Ativo (Conversão com Formulário) -->
         <div class="contact-panel-col contact-col-cta">
           <div class="contact-col-header">
             <div class="contact-col-icon-wrap">
               <iconify-icon icon="solar:letter-bold-duotone" class="contact-col-icon"></iconify-icon>
             </div>
-            <h3 class="contact-col-title font-title">Quero me aproximar da FNDD</h3>
+            <h3 class="contact-col-title font-title">Envie uma mensagem</h3>
           </div>
           
           <p class="contact-col-text">
-            Fale com a federação para entender caminhos de participação, filiação, eventos, cursos, competições e ações institucionais.
+            Fale conosco diretamente preenchendo o formulário abaixo. Acompanhe a federação também no <a href="https://www.instagram.com/fndd.danca" target="_blank" class="contact-email-link">@fndd.danca</a>.
           </p>
           
-          <div class="contact-action-wrapper">
-            <a href="https://wa.me/5561983648757?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20FNDD%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20federa%C3%A7%C3%A3o.%0A" target="_blank" rel="noopener" class="btn-contact-whatsapp">
-              Falar com a FNDD
-              <iconify-icon icon="solar:chat-round-line-bold"></iconify-icon>
-            </a>
-            <span class="contact-btn-support">Atendimento inicial para professores, escolas, atletas, eventos e projetos.</span>
+          <div class="contact-action-wrapper" style="margin-top: 15px; width: 100%;">
+            <form action="mailto:fndd.federacao@gmail.com" method="post" enctype="text/plain" class="fndd-mini-form">
+              <input type="text" name="Nome" placeholder="Seu Nome" required class="fndd-input">
+              <input type="email" name="Email" placeholder="Seu E-mail" required class="fndd-input">
+              <textarea name="Mensagem" placeholder="Como podemos ajudar?" required class="fndd-textarea"></textarea>
+              <button type="submit" class="btn-contact-whatsapp btn-submit-form">
+                Enviar E-mail
+                <iconify-icon icon="solar:plain-bold-duotone"></iconify-icon>
+              </button>
+            </form>
           </div>
         </div>
 
@@ -1406,6 +1414,14 @@ Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiaç
               <iconify-icon icon="solar:hand-heart-bold-duotone" class="badge-icon"></iconify-icon>
               <span class="badge-text">Parcerias e projetos</span>
             </div>
+          </div>
+
+          <!-- Botão Falar com a FNDD -->
+          <div class="contact-action-wrapper contact-right-actions" style="margin-top: auto; display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 30px;">
+            <a href="https://www.instagram.com/fndd.danca" target="_blank" rel="noopener" class="btn-contact-whatsapp" style="margin: 0 auto;">
+              Falar com a FNDD
+              <iconify-icon icon="solar:chat-round-line-bold"></iconify-icon>
+            </a>
           </div>
         </div>
 
@@ -1465,9 +1481,9 @@ Diretora de Secretariado e Administrativo da FNDD, coordena a gestão de filiaç
       <!-- Coluna 4: CTA Final -->
       <div class="footer-col footer-cta-col">
         <h4 class="footer-col-title font-title">Aproxime-se</h4>
-        <p class="footer-cta-text">Quer se aproximar da FNDD?</p>
-        <a href="https://wa.me/5561983648757?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20FNDD%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20federa%C3%A7%C3%A3o.%0A" target="_blank" rel="noopener" class="btn-footer-cta">
-          Fale com a Federação
+        <p class="footer-cta-text">Entre em contato pelo Instagram @fndd.danca ou pelo e-mail <a href="mailto:fndd.federacao@gmail.com" class="footer-email-link">fndd.federacao@gmail.com</a>.</p>
+        <a href="https://www.instagram.com/fndd.danca" target="_blank" rel="noopener" class="btn-footer-cta">
+          Falar com a FNDD
           <iconify-icon icon="solar:arrow-right-bold"></iconify-icon>
         </a>
       </div>
