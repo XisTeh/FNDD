@@ -735,6 +735,68 @@ function initInteractiveStage() {
   // Não inicia o rAF no DOMContentLoaded — só ao mover o mouse
 }
 
+/**
+ * initVideoVolumeControl — FNDD
+ * Inicializa os controles customizados de volume do vídeo da seção Sobre.
+ */
+function initVideoVolumeControl() {
+  const video = document.getElementById('aboutVideo');
+  const slider = document.getElementById('videoVolumeSlider');
+  const btn = document.getElementById('videoVolumeBtn');
+  const icon = document.getElementById('volumeIcon');
+
+  if (!video || !slider || !btn || !icon) return;
+
+  let lastVolume = 1;
+
+  const updateIcon = (vol) => {
+    if (vol === 0) {
+      icon.setAttribute('icon', 'solar:volume-mute-bold-duotone');
+    } else if (vol < 0.5) {
+      icon.setAttribute('icon', 'solar:volume-low-bold-duotone');
+    } else {
+      icon.setAttribute('icon', 'solar:volume-loud-bold-duotone');
+    }
+  };
+
+  slider.addEventListener('input', (e) => {
+    const vol = parseFloat(e.target.value);
+    video.volume = vol;
+    video.muted = (vol === 0);
+    updateIcon(vol);
+    if (vol > 0) {
+      lastVolume = vol;
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    if (video.muted || video.volume === 0) {
+      video.muted = false;
+      video.volume = lastVolume;
+      slider.value = lastVolume;
+      updateIcon(lastVolume);
+    } else {
+      video.muted = true;
+      video.volume = 0;
+      slider.value = 0;
+      updateIcon(0);
+    }
+  });
+
+  video.addEventListener('volumechange', () => {
+    if (video.muted) {
+      slider.value = 0;
+      updateIcon(0);
+    } else {
+      slider.value = video.volume;
+      updateIcon(video.volume);
+      if (video.volume > 0) {
+        lastVolume = video.volume;
+      }
+    }
+  });
+}
+
 
 /* ==========================================================================
    6. PILARES DE ATUAÇÃO (SISTEMA DE ÓRBITAS INTERATIVAS)
@@ -1279,6 +1341,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lazyInitSection('.about-section', () => {
     initAboutScrollParallax();
     initInteractiveStage();
+    initVideoVolumeControl();
   });
 
   // 6. Sistema interativo de Pilares de Atuação — Lazy Init
