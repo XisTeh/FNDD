@@ -378,6 +378,109 @@ function initNavbarBehavior() {
   }
 }
 
+/**
+ * initScrollSpy — FNDD
+ * Controla a ativação visual dos links da navbar durante a rolagem (Scroll Spy)
+ * e o comportamento de rolagem suave com offset da navbar.
+ */
+function initScrollSpy() {
+  const sections = [
+    { id: 'heroSection', link: '#' },
+    { id: 'sobre', link: '#sobre' },
+    { id: 'diretoria', link: '#diretoria' },
+    { id: 'eventos', link: '#eventos' },
+    { id: 'faq', link: '#faq' },
+    { id: 'contato', link: '#contato' }
+  ];
+
+  const navLinks = document.querySelectorAll('.nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  const updateActiveLink = () => {
+    let activeSectionId = 'heroSection';
+    // Offset para compensar a navbar fixada
+    const scrollPosition = window.scrollY + 120;
+
+    for (const section of sections) {
+      const el = document.getElementById(section.id);
+      if (el) {
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (scrollPosition >= top && scrollPosition < top + height) {
+          activeSectionId = section.id;
+        }
+      }
+    }
+
+    // Se o usuário rolou até o fim da página, ativa o Contato
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 15) {
+      activeSectionId = 'contato';
+    }
+
+    const activeLinkHref = activeSectionId === 'heroSection' ? '#' : `#${activeSectionId}`;
+
+    // Atualiza links de desktop
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === activeLinkHref) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Atualiza links de mobile
+    mobileLinks.forEach(link => {
+      if (link.getAttribute('href') === activeLinkHref) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveLink();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateActiveLink(); // Inicializa o estado correto no load
+
+  // Suporte a clique com scroll suave preciso
+  const allLinks = [...navLinks, ...mobileLinks];
+  allLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const targetId = href === '#' ? 'heroSection' : href.substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          const targetOffset = targetEl.offsetTop - 75; // Compensação da altura da navbar fixada
+          window.scrollTo({
+            top: targetOffset,
+            behavior: 'smooth'
+          });
+
+          // Atualiza classes ativas imediatamente
+          allLinks.forEach(l => {
+            if (l.getAttribute('href') === href) {
+              l.classList.add('active');
+            } else {
+              l.classList.remove('active');
+            }
+          });
+        }
+      }
+    });
+  });
+}
+
 
 /* ==========================================================================
    3. EFEITOS DA HERO (SPOTLIGHT & SCROLL PARALLAX)
@@ -1072,6 +1175,58 @@ function initFaqAccordion() {
   });
 }
 
+/* ==========================================================================
+   FORMULÁRIO DE CONTATO SEGURO (Prevenção de Warnings do Navegador)
+   ========================================================================== */
+function initContactForm() {
+  const form = document.getElementById('fnddContactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('contactName');
+    const emailInput = document.getElementById('contactEmail');
+    const messageInput = document.getElementById('contactMessage');
+
+    if (!nameInput || !emailInput || !messageInput) return;
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+
+    // Validação básica dos campos obrigatórios
+    if (!name) {
+      alert('Por favor, preencha o seu nome.');
+      nameInput.focus();
+      return;
+    }
+    if (!email || !email.includes('@')) {
+      alert('Por favor, insira um e-mail válido.');
+      emailInput.focus();
+      return;
+    }
+    if (!message) {
+      alert('Por favor, digite a sua mensagem.');
+      messageInput.focus();
+      return;
+    }
+
+    const emailDestino = 'fndd.federacao@gmail.com';
+    const assunto = 'Contato pelo site da FNDD';
+    const corpo = `Nome: ${name}
+E-mail: ${email}
+Mensagem:
+${message}`;
+
+    const mailtoUrl = `mailto:${emailDestino}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+    
+    // Abre o mailto com segurança
+    window.location.href = mailtoUrl;
+  });
+}
+
+
 
 /* ==========================================================================
    INICIALIZAÇÃO GLOBAL (DOMContentLoaded) & LAZY LOADING DE SCRIPTS
@@ -1108,6 +1263,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Comportamento da Navbar e mobile menu (crítico para primeiro render)
   initNavbarBehavior();
+  
+  // Inicialização do Scroll Spy para destacar itens no menu conforme rolagem/clique
+  initScrollSpy();
 
   // 3. Inicializações da Hero (crítico)
   initHeroVideo();
@@ -1148,4 +1306,7 @@ document.addEventListener('DOMContentLoaded', () => {
   lazyInitSection('.faq-section', () => {
     initFaqAccordion();
   });
+
+  // 11. Formulário de Contato Seguro
+  initContactForm();
 });

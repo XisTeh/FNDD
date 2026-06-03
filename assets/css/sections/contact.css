@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    SEÇÃO CONTATO & FILIAÇÃO — CONVITE INSTITUCIONAL (FNDD PREMIUM)
    ========================================================================== */
 .contact-section {
@@ -293,8 +293,8 @@
   font-size: 0.98rem;
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 35px;
-  flex-grow: 1;
+  margin-bottom: 20px;
+  flex-grow: 0;
 }
 
 /* Coluna Esquerda: Ação WhatsApp */
@@ -303,7 +303,6 @@
   flex-direction: column;
   gap: 15px;
   align-items: flex-start;
-  margin-top: auto;
 }
 
 .btn-contact-whatsapp {
@@ -371,7 +370,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-top: auto;
+  margin-top: 45px;
 }
 
 .institutional-badge {
