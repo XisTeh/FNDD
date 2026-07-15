@@ -545,7 +545,7 @@
   align-items: center;
   gap: 15px;
   padding: 10px 0;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 
@@ -558,13 +558,14 @@
   position: absolute;
   top: 50%;
   height: 1px;
-  background: linear-gradient(90deg, rgba(197, 168, 90, 0), rgba(197, 168, 90, 0.5) 100%);
+  background: linear-gradient(90deg, rgba(197, 168, 90, 0), var(--gold-primary) 100%);
   transform: translateY(-50%);
-  transition: background 0.4s ease, width 0.4s ease;
+  opacity: 0.45;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .constellation-item:hover::before {
-  background: linear-gradient(90deg, rgba(197, 168, 90, 0), var(--gold-primary) 100%);
+  opacity: 1;
 }
 
 .c-1 { margin-left: 0; }
@@ -584,7 +585,7 @@
   border-radius: 50%;
   box-shadow: 0 0 10px var(--gold-primary);
   flex-shrink: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .constellation-item:hover .c-node {
@@ -603,7 +604,7 @@
   font-weight: 800;
   letter-spacing: 0.15em;
   color: var(--text-primary);
-  transition: color 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .constellation-item:hover .c-title {
@@ -614,7 +615,7 @@
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--text-secondary);
-  transition: color 0.3s ease;
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .constellation-item:hover .c-desc {

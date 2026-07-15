@@ -110,7 +110,7 @@
 }
 
 /* Efeito Shimmer de Brilho de Luz Passante ao Hover - Suave, Devagar, Sem Efeito Lâmina */
-.btn-nav-cta::before, .btn-mobile-cta::before, .btn-fndd-primary::before, .btn-fndd-secondary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before {
+.btn-nav-cta::after, .btn-mobile-cta::after, .btn-fndd-primary::after, .btn-fndd-secondary::after, .btn-contact-whatsapp::after, .btn-footer-cta::after {
   content: '';
   position: absolute;
   top: 0;
@@ -121,10 +121,10 @@
   transform: skewX(-20deg);
   pointer-events: none;
   transition: left 1.5s cubic-bezier(0.16, 1, 0.3, 1) !important; /* Passagem poética de 1.5 segundos, sutil e tranquila */
-  z-index: 1;
+  z-index: 2;
 }
 
-.btn-nav-cta:hover::before, .btn-mobile-cta:hover::before, .btn-fndd-primary:hover::before, .btn-fndd-secondary:hover::before, .btn-contact-whatsapp:hover::before, .btn-footer-cta:hover::before {
+.btn-nav-cta:hover::after, .btn-mobile-cta:hover::after, .btn-fndd-primary:hover::after, .btn-fndd-secondary:hover::after, .btn-contact-whatsapp:hover::after, .btn-footer-cta:hover::after {
   left: 200%;
 }
 
@@ -134,6 +134,25 @@
   box-shadow: 0 8px 20px rgba(197, 168, 90, 0.22) !important;
 }
 
+/* Transição de Degradê de Fundo Suave via Pseudo-elemento ::before */
+.btn-fndd-primary, .btn-contact-whatsapp, .btn-footer-cta {
+  z-index: 1;
+}
+
+.btn-fndd-primary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-fndd-primary:hover::before, .btn-contact-whatsapp:hover::before, .btn-footer-cta:hover::before {
+  opacity: 1;
+}
+
 /* Especificidade dos Botões da Hero para maior contraste e prestígio */
 .btn-fndd-primary {
   background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%) !important;
@@ -141,7 +160,6 @@
 }
 
 .btn-fndd-primary:hover {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%) !important;
   box-shadow: 0 10px 30px rgba(197, 168, 90, 0.3) !important;
 }
 
@@ -256,35 +274,7 @@
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.85), 0 0 22px rgba(197, 168, 90, 0.08);
 }
 
-/* 6. Refinamento de Painéis e Imagens de Diretoria */
-.director-rail-item {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.director-rail-item:hover {
-  background: rgba(197, 168, 90, 0.06);
-  border-left: 2px solid var(--gold-primary);
-  padding-left: 18px; /* Micro recuo sutil do rail */
-}
-
-.director-main-panel {
-  border: 1px solid rgba(197, 168, 90, 0.15);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85);
-  transition: border-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-.director-main-panel:hover {
-  border-color: rgba(197, 168, 90, 0.35);
-  box-shadow: 0 45px 80px rgba(0, 0, 0, 0.95), 0 0 30px rgba(197, 168, 90, 0.05);
-}
-
-.director-photo-container img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.director-main-panel:hover .director-photo-container img {
-  transform: scale(1.025);
-}
+/* 6. Refinamento de Painéis e Imagens de Diretoria (Removidos estilos redundantes com classes inválidas) */
 
 /* 7. Refinamento de Pontos de Encontro de Eventos */
 .events-timeline-line {

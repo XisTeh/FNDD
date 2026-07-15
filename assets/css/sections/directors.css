@@ -251,12 +251,12 @@
               linear-gradient(to top, rgba(6, 6, 8, 0.7) 0%, transparent 35%);
   z-index: 2;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
 }
 
 .featured-image-wrapper:hover::after {
-  background: radial-gradient(circle at center, transparent 50%, rgba(6, 6, 8, 0.25) 100%),
-              linear-gradient(to top, rgba(6, 6, 8, 0.6) 0%, transparent 35%);
+  opacity: 0.85;
 }
 
 .featured-image {
@@ -267,13 +267,13 @@
   border-radius: 24px; /* Garante arredondamento na própria imagem */
   filter: grayscale(15%) contrast(1.02) brightness(0.95);
   transform: scale(1.015);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
 .featured-image-wrapper:hover .featured-image {
   transform: scale(1.05);
-  filter: grayscale(0%) contrast(1.05) brightness(1.01);
+  filter: grayscale(0%) contrast(1.02) brightness(1.01);
 }
 
 .featured-image-overlay {
@@ -516,9 +516,8 @@
   overflow: hidden;
   width: 100%;
   transition: background-color 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-color 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, background-color, border-color;
+              border-color 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: background-color, border-color;
 }
 
 .rail-item-img-wrap {
@@ -529,7 +528,8 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   flex-shrink: 0;
   background: #080808;
-  transition: border-color 0.28s ease, box-shadow 0.28s ease;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 .rail-item-img {
@@ -545,6 +545,8 @@
   flex-direction: column;
   flex-grow: 1;
   min-width: 0;
+  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 .rail-item-num {
@@ -587,6 +589,10 @@
 .rail-item:hover {
   background-color: rgba(197, 168, 90, 0.03);
   border-color: rgba(197, 168, 90, 0.15);
+}
+
+.rail-item:hover .rail-item-img-wrap,
+.rail-item:hover .rail-item-info {
   transform: translateX(4px) translateZ(0);
 }
 

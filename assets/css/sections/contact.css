@@ -329,19 +329,7 @@
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-contact-whatsapp::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-  pointer-events: none;
-}
-
 .btn-contact-whatsapp:hover {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(197, 168, 90, 0.45);
   border-color: rgba(255, 255, 255, 0.15);
@@ -349,11 +337,6 @@
 
 .btn-contact-whatsapp:hover iconify-icon {
   transform: scale(1.1) rotate(5deg);
-}
-
-.btn-contact-whatsapp:hover::before {
-  left: 200%;
-  transition: left 0.85s ease-in-out;
 }
 
 .contact-btn-support {

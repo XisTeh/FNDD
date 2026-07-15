@@ -196,7 +196,6 @@
 }
 
 .btn-footer-cta:hover {
-  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 100%);
   color: #000000;
   border-color: transparent;
   box-shadow: 0 4px 15px rgba(197, 168, 90, 0.25);
