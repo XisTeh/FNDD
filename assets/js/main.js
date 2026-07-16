@@ -386,11 +386,11 @@ function initNavbarBehavior() {
 function initScrollSpy() {
   const sections = [
     { id: 'heroSection', link: '#' },
+    { id: 'contato', link: '#contato' },
     { id: 'sobre', link: '#sobre' },
     { id: 'diretoria', link: '#diretoria' },
     { id: 'eventos', link: '#eventos' },
-    { id: 'faq', link: '#faq' },
-    { id: 'contato', link: '#contato' }
+    { id: 'faq', link: '#faq' }
   ];
 
   const navLinks = document.querySelectorAll('.nav-link');
@@ -412,9 +412,9 @@ function initScrollSpy() {
       }
     }
 
-    // Se o usuário rolou até o fim da página, ativa o Contato
+    // Se o usuário rolou até o fim da página, ativa o FAQ
     if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 15) {
-      activeSectionId = 'contato';
+      activeSectionId = 'faq';
     }
 
     const activeLinkHref = activeSectionId === 'heroSection' ? '#' : `#${activeSectionId}`;
