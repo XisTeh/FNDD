@@ -102,7 +102,7 @@
 }
 
 /* 2. Super Polimento de Todos os Botões Premium (Suave, Elegante e Reativo) */
-.btn-nav-cta, .btn-mobile-cta, .btn-fndd-primary, .btn-fndd-secondary, .btn-contact-whatsapp, .btn-footer-cta {
+.btn-nav-cta, .btn-mobile-cta, .btn-fndd-primary, .btn-fndd-secondary, .btn-contact-whatsapp, .btn-footer-cta, .btn-filiacao-main-cta {
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -110,7 +110,7 @@
 }
 
 /* Efeito Shimmer de Brilho de Luz Passante ao Hover - Suave, Devagar, Sem Efeito Lâmina */
-.btn-nav-cta::after, .btn-mobile-cta::after, .btn-fndd-primary::after, .btn-fndd-secondary::after, .btn-contact-whatsapp::after, .btn-footer-cta::after {
+.btn-nav-cta::after, .btn-mobile-cta::after, .btn-fndd-primary::after, .btn-fndd-secondary::after, .btn-contact-whatsapp::after, .btn-footer-cta::after, .btn-filiacao-main-cta::after {
   content: '';
   position: absolute;
   top: 0;
@@ -124,22 +124,22 @@
   z-index: 2;
 }
 
-.btn-nav-cta:hover::after, .btn-mobile-cta:hover::after, .btn-fndd-primary:hover::after, .btn-fndd-secondary:hover::after, .btn-contact-whatsapp:hover::after, .btn-footer-cta:hover::after {
+.btn-nav-cta:hover::after, .btn-mobile-cta:hover::after, .btn-fndd-primary:hover::after, .btn-fndd-secondary:hover::after, .btn-contact-whatsapp:hover::after, .btn-footer-cta:hover::after, .btn-filiacao-main-cta:hover::after {
   left: 200%;
 }
 
 /* Micro-elevação dos botões premium no hover (Sutil e Macio) */
-.btn-nav-cta:hover, .btn-mobile-cta:hover, .btn-fndd-primary:hover, .btn-fndd-secondary:hover, .btn-contact-whatsapp:hover, .btn-footer-cta:hover {
+.btn-nav-cta:hover, .btn-mobile-cta:hover, .btn-fndd-primary:hover, .btn-fndd-secondary:hover, .btn-contact-whatsapp:hover, .btn-footer-cta:hover, .btn-filiacao-main-cta:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 20px rgba(197, 168, 90, 0.22) !important;
 }
 
 /* Transição de Degradê de Fundo Suave via Pseudo-elemento ::before */
-.btn-fndd-primary, .btn-contact-whatsapp, .btn-footer-cta {
+.btn-fndd-primary, .btn-contact-whatsapp, .btn-footer-cta, .btn-filiacao-main-cta {
   z-index: 1;
 }
 
-.btn-fndd-primary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before {
+.btn-fndd-primary::before, .btn-contact-whatsapp::before, .btn-footer-cta::before, .btn-filiacao-main-cta::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -149,7 +149,7 @@
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.btn-fndd-primary:hover::before, .btn-contact-whatsapp:hover::before, .btn-footer-cta:hover::before {
+.btn-fndd-primary:hover::before, .btn-contact-whatsapp:hover::before, .btn-footer-cta:hover::before, .btn-filiacao-main-cta:hover::before {
   opacity: 1;
 }
 

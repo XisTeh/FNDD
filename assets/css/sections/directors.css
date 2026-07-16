@@ -515,8 +515,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  transition: background-color 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              border-color 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background-color, border-color;
 }
 
@@ -528,7 +528,7 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   flex-shrink: 0;
   background: #080808;
-  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -545,7 +545,7 @@
   flex-direction: column;
   flex-grow: 1;
   min-width: 0;
-  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -558,7 +558,7 @@
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-secondary);
-  transition: color 0.28s ease;
+  transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -581,7 +581,7 @@
   border: 1px solid transparent;
   border-radius: 12px;
   pointer-events: none;
-  transition: border-color 0.28s ease;
+  transition: border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
 }
 
