@@ -781,25 +781,36 @@ html, body {
   .fndd-navbar {
     padding: 10px 24px;
   }
-
-  /* --- Diretoria (NÃO ALTERAR) --- */
+  /* --- Diretoria --- */
+  .directors-showcase {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
   .director-featured-panel {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 20px;
-    padding: 30px 20px !important;
+    gap: 16px !important;
+    padding: 24px 16px !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
   }
   .featured-image-wrapper {
-    width: 130px !important;
-    height: 130px !important;
+    display: block !important;
+    width: 120px !important;
+    height: 120px !important;
     border-radius: 50% !important;
     aspect-ratio: 1 / 1 !important;
     max-height: none !important;
     border: 2px solid var(--gold-primary) !important;
     box-shadow: 0 0 25px rgba(197, 168, 90, 0.25) !important;
     overflow: hidden !important;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
   }
   .featured-image {
     width: 100% !important;
@@ -809,38 +820,78 @@ html, body {
     object-position: center 20% !important;
   }
   .featured-info {
-    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
     width: 100% !important;
+    padding: 0 !important;
+    gap: 12px !important;
   }
   .featured-meta {
+    display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    text-align: center !important;
     gap: 6px !important;
+    width: 100% !important;
+  }
+  .meta-texts {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 4px !important;
+    width: 100% !important;
+  }
+  .featured-name {
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   .featured-role-wrapper {
+    display: flex !important;
     justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .featured-role {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: var(--gold-primary) !important;
+    text-align: center !important;
+  }
+  .featured-badge {
+    display: inline-flex !important;
+    align-items: center !important;
   }
   .featured-editorial-header {
-    justify-content: center !important;
-    margin: 14px 0 10px 0 !important;
+    display: none !important;
   }
   .featured-bio-wrapper {
+    width: 100% !important;
     min-height: auto !important;
     height: auto !important;
-    padding-right: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
   }
   .featured-bio {
-    font-size: 0.9rem !important;
-    text-align: left !important;
-    line-height: 1.6 !important;
+    font-size: 0.88rem !important;
+    text-align: center !important;
+    line-height: 1.65 !important;
+    white-space: pre-line !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin: 0 !important;
+    width: 100% !important;
+    word-break: break-word !important;
   }
   .rail-item {
     width: 160px !important;
-  }
-
-  /* --- Eventos --- */
+  }  /* --- Eventos --- */
   .events-svg-line {
     left: 20px !important;
     transform: none;
@@ -1156,15 +1207,13 @@ html, body {
   .hero-video-overlay {
     background: linear-gradient(180deg, rgba(5, 5, 6, 0.72) 0%, rgba(5, 5, 6, 0.94) 100%) !important;
   }
-  
-  /* --- Diretoria (NÃO ALTERAR) --- */
+    /* --- Diretoria --- */
   .featured-bio {
-    text-align: left !important;
+    text-align: center !important;
   }
   .rail-item {
     width: 150px !important;
   }
-
   /* --- Eventos --- */
   .events-cta-simple {
     flex-direction: column !important;
@@ -1432,13 +1481,11 @@ html, body {
   .manifesto-title { font-size: 1.45rem !important; }
   .final-phrase { font-size: 1.2rem !important; }
   .final-desc { font-size: 0.8rem !important; }
-
-  /* --- Diretoria (NÃO ALTERAR) --- */
-  .featured-name { font-size: 1.15rem; }
-  .featured-role { font-size: 0.72rem; }
-  .featured-bio { font-size: 0.82rem; }
+  /* --- Diretoria --- */
+  .featured-name { font-size: 1.15rem !important; }
+  .featured-role { font-size: 0.72rem !important; }
+  .featured-bio { font-size: 0.82rem !important; text-align: center !important; }
   .rail-item { width: 130px !important; }
-
   /* --- Eventos --- */
   .events-title { font-size: 1.45rem; }
   .station-card { padding: 16px; }

@@ -1097,9 +1097,14 @@ function initDirectorsGallery() {
       if (featuredNum) featuredNum.textContent = item.dataset.num;
       if (bioWrapper) bioWrapper.scrollTop = 0;
 
-      rail.querySelector('.rail-item.active')?.classList.remove('active');
+      const activeItem = rail.querySelector('.rail-item.active');
+      const activeId = activeItem ? parseInt(activeItem.dataset.id) : 1;
+      const clickedId = parseInt(item.dataset.id);
+      const direction = clickedId > activeId ? 'right' : 'left';
+
+      activeItem?.classList.remove('active');
       item.classList.add('active');
-      scrollRailToItem(item);
+      scrollRailToItem(item, direction);
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -1112,11 +1117,14 @@ function initDirectorsGallery() {
       });
     }, 90);
   });
-
-  function scrollRailToItem(item) {
+  function scrollRailToItem(item, direction) {
     const isMobile = window.innerWidth < 992;
     if (isMobile) {
-      rail.scrollTo({ left: item.offsetLeft - rail.clientWidth / 2 + item.clientWidth / 2, behavior: 'smooth' });
+      if (direction === 'right') {
+        rail.scrollTo({ left: item.offsetLeft - 16, behavior: 'smooth' });
+      } else {
+        rail.scrollTo({ left: item.offsetLeft - rail.clientWidth + item.clientWidth + 16, behavior: 'smooth' });
+      }
     } else {
       rail.scrollTo({ top: item.offsetTop - rail.clientHeight / 2 + item.clientHeight / 2, behavior: 'smooth' });
     }

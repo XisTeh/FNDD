@@ -1,4 +1,4 @@
-﻿   SEÇÃO FAQ — DÚVIDAS FREQUENTES (FNDD PREMIUM)
+   SEÇÃO FAQ — DÚVIDAS FREQUENTES (FNDD PREMIUM)
    ========================================================================== */
 .faq-section {
   position: relative;
@@ -387,14 +387,31 @@
   .faq-context {
     position: relative;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .faq-eyebrow-container {
+    justify-content: center;
   }
 
   .faq-title {
     font-size: 2.2rem;
   }
 
+  .faq-title-separator {
+    margin: 0 auto 28px auto;
+  }
+
   .faq-quote-block {
     margin-top: 30px;
+    padding-left: 0;
+  }
+
+  .faq-quote-line {
+    display: none;
   }
 
   .faq-watermark {

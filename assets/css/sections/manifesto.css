@@ -730,17 +730,32 @@
   }
 
   .timeline-compact {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 100%;
   }
   
   .timeline-compact::before {
-    display: none;
+    display: block;
+    top: 16px;
+    left: 12px;
+    right: 12px;
   }
   
   .tc-item {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+  }
+
+  .tc-content {
+    align-items: center;
+  }
+
+  .tc-text {
+    max-width: 85px;
+    font-size: 0.72rem;
   }
 }
 
