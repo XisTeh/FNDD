@@ -172,6 +172,17 @@
   margin: 0 0 4px 0;
 }
 
+.footer-email-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.footer-email-link:hover {
+  color: var(--gold-primary);
+}
+
 .btn-footer-cta {
   display: inline-flex;
   align-items: center;
